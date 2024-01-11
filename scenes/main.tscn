@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://tilesets/terrain.tres" type="TileSet" id=3]
+[ext_resource path="res://scenes/pointer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/pathfinding.gd" type="Script" id=5]
 [ext_resource path="res://scenes/tree.tscn" type="PackedScene" id=6]
 
@@ -21,10 +22,15 @@ format = 1
 tile_data = PoolIntArray( 65537, 3, 0, 65538, 3, 1, 65539, 3, 2, 131073, 3, 65536, 131074, 3, 131073, 131075, 3, 65538, 196609, 3, 196608, 196610, 3, 196608, 196611, 3, 196608, 327687, 3, 3, 393223, 3, 131075, 458759, 3, 196611, 655363, 3, 262147, 655366, 3, 0, 655367, 3, 1, 655368, 3, 1, 655369, 3, 2, 720899, 3, 327683, 720902, 3, 196608, 720903, 3, 196609, 720904, 3, 196609, 720905, 3, 196609, 983042, 3, 0, 983043, 3, 1, 983044, 3, 1, 983045, 3, 1, 983046, 3, 1, 983047, 3, 1, 983048, 3, 2, 1048578, 3, 196608, 1048579, 3, 196608, 1048580, 3, 196608, 1048581, 3, 196608, 1048582, 3, 196609, 1048583, 3, 196609, 1048584, 3, 196609 )
 script = ExtResource( 5 )
 map_size = Vector2( 11, 20 )
+pointer_path = NodePath("../Pointer")
+
+[node name="Pointer" parent="." instance=ExtResource( 4 )]
+position = Vector2( -100, -100 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 358, 425 )
 nav_path = NodePath("../NavMesh")
+pointer_path = NodePath("../Pointer")
 
 [node name="Tree" parent="." instance=ExtResource( 6 )]
 position = Vector2( 286, 737 )

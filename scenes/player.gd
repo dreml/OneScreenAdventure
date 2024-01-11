@@ -3,10 +3,12 @@ extends KinematicBody2D
 enum States { IDLE, FOLLOW }
 
 const MASS = 10.0
-const ARRIVE_DISTANCE = 10.0
+const ARRIVE_DISTANCE = 5.0
 
 export(float) var speed = 200.0
 export var nav_path: NodePath
+export var pointer_path: NodePath
+
 
 var _state = States.IDLE
 
@@ -18,18 +20,18 @@ var _velocity = Vector2()
 onready var sprite = $AnimatedSprite
 onready var agent = $NavigationAgent2D
 onready var nav: TileMap = get_node(nav_path)
+onready var pointer: Node2D = get_node(pointer_path)
 
 func _ready():
-	sprite.play('idle')
 	_change_state(States.IDLE)
 	
 func _process(_delta):
 	if _state != States.FOLLOW:
 		return
 		
-	if _target_position.x < self.position.x:
+	if _target_point_world.x - self.position.x < -5:
 		sprite.flip_h = true
-	elif _target_position.x > self.position.x:
+	elif _target_point_world.x - self.position.x > 5:
 		sprite.flip_h = false
 	
 	var _arrived_to_next_point = _move_to(_target_point_world)
@@ -61,6 +63,7 @@ func _move_to(world_position):
 func _change_state(new_state):
 	if new_state == States.FOLLOW:
 		sprite.play('run')
+		
 		_path = nav.get_astar_path(position, _target_position)
 		if not _path or len(_path) == 1:
 			_change_state(States.IDLE)
@@ -68,5 +71,6 @@ func _change_state(new_state):
 		_target_point_world = _path[1]
 	elif new_state == States.IDLE: 
 		sprite.play('idle')
+		pointer.position = Vector2(-100, -100)
 		
 	_state = new_state

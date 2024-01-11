@@ -4,13 +4,16 @@ const BASE_LINE_WIDTH = 3.0
 const DRAW_COLOR = Color.white
 
 export(Vector2) var map_size = Vector2.ONE * 16
+export var pointer_path: NodePath
 
 var path_start_position = Vector2() setget _set_path_start_position
 var path_end_position = Vector2() setget _set_path_end_position
 
 var _point_path = []
+
 onready var astar_node = AStar.new()
 onready var _half_cell_size = cell_size / 2
+onready var pointer = get_node(pointer_path)
 
 # TODO разделить преграды на разные атласы и получать занятые клетки по id тайлсета
 onready var obstacles = get_used_cells() 
@@ -19,18 +22,19 @@ func _ready():
 	calculate_obstacles()
 	var walkable_cells_list = astar_add_walkable_cells()
 	astar_connect_walkable_cells_diagonal(walkable_cells_list)
+	
 
-func _draw():
-	if not _point_path:
-		return
-		
-	var point_start = _point_path[0]
-	var last_point = map_to_world(Vector2(point_start.x, point_start.y)) + _half_cell_size
-	for index in range(1, len(_point_path)):
-		var current_point = map_to_world(Vector2(_point_path[index].x, _point_path[index].y)) + _half_cell_size
-		draw_line(last_point, current_point, DRAW_COLOR, BASE_LINE_WIDTH, true)
-		draw_circle(current_point, BASE_LINE_WIDTH * 2.0, DRAW_COLOR)
-		last_point = current_point
+#func _draw():
+#	if not _point_path:
+#		return
+#
+#	var point_start = _point_path[0]
+#	var last_point = map_to_world(Vector2(point_start.x, point_start.y)) + _half_cell_size
+#	for index in range(1, len(_point_path)):
+#		var current_point = map_to_world(Vector2(_point_path[index].x, _point_path[index].y)) + _half_cell_size
+#		draw_line(last_point, current_point, DRAW_COLOR, BASE_LINE_WIDTH, true)
+#		draw_circle(current_point, BASE_LINE_WIDTH * 2.0, DRAW_COLOR)
+#		last_point = current_point
 
 func calculate_obstacles() -> Array:
 	for obstacle in get_tree().get_nodes_in_group('obstacles'):
@@ -91,6 +95,9 @@ func get_astar_path(world_start, world_end):
 	for point in _point_path:
 		var point_world = map_to_world(Vector2(point.x, point.y)) + _half_cell_size
 		path_world.append(point_world)
+		
+	pointer.position = map_to_world(self.path_end_position) + _half_cell_size
+	
 	return path_world
 
 func _recalculate_path():
