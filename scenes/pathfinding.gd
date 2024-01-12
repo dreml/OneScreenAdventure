@@ -36,14 +36,12 @@ func _ready():
 #		draw_circle(current_point, BASE_LINE_WIDTH * 2.0, DRAW_COLOR)
 #		last_point = current_point
 
-func calculate_obstacles() -> Array:
+func calculate_obstacles() -> void:
 	for obstacle in get_tree().get_nodes_in_group('obstacles'):
 		var obstacle_cell_pos = obstacle.position / cell_size
 		var obstacle_cell = Vector2(floor(obstacle_cell_pos.x), floor(obstacle_cell_pos.y))
 		if not obstacle_cell in obstacles:
 			obstacles.append(obstacle_cell)
-			
-	return obstacles
 
 func astar_add_walkable_cells():
 	var points_array = []
