@@ -1,0 +1,8 @@
+res://scenes/background_music.tscn::f03152e46e931c76126dcba5c5013087::1705221295::res://.godot/exported/133200997/export-dcfcfdc5cd029a69a0efad830bc9ee16-background_music.scn
+res://scenes/clickable_area.tscn::7b262c61fcdf2d57feaf3ebe09ca6d19::1705221295::res://.godot/exported/133200997/export-9f35bb0c85adec5991ab6e592e551683-clickable_area.scn
+res://scenes/main.tscn::9da89de9cd9134e3144f6d80aabb8968::1705224522::res://.godot/exported/133200997/export-3ad5c15c4f3250da0cc7c1af1770d85f-main.scn
+res://scenes/player.tscn::a2a073fd7151e4d39b61f7571e4f0077::1705221295::res://.godot/exported/133200997/export-234fb6894ec6226e856ab7f825500d3d-player.scn
+res://scenes/pointer.tscn::47437aed7f756d861e53af4bbbb08c34::1705221295::res://.godot/exported/133200997/export-0d748c191f7c73e7a006d8d7786e8fd9-pointer.scn
+res://scenes/tree.tscn::09c615aca885552691b7c706b3f283ae::1705221295::res://.godot/exported/133200997/export-a9120a52d578fc4f9832f17b0458a97d-tree.scn
+res://tilesets/terrain.tres::cb87ef266ff2a269a0893025907241d5::1705221295::res://.godot/exported/133200997/export-4591a05815de0e05946a118dfa236c65-terrain.res
+res://default_env.tres::e218ddc2ae63cb7eed61aeed9ebb1ecf::1705224522::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
