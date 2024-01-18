@@ -4,3 +4,16 @@
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_80ed7")
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -65.0
+offset_bottom = 64.0
+grow_horizontal = 0
+text = "Toggle
+Grid"
+
+[connection signal="child_entered_tree" from="Button" to="." method="_on_button_child_entered_tree"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

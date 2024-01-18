@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cw5i2jwtg0fc"]
+[gd_scene load_steps=13 format=3 uid="uid://cw5i2jwtg0fc"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1"]
 [ext_resource type="PackedScene" path="res://player/player.tscn" id="2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scenes/pathfinding.gd" id="5"]
 [ext_resource type="PackedScene" path="res://scenes/tree.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://be6aih86rjifv" path="res://tools/debug_grid.tscn" id="8_0b33p"]
+[ext_resource type="PackedScene" uid="uid://cbcj1sulss7dv" path="res://ui/hud.tscn" id="9_msq1i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ji6yy"]
 texture = ExtResource("2_a4nxh")
@@ -163,3 +164,6 @@ position = Vector2(679, 342)
 position = Vector2(358, 425)
 nav_path = NodePath("../TileMap")
 pointer_path = NodePath("../Pointer")
+
+[node name="HUD" parent="." node_paths=PackedStringArray("grid") instance=ExtResource("9_msq1i")]
+grid = NodePath("../DebugGrid")
