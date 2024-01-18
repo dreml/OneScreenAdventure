@@ -10,7 +10,7 @@ const ARRIVE_DISTANCE: float = 5.0
 @export var pointer_path: NodePath
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var nav: TileMap = get_node(nav_path)
+@onready var nav: Pathfinding = get_node(nav_path)
 @onready var pointer: Node2D = get_node(pointer_path)
 
 var _state: int = States.IDLE

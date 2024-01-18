@@ -368,3 +368,4 @@ $RECYCLE.BIN/
 *.msp
 *.lnk
 builds/
+.godot/

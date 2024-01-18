@@ -1,3 +1,4 @@
+class_name Pathfinding
 extends TileMap
 
 const BASE_LINE_WIDTH: float = 3.0
@@ -44,8 +45,6 @@ func calculate_obstacles() -> void:
 			obstacles.append(obstacle_cell)
 
 func astar_add_walkable_cells() -> Array[Vector2i]:
-	print(get_layer_name(1))
-	
 	var points_array: Array[Vector2i] = []
 	for x in range(map_size.x):
 		for y in range(map_size.y):
