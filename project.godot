@@ -35,6 +35,7 @@ enabled=PackedStringArray()
 
 [gui]
 
+theme/custom="res://ui/osa_theme.tres"
 common/drop_mouse_on_gui_input_disabled=true
 
 [input]

@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://dy0t5ti7t6ooi"]
+
+[node name="OSAThemePreview" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 7.0
+offset_right = 167.0
+offset_bottom = 135.0
+theme_type_variation = &"BlueButton"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 6.0
+offset_right = 315.0
+offset_bottom = 134.0
+theme_type_variation = &"RedButton"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 142.0
+offset_right = 337.0
+offset_bottom = 221.0
+theme_type_variation = &"BlueRibbon"
+
+[node name="PanelContainer3" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 226.0
+offset_right = 336.0
+offset_bottom = 305.0
+theme_type_variation = &"RedRibbon"
+
+[node name="PanelContainer4" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 309.0
+offset_right = 337.0
+offset_bottom = 388.0
+theme_type_variation = &"YellowRibbon"
+
+[node name="PanelContainer5" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 323.0
+offset_top = -1.0
+offset_right = 615.0
+offset_bottom = 300.0
+theme_type_variation = &"VerticalBanner"
+
+[node name="PanelContainer7" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 319.0
+offset_top = 260.0
+offset_right = 611.0
+offset_bottom = 561.0
+theme_type_variation = &"VerticalBanner"
+
+[node name="PanelContainer6" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 583.0
+offset_top = -19.0
+offset_right = 900.0
+offset_bottom = 284.0
+theme_type_variation = &"HorizontalBanner"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 389.0
+offset_top = 318.0
+offset_right = 544.0
+offset_bottom = 442.0
+theme_type_variation = &"Carved"
