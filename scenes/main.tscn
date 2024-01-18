@@ -105,12 +105,8 @@ map_size = Vector2(17, 30)
 [node name="Pointer" parent="." instance=ExtResource("4")]
 position = Vector2(-100, -100)
 
-[node name="Player" parent="." instance=ExtResource("2")]
-position = Vector2(358, 425)
-nav_path = NodePath("../TileMap")
-pointer_path = NodePath("../Pointer")
-
 [node name="Trees" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Tree" parent="Trees" instance=ExtResource("6")]
 position = Vector2(286, 737)
@@ -128,7 +124,7 @@ position = Vector2(424, 1655)
 position = Vector2(101, 1556)
 
 [node name="Tree11" parent="Trees" instance=ExtResource("6")]
-position = Vector2(486, 1716)
+position = Vector2(482, 1714)
 
 [node name="Tree12" parent="Trees" instance=ExtResource("6")]
 position = Vector2(488, 1661)
@@ -162,3 +158,8 @@ position = Vector2(609, 287)
 
 [node name="Tree7" parent="Trees" instance=ExtResource("6")]
 position = Vector2(679, 342)
+
+[node name="Player" parent="." instance=ExtResource("2")]
+position = Vector2(358, 425)
+nav_path = NodePath("../TileMap")
+pointer_path = NodePath("../Pointer")
