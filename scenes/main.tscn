@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://cw5i2jwtg0fc"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1"]
-[ext_resource type="PackedScene" path="res://player/player.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://5bklngkdgtoy" path="res://player/player.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://dqq5pf5ledi05" path="res://assets/sprites/Tiny Swords/Terrain/Ground/Tilemap_Flat.png" id="2_a4nxh"]
 [ext_resource type="Texture2D" uid="uid://bxckmix6t7e33" path="res://assets/sprites/Tiny Swords/Terrain/Ground/Tilemap_Elevation.png" id="3_fmk0t"]
 [ext_resource type="PackedScene" path="res://scenes/pointer.tscn" id="4"]
