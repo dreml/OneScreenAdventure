@@ -4,6 +4,8 @@ enum States { IDLE, FOLLOW, ATTACK }
 
 const MASS: float = 10.0
 const ARRIVE_DISTANCE: float = 5.0
+const AT_CONDITION_PATH: String = "parameters/StateMachine/conditions/%s"
+const AT_BLEND_POSITION_PATH: String = "parameters/StateMachine/%s/blend_position"
 
 @export var speed: float = 200.0
 @export var nav_path: NodePath
@@ -19,21 +21,19 @@ var _path = []
 var _target_point_world: Vector2 = Vector2()
 var _target_position: Vector2 = Vector2()
 var _facing_direction: Vector2 = Vector2()
-var _velocity: Vector2 = Vector2():
-	set(new_value):
-		_facing_direction = new_value.snapped(Vector2.ONE)
-		_velocity = new_value
-		
-		var diff = _target_point_world.x - position.x
-		# TODO надо найти способ избавиться от лишних разворотов по оси X
-		if diff > -5 and diff < 5:
-			_facing_direction.x = 0
+var _velocity: Vector2 = Vector2()
+
+var _animation_name_by_state = {
+	States.IDLE: "Idle",
+	States.FOLLOW: "Running",
+	States.ATTACK: "Attacking",
+}
 
 func _ready():
 	_change_state(States.IDLE)
 
 func _process(_delta) -> void:
-	update_animation_direction()
+	_update_animation_direction()
 
 	if _state != States.FOLLOW:
 		return
@@ -78,34 +78,22 @@ func _change_state(new_state) -> void:
 		pointer.position = Vector2(-100, -100)
 
 	_state = new_state
-	switch_animation()
+	_switch_animation()
 
-func _get_animation_name_by_state(state):
-	match state:
-		States.ATTACK:
-			return "Attacking"
-		States.FOLLOW:
-			return "Running"
-		_:
-			return "Idle"
+func _switch_animation():
+	for state in States:
+		var animation_name = _animation_name_by_state[States[state]]
+		animation_tree[AT_CONDITION_PATH % animation_name] = States[state] == _state
+
+func _update_animation_direction():
+	var animation_name = _animation_name_by_state[_state]
+	var blend_position = _velocity.normalized()
+
+	if _state != States.ATTACK:
+		blend_position = blend_position.x
+
+	animation_tree[AT_BLEND_POSITION_PATH % animation_name] = blend_position
 
 func attack():
 	print("Attacking")
 	_change_state(States.IDLE)
-
-func switch_animation():
-	for state in States:
-		var animation_name = _get_animation_name_by_state(States[state])
-		animation_tree["parameters/StateMachine/conditions/" + animation_name] = States[state] == _state
-
-func update_animation_direction():
-	var animation_name = _get_animation_name_by_state(_state)
-	var blend_position
-	
-	match _state:
-		States.ATTACK:
-			blend_position = _facing_direction
-		_:
-			blend_position = sign(_facing_direction.x)
-
-	animation_tree["parameters/StateMachine/" + animation_name + "/blend_position"] = blend_position
