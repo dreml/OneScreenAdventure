@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://cw5i2jwtg0fc"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://bu2vdo5qltsnf" path="res://player/player.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://iviro4gjq1x1" path="res://player/player.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://dqq5pf5ledi05" path="res://assets/sprites/Tiny Swords/Terrain/Ground/Tilemap_Flat.png" id="2_a4nxh"]
 [ext_resource type="Texture2D" uid="uid://drt3i0hosjd15" path="res://assets/sprites/Tiny Swords/Terrain/Water/Water.png" id="2_mtkva"]
 [ext_resource type="Texture2D" uid="uid://bxckmix6t7e33" path="res://assets/sprites/Tiny Swords/Terrain/Ground/Tilemap_Elevation.png" id="3_fmk0t"]
@@ -188,7 +188,6 @@ grid = NodePath("../DebugGrid")
 
 [node name="Pawn" parent="." instance=ExtResource("10_xq8q2")]
 position = Vector2(370, 1849)
-build = null
 
 [node name="Pawn2" parent="." instance=ExtResource("10_xq8q2")]
 position = Vector2(734, 1633)
