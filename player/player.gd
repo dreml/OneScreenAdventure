@@ -38,6 +38,8 @@ func _process(_delta) -> void:
 	if _state != States.FOLLOW:
 		return
 
+	_facing_direction = global_position.direction_to(_target_point_world).normalized()
+
 	var _arrived_to_next_point: bool = _move_to(_target_point_world)
 	if _arrived_to_next_point:
 		_path.remove_at(0)
@@ -87,7 +89,7 @@ func _switch_animation():
 
 func _update_animation_direction():
 	var animation_name = _animation_name_by_state[_state]
-	var blend_position = _velocity.normalized()
+	var blend_position = _facing_direction
 
 	if _state != States.ATTACK:
 		blend_position = blend_position.x
