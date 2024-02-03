@@ -17,7 +17,7 @@ var cell_size: int = 64
 @onready var pointer: Node2D = get_node(pointer_path)
 
 # TODO разделить преграды на разные атласы и получать занятые клетки по id тайлсета
-@onready var obstacles: Array[Vector2i] = get_used_cells(1) 
+@onready var blocked_cells: Array[Vector2i] = get_used_cells(1) 
 
 func _ready():
 	calculate_obstacles()
@@ -29,6 +29,7 @@ func _ready():
 #	if not _point_path:
 #		return
 #
+	# отрисовка пути
 #	var point_start = _point_path[0]
 #	var last_point = map_to_world(Vector2(point_start.x, point_start.y))
 #	for index in range(1, len(_point_path)):
@@ -38,18 +39,26 @@ func _ready():
 #		last_point = current_point
 
 func calculate_obstacles() -> void:
-	for obstacle in get_tree().get_nodes_in_group('obstacles'):
-		var obstacle_cell_pos = obstacle.global_position / cell_size
-		var obstacle_cell: Vector2i = Vector2i(floor(obstacle_cell_pos.x), floor(obstacle_cell_pos.y))
-		if not obstacle_cell in obstacles:
-			obstacles.append(obstacle_cell)
+	for obstacle : Node2D in get_tree().get_nodes_in_group('obstacles'):
+		var collision: CollisionShape2D = obstacle.get_node('Collision')
+		assert(collision, 'No collision in %s node' % obstacle.get_name())
+		assert(collision.shape, 'No collision shape in %s node' % obstacle.get_name())
+		
+		var collision_start: Vector2i = local_to_map(collision.global_position + collision.shape.get_rect().position) 
+		var collision_end: Vector2i = local_to_map(collision.global_position + collision.shape.get_rect().end) 
+		
+		for x in range(collision_start.x, collision_end.x + 1):
+			for y in range(collision_start.y, collision_end.y + 1):
+				var obstacle_cell := Vector2i(x, y)
+				if not obstacle_cell in blocked_cells:
+					blocked_cells.append(obstacle_cell)
 
 func astar_add_walkable_cells() -> Array[Vector2i]:
 	var points_array: Array[Vector2i] = []
 	for x in range(map_size.x):
 		for y in range(map_size.y):
 			var point: Vector2i = Vector2i(x, y)
-			if point in obstacles:
+			if point in blocked_cells:
 				continue
 
 			points_array.append(point)
@@ -109,7 +118,7 @@ func _recalculate_path():
 func _set_path_start_position(value) -> void:
 	if is_outside_map_bounds(value):
 		return
-	if value in obstacles:
+	if value in blocked_cells:
 		return
 		
 	path_start_position = value
@@ -119,7 +128,7 @@ func _set_path_start_position(value) -> void:
 func _set_path_end_position(value) -> void:
 	if is_outside_map_bounds(value):
 		return
-	if value in obstacles:
+	if value in blocked_cells:
 		return
 		
 	path_end_position = value
