@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bxckmix6t7e33" path="res://assets/sprites/Tiny Swords/Terrain/Ground/Tilemap_Elevation.png" id="3_fmk0t"]
 [ext_resource type="PackedScene" path="res://ui/pointer.tscn" id="4"]
 [ext_resource type="Script" path="res://scenes/pathfinding.gd" id="5"]
-[ext_resource type="PackedScene" uid="uid://cf865pko71ojv" path="res://objects/tree.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://cr2atqn4jb6g5" path="res://objects/tree.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://be6aih86rjifv" path="res://tools/debug_grid.tscn" id="8_0b33p"]
 [ext_resource type="PackedScene" uid="uid://cbcj1sulss7dv" path="res://ui/hud.tscn" id="9_msq1i"]
 [ext_resource type="PackedScene" uid="uid://durirmvxvuw8e" path="res://npc/pawn.tscn" id="10_xq8q2"]
