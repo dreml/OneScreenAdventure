@@ -96,8 +96,8 @@ axis_stretch_vertical = 2
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_shiqp"]
 texture = ExtResource("6_w1dme")
-texture_margin_left = 63.68
-texture_margin_right = 64.0
+texture_margin_left = 65.0
+texture_margin_right = 65.0
 axis_stretch_horizontal = 2
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t4y1u"]
