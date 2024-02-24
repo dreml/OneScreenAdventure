@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cw5i2jwtg0fc"]
+[gd_scene load_steps=31 format=3 uid="uid://cw5i2jwtg0fc"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://iviro4gjq1x1" path="res://player/player.tscn" id="2"]
@@ -20,6 +20,12 @@
 [ext_resource type="Texture2D" uid="uid://gvo64w1bbyt8" path="res://assets/sprites/Tiny Swords/Factions/Goblins/Buildings/Wood_Tower/Wood_Tower_Red.png" id="18_we7oi"]
 [ext_resource type="PackedScene" uid="uid://c2o8l3t78tcns" path="res://objects/sheep.tscn" id="20_0ekwb"]
 [ext_resource type="Texture2D" uid="uid://dj8rtxqgwh11v" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Active.png" id="20_oq02h"]
+[ext_resource type="PackedScene" uid="uid://dvw811bioaals" path="res://objects/gold_mine.tscn" id="21_jmlor"]
+[ext_resource type="PackedScene" uid="uid://mdno3ej0qmg4" path="res://objects/gold_ore.tscn" id="22_cd0p5"]
+[ext_resource type="PackedScene" uid="uid://cevqgiwjsgle2" path="res://objects/gold_label.tscn" id="23_u8jsy"]
+[ext_resource type="PackedScene" uid="uid://quum6veb6vj5" path="res://objects/sawmill.tscn" id="24_o0eek"]
+[ext_resource type="PackedScene" uid="uid://cwliq8r65x2r7" path="res://objects/wood.tscn" id="25_3wsmi"]
+[ext_resource type="PackedScene" uid="uid://ujupkerpkl2x" path="res://objects/wood_label.tscn" id="26_xg0fr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mnn2t"]
 texture = ExtResource("2_mtkva")
@@ -248,3 +254,33 @@ frame_progress = 0.915642
 [node name="GoldMineActive" type="Sprite2D" parent="."]
 position = Vector2(609, 1445)
 texture = ExtResource("20_oq02h")
+
+[node name="GoldMine" parent="." instance=ExtResource("21_jmlor")]
+position = Vector2(912, 1402)
+
+[node name="IronOre" parent="." instance=ExtResource("22_cd0p5")]
+position = Vector2(965, 1855)
+scale = Vector2(0.742187, 0.749059)
+
+[node name="GoldLabel" parent="." instance=ExtResource("23_u8jsy")]
+offset_left = 1007.0
+offset_top = 1834.0
+offset_right = 1031.0
+offset_bottom = 1889.0
+theme_override_colors/font_color = Color(0.984314, 0.980392, 0.984314, 1)
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="Sawmill" parent="." instance=ExtResource("24_o0eek")]
+position = Vector2(582, 958)
+
+[node name="Wood" parent="." instance=ExtResource("25_3wsmi")]
+position = Vector2(970, 1802)
+
+[node name="WoodLabel" parent="." instance=ExtResource("26_xg0fr")]
+offset_left = 1006.0
+offset_top = 1789.0
+offset_right = 1029.0
+offset_bottom = 1844.0
+theme_override_font_sizes/font_size = 40
+text = "0"

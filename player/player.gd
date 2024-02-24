@@ -29,6 +29,10 @@ var _animation_name_by_state = {
 	States.ATTACK: "Attacking",
 }
 
+# ресурсы
+var gold_ore_amount = 0
+var wood_amount = 0
+
 func _ready():
 	_change_state(States.IDLE)
 
@@ -97,3 +101,15 @@ func _update_animation_direction():
 func attack():
 	print("Attacking")
 	_change_state(States.IDLE)
+	
+func get_resourse(type, amount, time):
+	if type=='gold_ore':
+		gold_ore_amount += amount
+		print('Player get ', amount, ' iron_ore')
+		print('Sum gold_ore is ', gold_ore_amount)
+	if type=='wood':
+		wood_amount += amount
+		print('Player get ', amount, ' wood')
+		print('Sum wood is ', wood_amount) 
+		
+

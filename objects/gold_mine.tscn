@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://dvw811bioaals"]
+
+[ext_resource type="Script" path="res://objects/gold_mine.gd" id="1_7yebf"]
+[ext_resource type="Texture2D" uid="uid://4jgqtkb8o5fv" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Destroyed.png" id="1_325qu"]
+[ext_resource type="Texture2D" uid="uid://dj8rtxqgwh11v" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Active.png" id="2_h5che"]
+[ext_resource type="Texture2D" uid="uid://c43pcs2f1j525" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Inactive.png" id="3_mskst"]
+[ext_resource type="AudioStream" uid="uid://bf3qh63rja0hi" path="res://assets/audio/coin-drop-5.mp3" id="5_tosty"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_05b74"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_325qu")
+}],
+"loop": true,
+"name": &"destroyed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_mskst")
+}],
+"loop": true,
+"name": &"full_stock",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h5che")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mskst")
+}],
+"loop": true,
+"name": &"production",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovy1t"]
+size = Vector2(151, 86)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yr1yw"]
+radius = 34.0588
+
+[node name="GoldMine" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_05b74")
+animation = &"destroyed"
+script = ExtResource("1_7yebf")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Storage" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -13)
+shape = SubResource("RectangleShape2D_ovy1t")
+
+[node name="GatherZone" type="Area2D" parent="."]
+
+[node name="GatherZoneShape" type="CollisionShape2D" parent="GatherZone"]
+position = Vector2(-2, 33)
+shape = SubResource("CircleShape2D_yr1yw")
+
+[node name="GatherTimer" type="Timer" parent="."]
+
+[node name="GoldCollectSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_tosty")
+volume_db = 5.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_exited" from="GatherZone" to="." method="_on_gather_zone_area_exited"]
+[connection signal="body_entered" from="GatherZone" to="." method="_on_gather_zone_body_entered"]
+[connection signal="body_exited" from="GatherZone" to="." method="_on_gather_zone_body_exited"]
+[connection signal="timeout" from="GatherTimer" to="." method="_on_gather_timer_timeout"]

@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://quum6veb6vj5"]
+
+[ext_resource type="Texture2D" uid="uid://cinel71my562d" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Destroyed.png" id="1_aqdm0"]
+[ext_resource type="Texture2D" uid="uid://pi4mxlj6ey67" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Blue.png" id="1_liohl"]
+[ext_resource type="Script" path="res://objects/sawmill.gd" id="2_iua6w"]
+[ext_resource type="AudioStream" uid="uid://b0ipkdbvxa3b2" path="res://assets/audio/wood-drop.mp3" id="4_gx1ea"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_foyqb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_aqdm0")
+}],
+"loop": true,
+"name": &"destroyed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_liohl")
+}],
+"loop": true,
+"name": &"full_stock",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_liohl")
+}],
+"loop": true,
+"name": &"production",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6guwd"]
+radius = 24.0208
+
+[node name="Sawmill" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_foyqb")
+animation = &"production"
+script = ExtResource("2_iua6w")
+
+[node name="OutputTimer" type="Timer" parent="."]
+
+[node name="GatherTimer" type="Timer" parent="."]
+
+[node name="Storage" type="Node2D" parent="."]
+
+[node name="GatherZone" type="Area2D" parent="."]
+
+[node name="GatherZoneShape" type="CollisionShape2D" parent="GatherZone"]
+position = Vector2(-1, 68)
+shape = SubResource("CircleShape2D_6guwd")
+
+[node name="WoodCollectSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_gx1ea")
+
+[connection signal="timeout" from="OutputTimer" to="." method="_on_output_timer_timeout"]
+[connection signal="timeout" from="GatherTimer" to="." method="_on_gather_timer_timeout"]
+[connection signal="body_entered" from="GatherZone" to="." method="_on_gather_zone_body_entered"]
+[connection signal="body_exited" from="GatherZone" to="." method="_on_gather_zone_body_exited"]
+[connection signal="body_shape_entered" from="GatherZone" to="." method="_on_gather_zone_body_shape_entered"]
