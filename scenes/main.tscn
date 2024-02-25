@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cw5i2jwtg0fc"]
+[gd_scene load_steps=27 format=3 uid="uid://cw5i2jwtg0fc"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://iviro4gjq1x1" path="res://player/player.tscn" id="2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://p22balhrj22n" path="res://ui/pointer.tscn" id="4"]
 [ext_resource type="Script" path="res://scenes/pathfinding.gd" id="5"]
 [ext_resource type="PackedScene" uid="uid://cr2atqn4jb6g5" path="res://objects/tree.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://cpcesvssngjle" path="res://scenes/game_director.tscn" id="6_sdabn"]
 [ext_resource type="PackedScene" uid="uid://be6aih86rjifv" path="res://tools/debug_grid.tscn" id="8_0b33p"]
 [ext_resource type="PackedScene" uid="uid://cbcj1sulss7dv" path="res://ui/hud.tscn" id="9_msq1i"]
 [ext_resource type="PackedScene" uid="uid://durirmvxvuw8e" path="res://npc/pawn.tscn" id="10_xq8q2"]
@@ -116,7 +117,9 @@ layer_1/name = "obstacles"
 layer_1/tile_data = PackedInt32Array(458759, 2, 4, 524295, 2, 5, 458760, 65538, 4, 524296, 65538, 5, 458761, 131074, 4, 524297, 131074, 5, 1114114, 2, 4, 1179650, 2, 5, 1114115, 65538, 4, 1179651, 65538, 5, 1114116, 65538, 4, 1179652, 65538, 5, 1114117, 65538, 4, 1179653, 65538, 5, 1114118, 65538, 4, 1179654, 65538, 5, 1114119, 65538, 4, 1179655, 65538, 5, 1114120, 131074, 4, 1179656, 131074, 5, 655362, 2, 4, 720898, 2, 5, 655363, 131074, 4, 720899, 131074, 5, 655366, 2, 4, 720902, 2, 5, 655367, 65538, 4, 720903, 65538, 5, 655368, 131074, 4, 720904, 131074, 5, 458765, 196610, 0, 524301, 131074, 1, 589837, 131074, 2, 655373, 65538, 1, 720909, 65538, 1, 524300, 2, 0, 589836, 2, 1, 655372, 2, 2, 720908, 2, 2, 720910, 65538, 1, 786446, 65538, 1, 851982, 65538, 1, 720911, 131074, 0, 786447, 131074, 1, 851983, 131074, 2, 655374, 131074, 0, 786445, 2, 1, 917518, 65538, 1, 917519, 131074, 2, 983052, 2, 0, 1048588, 2, 2, 1114124, 196610, 1, 983053, 65538, 1, 1048589, 65538, 2, 983054, 131074, 1, 1048590, 131074, 2, 1310728, 2, 0, 1376264, 2, 2, 1310729, 65538, 0, 1376265, 65538, 2, 1310730, 131074, 0, 1376266, 131074, 2, 1179660, 196610, 3, 1114125, 131074, 3, 1114126, 131074, 3, 917517, 2, 1, 851981, 2, 1, 983055, 131074, 3, 786444, 2, 3, 1441800, 2, 3, 1441801, 65538, 3, 1441802, 131074, 3)
 script = ExtResource("5")
 map_size = Vector2(17, 30)
-pointer_path = NodePath("../Pointer")
+
+[node name="GameDirector" parent="." node_paths=PackedStringArray("goblins") instance=ExtResource("6_sdabn")]
+goblins = [NodePath("../Goblin"), NodePath("../Goblin2"), NodePath("../Goblin3")]
 
 [node name="DebugGrid" parent="." instance=ExtResource("8_0b33p")]
 map_size = Vector2(17, 30)

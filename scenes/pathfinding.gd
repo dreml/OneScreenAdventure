@@ -5,19 +5,16 @@ const BASE_LINE_WIDTH: float = 3.0
 const DRAW_COLOR: Color = Color.WHITE
 
 @export var map_size: Vector2 = Vector2.ONE * 16
-@export var pointer_path: NodePath
+
+@onready var astar_node: AStar2D = AStar2D.new()
+# TODO разделить преграды на разные атласы и получать занятые клетки по id тайлсета
+@onready var blocked_cells: Array[Vector2i] = get_used_cells(1) 
 
 var path_start_position: Vector2i = Vector2i(): set = _set_path_start_position
 var path_end_position: Vector2i = Vector2i(): set = _set_path_end_position
 
 var _point_path = []
 var cell_size: int = 64
-
-@onready var astar_node: AStar2D = AStar2D.new()
-@onready var pointer: Node2D = get_node(pointer_path)
-
-# TODO разделить преграды на разные атласы и получать занятые клетки по id тайлсета
-@onready var blocked_cells: Array[Vector2i] = get_used_cells(1) 
 
 func _ready():
 	calculate_obstacles()
@@ -96,16 +93,14 @@ func is_outside_map_bounds(point):
 	return point.x < 0 or point.y < 0 or point.x >= map_size.x or point.y >= map_size.y
 	
 func get_astar_path(world_start, world_end) -> Array[Vector2]:
-	self.path_start_position = local_to_map(world_start)
-	self.path_end_position = local_to_map(world_end)
+	path_start_position = local_to_map(world_start)
+	path_end_position = local_to_map(world_end)
 	_recalculate_path()
 	var path_world: Array[Vector2] = []
 	for point in _point_path:
 		var point_world: Vector2 = map_to_local(Vector2(point.x, point.y)) 
 		path_world.append(point_world)
 		
-	pointer.global_position = map_to_local(self.path_end_position)
-	
 	return path_world
 
 func _recalculate_path():
