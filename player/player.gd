@@ -13,7 +13,7 @@ const AT_BLEND_POSITION_PATH: String = "parameters/StateMachine/%s/blend_positio
 @export var pointer_path: NodePath
 
 @onready var animation_tree: AnimationTree = $AnimationTree
-@onready var nav: Pathfinding = get_node(nav_path)
+@onready var nav: NavigationMap = get_node(nav_path)
 @onready var pointer: Node2D = get_node(pointer_path)
 
 var _state := States.IDLE
