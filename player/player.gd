@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 enum States { IDLE, FOLLOW, ATTACK }
 
-const MASS: float = 10.0
+const MASS: float = 1.0
 const ARRIVE_DISTANCE: float = 5.0
 const AT_CONDITION_PATH: String = "parameters/StateMachine/conditions/%s"
 const AT_BLEND_POSITION_PATH: String = "parameters/StateMachine/%s/blend_position"

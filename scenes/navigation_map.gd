@@ -27,6 +27,7 @@ func _ready():
 	astar_grid.region = Rect2i(0, 0, map_size.x, map_size.y)
 	astar_grid.cell_size = Vector2(cell_size, cell_size)
 	astar_grid.offset = Vector2(32, 32)
+	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
 	astar_grid.update()
 	
 	astar_grid.fill_solid_region(Rect2i(0, 0, map_size.x, map_size.y), true)
