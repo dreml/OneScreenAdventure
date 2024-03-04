@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://iviro4gjq1x1" path="res://player/player.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://b086faxrj5bln" path="res://scenes/level.tscn" id="2_7m4ab"]
 [ext_resource type="Texture2D" uid="uid://dqq5pf5ledi05" path="res://assets/sprites/Tiny Swords/Terrain/Ground/Tilemap_Flat.png" id="2_a4nxh"]
 [ext_resource type="Texture2D" uid="uid://drt3i0hosjd15" path="res://assets/sprites/Tiny Swords/Terrain/Water/Water.png" id="2_mtkva"]
 [ext_resource type="Texture2D" uid="uid://bxckmix6t7e33" path="res://assets/sprites/Tiny Swords/Terrain/Ground/Tilemap_Elevation.png" id="3_fmk0t"]
@@ -108,7 +109,10 @@ sources/0 = SubResource("TileSetAtlasSource_mnn2t")
 y_sort_enabled = true
 script = ExtResource("1")
 
+[node name="level" parent="." instance=ExtResource("2_7m4ab")]
+
 [node name="TileMap" type="TileMap" parent="."]
+visible = false
 tile_set = SubResource("TileSet_hoqte")
 format = 2
 layer_0/name = "flat"
@@ -127,35 +131,55 @@ map_size = Vector2(17, 30)
 [node name="Pointer" parent="." instance=ExtResource("4")]
 position = Vector2(-100, -100)
 
-[node name="Trees" type="Node2D" parent="."]
+[node name="Trees-part1" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Tree" parent="Trees" instance=ExtResource("6")]
+[node name="Tree" parent="Trees-part1" instance=ExtResource("6")]
 position = Vector2(158, 1382)
 
-[node name="Tree2" parent="Trees" instance=ExtResource("6")]
+[node name="Tree2" parent="Trees-part1" instance=ExtResource("6")]
 position = Vector2(226, 1344)
 
-[node name="Tree3" parent="Trees" instance=ExtResource("6")]
-position = Vector2(412, 1248)
+[node name="Tree3" parent="Trees-part1" instance=ExtResource("6")]
+position = Vector2(886, 1468)
 
-[node name="Tree4" parent="Trees" instance=ExtResource("6")]
-position = Vector2(609, 1124)
+[node name="Tree4" parent="Trees-part1" instance=ExtResource("6")]
+position = Vector2(732, 1247)
 
-[node name="Tree5" parent="Trees" instance=ExtResource("6")]
-position = Vector2(804, 1249)
+[node name="Tree5" parent="Trees-part1" instance=ExtResource("6")]
+position = Vector2(861, 1310)
 
-[node name="Tree6" parent="Trees" instance=ExtResource("6")]
-position = Vector2(867, 1193)
+[node name="Tree6" parent="Trees-part1" instance=ExtResource("6")]
+position = Vector2(927, 1367)
 
-[node name="Tree7" parent="Trees" instance=ExtResource("6")]
-position = Vector2(293, 802)
+[node name="Tree7" parent="Trees-part1" instance=ExtResource("6")]
+position = Vector2(443, 1159)
 
-[node name="Tree8" parent="Trees" instance=ExtResource("6")]
-position = Vector2(357, 803)
+[node name="Tree8" parent="Trees-part1" instance=ExtResource("6")]
+position = Vector2(661, 1319)
 
-[node name="Tree9" parent="Trees" instance=ExtResource("6")]
-position = Vector2(229, 858)
+[node name="Tree9" parent="Trees-part1" instance=ExtResource("6")]
+position = Vector2(391, 1235)
+
+[node name="Tree10" parent="Trees-part1" instance=ExtResource("6")]
+position = Vector2(588, 1408)
+
+[node name="Trees-part2" type="Node2D" parent="."]
+
+[node name="Tree10" parent="Trees-part2" instance=ExtResource("6")]
+position = Vector2(929, 572)
+
+[node name="Tree11" parent="Trees-part2" instance=ExtResource("6")]
+position = Vector2(629, 861)
+
+[node name="Tree12" parent="Trees-part2" instance=ExtResource("6")]
+position = Vector2(570, 683)
+
+[node name="Tree13" parent="Trees-part2" instance=ExtResource("6")]
+position = Vector2(785, 676)
+
+[node name="Tree14" parent="Trees-part2" instance=ExtResource("6")]
+position = Vector2(615, 486)
 
 [node name="Player" parent="." instance=ExtResource("2")]
 position = Vector2(568, 1575)
@@ -173,26 +197,30 @@ position = Vector2(734, 1633)
 build = true
 
 [node name="Goblin" parent="." instance=ExtResource("12_vor8f")]
-position = Vector2(69, 367)
+position = Vector2(643, 258)
 
 [node name="Goblin3" parent="." instance=ExtResource("12_vor8f")]
 z_index = 1
-position = Vector2(174, 234)
+position = Vector2(916, 273)
 
 [node name="Goblin2" parent="." instance=ExtResource("12_vor8f")]
-position = Vector2(306, 303)
+position = Vector2(775, 355)
 scale = Vector2(-1, 1)
 
 [node name="CastleBlue" type="Sprite2D" parent="."]
-position = Vector2(578, 1726)
+position = Vector2(468, 1682)
 texture = ExtResource("13_f42j2")
 
 [node name="TowerBlue" type="Sprite2D" parent="."]
-position = Vector2(319, 1543)
+position = Vector2(556, 1232)
+texture = ExtResource("14_f4gqr")
+
+[node name="TowerBlue2" type="Sprite2D" parent="."]
+position = Vector2(386, 517)
 texture = ExtResource("14_f4gqr")
 
 [node name="HouseBlue" type="Sprite2D" parent="."]
-position = Vector2(138, 1696)
+position = Vector2(766, 1397)
 texture = ExtResource("15_qeysm")
 
 [node name="HouseBlue2" type="Sprite2D" parent="."]
@@ -208,25 +236,25 @@ position = Vector2(829, 1547)
 texture = ExtResource("17_exyro")
 
 [node name="WoodTowerRed" type="Sprite2D" parent="."]
-position = Vector2(171, 267)
+position = Vector2(770, 188)
 texture = ExtResource("18_we7oi")
 hframes = 4
 
 [node name="Sheep" parent="." instance=ExtResource("20_0ekwb")]
-position = Vector2(277, 1711)
+position = Vector2(820, 805)
 
 [node name="Sheep2" parent="." instance=ExtResource("20_0ekwb")]
-position = Vector2(329, 1750)
+position = Vector2(891, 845)
 frame_progress = 0.915642
 
 [node name="Sheep3" parent="." instance=ExtResource("20_0ekwb")]
-position = Vector2(350, 1696)
+position = Vector2(881, 770)
 scale = Vector2(-1, 1)
 frame_progress = 0.915642
 
 [node name="GoldMineActive" type="Sprite2D" parent="."]
-position = Vector2(609, 1445)
+position = Vector2(357, 203)
 texture = ExtResource("20_oq02h")
 
 [node name="Building" parent="." groups=["obstacles2"] instance=ExtResource("21_r3nht")]
-position = Vector2(943, 1395)
+position = Vector2(128, 1071)
