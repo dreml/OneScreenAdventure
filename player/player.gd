@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 enum States { IDLE, FOLLOW, ATTACK }
@@ -15,7 +16,7 @@ const AT_BLEND_POSITION_PATH: String = "parameters/StateMachine/%s/blend_positio
 @onready var nav: Pathfinding = get_node(nav_path)
 @onready var pointer: Node2D = get_node(pointer_path)
 
-var _state: int = States.IDLE
+var _state := States.IDLE
 
 var _path = []
 var _target_point_world: Vector2 = Vector2()
@@ -42,6 +43,8 @@ func _process(_delta) -> void:
 	if _state != States.FOLLOW:
 		return
 
+	_facing_direction = global_position.direction_to(_target_point_world).normalized()
+
 	var _arrived_to_next_point: bool = _move_to(_target_point_world)
 	if _arrived_to_next_point:
 		_path.remove_at(0)
@@ -50,7 +53,7 @@ func _process(_delta) -> void:
 			return
 		_target_point_world = _path[0]
 	
-func _unhandled_input(event):
+func _unhandled_input(event) -> void:
 	if Input.is_key_pressed(KEY_F):
 		_change_state(States.ATTACK)
 		return
@@ -78,6 +81,7 @@ func _change_state(new_state) -> void:
 			_change_state(States.IDLE)
 			return
 		_target_point_world = _path[1]
+		pointer.position = _path.back()
 	elif new_state == States.IDLE:
 		pointer.position = Vector2(-100, -100)
 
@@ -91,7 +95,7 @@ func _switch_animation():
 
 func _update_animation_direction():
 	var animation_name = _animation_name_by_state[_state]
-	var blend_position = _velocity.normalized()
+	var blend_position = _facing_direction
 
 	if _state != States.ATTACK:
 		blend_position = blend_position.x
