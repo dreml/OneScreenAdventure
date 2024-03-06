@@ -1,12 +1,10 @@
 ﻿name: "godot-ci export"
-on: 
-  push:
-    branches: [ "master" ]
+on: push
 
 env:
   GODOT_VERSION: 4.2.1
   EXPORT_NAME: osa
-  PROJECT_PATH: OneScreenAdventure
+  PROJECT_PATH: osa
 
 jobs:
   export-windows:
@@ -25,6 +23,7 @@ jobs:
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
       - name: Windows Build
         run: |
+          ls -la
           mkdir -v -p build/windows
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
