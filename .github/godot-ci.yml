@@ -1,7 +1,9 @@
 ﻿name: "godot-ci export"
 on: 
   push:
-      branches: [ "master" ]
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 
 env:
   GODOT_VERSION: 4.2.1
