@@ -5,6 +5,9 @@ env:
   GODOT_VERSION: 4.2.1
   EXPORT_NAME: osa
   PROJECT_PATH: osa
+  ITCHIO_USERNAME: ${{ secrets.ITCHIO_USERNAME }}
+  ITCHIO_GAME: ${{ secrets.ITCHIO_GAME }}
+  BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }} 
 
 jobs:
   export-windows:
