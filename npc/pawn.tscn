@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://6r2vkiqs6jtk" path="res://npc/npc.tscn" id="1_rv43q"]
 [ext_resource type="Script" path="res://npc/pawn.gd" id="2_awla0"]
 
-[node name="Pawn" instance=ExtResource("1_rv43q")]
+[node name="Pawn" groups=["pawns"] instance=ExtResource("1_rv43q")]
 script = ExtResource("2_awla0")
 build = null
 

@@ -1,4 +1,4 @@
-﻿class_name MovementComponent
+class_name MovementComponent
 extends Node2D
 
 signal arrived
