@@ -2,7 +2,7 @@
 extends Node2D
 
 @export var map_size: Vector2 = Vector2.ONE * 16
-@export var cell_size: int = 64
+@export var cell_size: int = 32
 
 func _draw() -> void:
 	for x in range(map_size.x - 1):
