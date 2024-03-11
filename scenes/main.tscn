@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cw5i2jwtg0fc"]
+[gd_scene load_steps=24 format=3 uid="uid://cw5i2jwtg0fc"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://iviro4gjq1x1" path="res://player/player.tscn" id="2"]
@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://drt3i0hosjd15" path="res://assets/sprites/Tiny Swords/Terrain/Water/Water.png" id="2_mtkva"]
 [ext_resource type="PackedScene" uid="uid://p22balhrj22n" path="res://ui/pointer.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://cr2atqn4jb6g5" path="res://objects/tree.tscn" id="6"]
-[ext_resource type="PackedScene" uid="uid://c8drfjktww73l" path="res://scenes/navigation_map.tscn" id="7_hur7d"]
 [ext_resource type="PackedScene" uid="uid://cpcesvssngjle" path="res://scenes/game_director.tscn" id="6_sdabn"]
+[ext_resource type="PackedScene" uid="uid://c8drfjktww73l" path="res://scenes/navigation_map.tscn" id="7_hur7d"]
 [ext_resource type="PackedScene" uid="uid://be6aih86rjifv" path="res://tools/debug_grid.tscn" id="8_0b33p"]
 [ext_resource type="PackedScene" uid="uid://cbcj1sulss7dv" path="res://ui/hud.tscn" id="9_msq1i"]
 [ext_resource type="PackedScene" uid="uid://durirmvxvuw8e" path="res://npc/pawn.tscn" id="10_xq8q2"]
@@ -120,6 +120,7 @@ nav = NodePath("../NavigationMap")
 
 [node name="Pawn" parent="." instance=ExtResource("10_xq8q2")]
 position = Vector2(370, 1849)
+build = false
 
 [node name="Pawn2" parent="." instance=ExtResource("10_xq8q2")]
 position = Vector2(734, 1633)
