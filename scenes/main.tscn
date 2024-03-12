@@ -52,9 +52,9 @@ map_size = Vector2i(34, 60)
 goblins = [NodePath("../Goblin"), NodePath("../Goblin2"), NodePath("../Goblin3")]
 
 [node name="DebugGrid" parent="." instance=ExtResource("8_0b33p")]
-visible = false
 position = Vector2(16, 16)
 map_size = Vector2(33, 59)
+line_opacity = null
 
 [node name="Pointer" parent="." instance=ExtResource("4")]
 position = Vector2(-100, -100)
