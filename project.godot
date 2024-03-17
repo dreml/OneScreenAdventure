@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 
 BackgroundMusic="*res://global/background_music.tscn"
 GameInstance="*res://global/game_instance.gd"
+Globals="*res://global/globals.gd"
 
 [display]
 

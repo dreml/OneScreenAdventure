@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cw5i2jwtg0fc"]
+[gd_scene load_steps=35 format=3 uid="uid://cw5i2jwtg0fc"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://iviro4gjq1x1" path="res://player/player.tscn" id="2"]
@@ -20,14 +20,16 @@
 [ext_resource type="Texture2D" uid="uid://cbsj1kmh6qu4f" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Construction.png" id="17_exyro"]
 [ext_resource type="Texture2D" uid="uid://gvo64w1bbyt8" path="res://assets/sprites/Tiny Swords/Factions/Goblins/Buildings/Wood_Tower/Wood_Tower_Red.png" id="18_we7oi"]
 [ext_resource type="PackedScene" uid="uid://c2o8l3t78tcns" path="res://objects/sheep.tscn" id="20_0ekwb"]
-[ext_resource type="Texture2D" uid="uid://dj8rtxqgwh11v" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Active.png" id="20_oq02h"]
-[ext_resource type="PackedScene" uid="uid://dvw811bioaals" path="res://objects/gold_mine.tscn" id="21_jmlor"]
-[ext_resource type="PackedScene" uid="uid://mdno3ej0qmg4" path="res://objects/gold_ore.tscn" id="22_cd0p5"]
-[ext_resource type="PackedScene" uid="uid://cevqgiwjsgle2" path="res://objects/gold_label.tscn" id="23_u8jsy"]
-[ext_resource type="PackedScene" uid="uid://quum6veb6vj5" path="res://objects/sawmill.tscn" id="24_o0eek"]
-[ext_resource type="PackedScene" uid="uid://cwliq8r65x2r7" path="res://objects/wood.tscn" id="25_3wsmi"]
-[ext_resource type="PackedScene" uid="uid://ujupkerpkl2x" path="res://objects/wood_label.tscn" id="26_xg0fr"]
+[ext_resource type="PackedScene" uid="uid://f3hbf7mpfefr" path="res://objects/gold_mine.tscn" id="21_jmlor"]
 [ext_resource type="PackedScene" uid="uid://bvrtlcy2mvm7u" path="res://objects/building.tscn" id="21_r3nht"]
+[ext_resource type="PackedScene" uid="uid://mdno3ej0qmg4" path="res://objects/gold_ore.tscn" id="22_cd0p5"]
+[ext_resource type="PackedScene" uid="uid://cevqgiwjsgle2" path="res://ui/gold_label.tscn" id="23_u8jsy"]
+[ext_resource type="PackedScene" uid="uid://byb75qek45f7v" path="res://objects/sawmill.tscn" id="24_o0eek"]
+[ext_resource type="PackedScene" uid="uid://cwliq8r65x2r7" path="res://objects/wood.tscn" id="25_3wsmi"]
+[ext_resource type="PackedScene" uid="uid://ujupkerpkl2x" path="res://ui/wood_label.tscn" id="26_xg0fr"]
+[ext_resource type="PackedScene" uid="uid://c0t7rqwtvm8m8" path="res://objects/farm.tscn" id="28_plbmx"]
+[ext_resource type="PackedScene" uid="uid://cdf0ko4xjq3xi" path="res://objects/meat.tscn" id="29_gx2jf"]
+[ext_resource type="PackedScene" uid="uid://ddlyj6mvb07tv" path="res://ui/meat_label.tscn" id="30_5cdgt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mnn2t"]
 texture = ExtResource("2_mtkva")
@@ -193,6 +195,7 @@ grid = NodePath("../DebugGrid")
 
 [node name="Pawn" parent="." instance=ExtResource("10_xq8q2")]
 position = Vector2(370, 1849)
+build = false
 
 [node name="Pawn2" parent="." instance=ExtResource("10_xq8q2")]
 position = Vector2(734, 1633)
@@ -254,39 +257,53 @@ position = Vector2(881, 770)
 scale = Vector2(-1, 1)
 frame_progress = 0.915642
 
-[node name="GoldMineActive" type="Sprite2D" parent="."]
-position = Vector2(357, 203)
-texture = ExtResource("20_oq02h")
-
-[node name="GoldMine" parent="." instance=ExtResource("21_jmlor")]
-position = Vector2(912, 1402)
-
 [node name="IronOre" parent="." instance=ExtResource("22_cd0p5")]
-position = Vector2(965, 1855)
+position = Vector2(986, 1871)
 scale = Vector2(0.742187, 0.749059)
 
 [node name="GoldLabel" parent="." instance=ExtResource("23_u8jsy")]
-offset_left = 1007.0
-offset_top = 1834.0
-offset_right = 1031.0
-offset_bottom = 1889.0
+offset_left = 1030.0
+offset_top = 1850.0
+offset_right = 1054.0
+offset_bottom = 1905.0
 theme_override_colors/font_color = Color(0.984314, 0.980392, 0.984314, 1)
 theme_override_font_sizes/font_size = 40
 text = "0"
 
-[node name="Sawmill" parent="." instance=ExtResource("24_o0eek")]
-position = Vector2(582, 958)
-
 [node name="Wood" parent="." instance=ExtResource("25_3wsmi")]
-position = Vector2(970, 1802)
+position = Vector2(993, 1801)
 
 [node name="WoodLabel" parent="." instance=ExtResource("26_xg0fr")]
-offset_left = 1006.0
-offset_top = 1789.0
-offset_right = 1029.0
-offset_bottom = 1844.0
+offset_left = 1030.0
+offset_top = 1793.0
+offset_right = 1053.0
+offset_bottom = 1848.0
 theme_override_font_sizes/font_size = 40
 text = "0"
 
 [node name="Building" parent="." groups=["obstacles2"] instance=ExtResource("21_r3nht")]
 position = Vector2(128, 1071)
+
+[node name="Meat" parent="." instance=ExtResource("29_gx2jf")]
+position = Vector2(987, 1760)
+scale = Vector2(0.726562, 0.726562)
+
+[node name="MeatLabel" parent="." instance=ExtResource("30_5cdgt")]
+offset_left = 1029.0
+offset_top = 1738.0
+offset_right = 1052.0
+offset_bottom = 1793.0
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="sawmill2" parent="." instance=ExtResource("24_o0eek")]
+position = Vector2(683, 589)
+
+[node name="GoldMine" parent="." instance=ExtResource("21_jmlor")]
+position = Vector2(348, 305)
+
+[node name="Farm" parent="." instance=ExtResource("28_plbmx")]
+position = Vector2(723, 801)
+
+[node name="Sawmill" parent="." instance=ExtResource("24_o0eek")]
+position = Vector2(356, 1371)

@@ -107,13 +107,12 @@ func attack():
 	_change_state(States.IDLE)
 	
 func get_resourse(type, amount, time):
-	if type=='gold_ore':
-		gold_ore_amount += amount
-		print('Player get ', amount, ' iron_ore')
-		print('Sum gold_ore is ', gold_ore_amount)
-	if type=='wood':
-		wood_amount += amount
-		print('Player get ', amount, ' wood')
-		print('Sum wood is ', wood_amount) 
+	if type == Globals.ResourceType.GOLD_ORE:
+		GameInstance.gold_amount += amount
+	if type == Globals.ResourceType.WOOD:
+		GameInstance.wood_amount += amount
+	if type == Globals.ResourceType.MEAT:
+		GameInstance.meat_amount += amount
+		
 		
 
