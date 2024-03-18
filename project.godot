@@ -56,6 +56,11 @@ test={
 
 pointing/emulate_touch_from_mouse=true
 
+[layer_names]
+
+2d_physics/layer_1="obstacle"
+2d_physics/layer_2="character"
+
 [physics]
 
 common/enable_pause_aware_picking=true

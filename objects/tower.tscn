@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://dd8c2ncqldrck"]
+
+[ext_resource type="Script" path="res://objects/tower.gd" id="1_0oybk"]
+[ext_resource type="Texture2D" uid="uid://cbsj1kmh6qu4f" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Construction.png" id="1_ncwwv"]
+[ext_resource type="Texture2D" uid="uid://b0gek6tnv0d7w" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Red.png" id="2_lm40d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fijf"]
+size = Vector2(88, 55)
+
+[sub_resource type="Animation" id="Animation_takw2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_ncwwv")]
+}
+
+[sub_resource type="Animation" id="Animation_yvqxx"]
+resource_name = "construction"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_ncwwv")]
+}
+
+[sub_resource type="Animation" id="Animation_o23yu"]
+resource_name = "Destroyed"
+
+[sub_resource type="Animation" id="Animation_pj8ky"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_lm40d")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bhpfk"]
+_data = {
+"RESET": SubResource("Animation_takw2"),
+"construction": SubResource("Animation_yvqxx"),
+"destroyed": SubResource("Animation_o23yu"),
+"idle": SubResource("Animation_pj8ky")
+}
+
+[node name="Tower" type="StaticBody2D" groups=["buildings"]]
+collision_mask = 2
+script = ExtResource("1_0oybk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 69.5)
+shape = SubResource("RectangleShape2D_3fijf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ncwwv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bhpfk")
+}

@@ -23,6 +23,7 @@ var _target_point_world: Vector2 = Vector2()
 var _target_position: Vector2 = Vector2()
 var _facing_direction: Vector2 = Vector2()
 var _velocity: Vector2 = Vector2()
+var _target_building: Building
 
 var _animation_name_by_state = {
 	States.IDLE: "Idle",
@@ -55,14 +56,42 @@ func _unhandled_input(event) -> void:
 		return
 	
 	if event.is_action_pressed("click"):
-		var global_mouse_pos: Vector2 = get_global_mouse_position()
-		if Input.is_key_pressed(KEY_SHIFT):
-			global_position = global_mouse_pos
-		else:
-			_target_position = global_mouse_pos
+		_start_following()
+
+func _start_following():
+	_target_building = _get_target_building()
+	
+	var destination: Vector2
+	
+	if is_instance_valid(_target_building):
+		destination = _get_target_building_entrance_point()
+	else:
+		destination = get_global_mouse_position()
+
+	if Input.is_key_pressed(KEY_SHIFT):
+		global_position = destination
+	else:
+		_target_position = destination
+
+	_change_state(States.FOLLOW)
+	
+func _get_target_building_entrance_point():
+	var rect = _target_building.get_rect_global()
+	
+	return _target_building.global_position + Vector2(0, rect.size.y * 2)
+
+func _get_target_building():
+	var space_state = PhysicsServer2D.space_get_direct_state(get_world_2d().space)
+	var query = PhysicsPointQueryParameters2D.new()
+	query.position = get_global_mouse_position()
+	var intersections = space_state.intersect_point(query, 1)
+	
+	for intersection in intersections:
+		if intersection.collider.is_in_group("buildings"):
+			return intersection.collider
 		
-		_change_state(States.FOLLOW)
-		
+	return null
+
 func _move_to(world_position) -> bool:
 	var desired_velocity = (world_position - position).normalized() * speed
 	var steering = desired_velocity - _velocity
@@ -77,9 +106,18 @@ func _change_state(new_state) -> void:
 			_change_state(States.IDLE)
 			return
 		_target_point_world = _path[1]
-		pointer.position = _path.back()
+
+		if is_instance_valid(_target_building):
+			var rect = _target_building.get_rect_global()
+			
+			pointer.wrap_around(rect)
+			pointer.position = rect.position
+		else:
+			pointer.position = _path.back()
 	elif new_state == States.IDLE:
 		pointer.position = Vector2(-100, -100)
+		pointer.reset()
+		_target_building = null
 
 	_state = new_state
 	_switch_animation()
