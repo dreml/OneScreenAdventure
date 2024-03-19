@@ -69,6 +69,7 @@ jobs:
   telegram-notification:
     name: Telegram Notification
     runs-on: ubuntu-latest
+    needs: [export-windows, export-web]
     steps:
       - name: Send telegram notification
         uses: appleboy/telegram-action@master
@@ -77,5 +78,5 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             Новый билд залит на itch.io
-            Фича: ${{github.event.pull-request.name}}
-            https://dreml.itch.io/onescreenadventure
+            Фича: ${{github.event.pull_request.title}}
+            Ссылка на игру: https://dreml.itch.io/onescreenadventure
