@@ -25,20 +25,24 @@ func _ready():
 	output_timer.set_wait_time(output_time)
 	output_timer.start()
 	gather_timer.set_wait_time(gather_res_time)
-	state_change(_state_act)
+	state_change(State.WORK)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 func state_change(state):
-	if state == State.WORK:
+	if state == _state_act:
+		return
+	
+	_state_act = state
+	if _state_act == State.WORK:
 		play('production')
 		output_timer.start()			
-	if state == State.WAIT:
+	if _state_act == State.WAIT:
 		play('full_stock')
 		output_timer.stop()		
-	if state == State.DESTROYED:
+	if _state_act == State.DESTROYED:
 		play("destroyed")
 		output_timer.stop()
 			
@@ -46,8 +50,7 @@ func production():
 	for o in output:
 		if _storage_act >= storage_max:
 			_storage_act = storage_max
-			_state_act = State.WAIT
-			state_change(_state_act)
+			state_change(State.WAIT)
 			break  
 		_storage_act += 1
 		var res_inst = res_sprite.instantiate()
@@ -60,8 +63,7 @@ func resource_return():
 	_storage_act = 0
 	for i in storage.get_children():
 		i.queue_free()
-	_state_act = State.WORK
-	state_change(_state_act)
+	state_change(State.WORK)
 	
 func resoure_bring(target):
 	target.get_resourse(res_type, _storage_act)
