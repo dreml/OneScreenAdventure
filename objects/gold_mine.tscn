@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://f3hbf7mpfefr"]
+
+[ext_resource type="Script" path="res://objects/gold_mine.gd" id="1_7yebf"]
+[ext_resource type="Texture2D" uid="uid://4jgqtkb8o5fv" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Destroyed.png" id="1_325qu"]
+[ext_resource type="PackedScene" uid="uid://cgxdgslj44ggc" path="res://objects/product_building.tscn" id="1_wowso"]
+[ext_resource type="Texture2D" uid="uid://dj8rtxqgwh11v" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Active.png" id="2_h5che"]
+[ext_resource type="Texture2D" uid="uid://c43pcs2f1j525" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Inactive.png" id="3_mskst"]
+[ext_resource type="AudioStream" uid="uid://3dolqk076vd" path="res://assets/audio/get_gold_sound.wav" id="5_dmmt5"]
+[ext_resource type="PackedScene" uid="uid://mdno3ej0qmg4" path="res://objects/gold_ore.tscn" id="6_b638p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pfdc2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_325qu")
+}],
+"loop": true,
+"name": &"destroyed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_mskst")
+}],
+"loop": true,
+"name": &"full_stock",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h5che")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mskst")
+}],
+"loop": true,
+"name": &"production",
+"speed": 1.0
+}]
+
+[node name="GoldMine" instance=ExtResource("1_wowso")]
+sprite_frames = SubResource("SpriteFrames_pfdc2")
+script = ExtResource("1_7yebf")
+storage_max = 3
+output = 1
+output_time = 3
+gather_res_time = 2
+res_sprite = ExtResource("6_b638p")
+res_y = 10
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-2.5, -13.5)
+
+[node name="GatherZoneShape" parent="GatherZone" index="0"]
+position = Vector2(-2, 38)
+
+[node name="CollectSound" parent="." index="5"]
+stream = ExtResource("5_dmmt5")

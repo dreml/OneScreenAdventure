@@ -30,6 +30,10 @@ var _animation_name_by_state = {
 	States.ATTACK: "Attacking",
 }
 
+# ресурсы
+var gold_ore_amount = 0
+var wood_amount = 0
+
 func _ready():
 	_change_state(States.IDLE)
 
@@ -101,3 +105,6 @@ func _update_animation_direction():
 func attack():
 	print("Attacking")
 	_change_state(States.IDLE)
+	
+func get_resourse(type, amount):
+	GameInstance.get_resource(type, amount)

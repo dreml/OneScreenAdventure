@@ -23,6 +23,7 @@ driver/mix_rate.web=44100
 
 BackgroundMusic="*res://global/background_music.tscn"
 GameInstance="*res://global/game_instance.gd"
+Globals="*res://global/globals.gd"
 
 [display]
 
