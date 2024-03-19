@@ -8,3 +8,11 @@ var meat_amount := 0
 
 func _ready() -> void:
 	pass
+	
+func get_resource(type, amount):
+	if type == Globals.ResourceType.GOLD_ORE:
+		gold_amount += amount
+	if type == Globals.ResourceType.WOOD:
+		wood_amount += amount
+	if type == Globals.ResourceType.MEAT:
+		meat_amount += amount

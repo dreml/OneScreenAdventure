@@ -106,13 +106,5 @@ func attack():
 	print("Attacking")
 	_change_state(States.IDLE)
 	
-func get_resourse(type, amount, time):
-	if type == Globals.ResourceType.GOLD_ORE:
-		GameInstance.gold_amount += amount
-	if type == Globals.ResourceType.WOOD:
-		GameInstance.wood_amount += amount
-	if type == Globals.ResourceType.MEAT:
-		GameInstance.meat_amount += amount
-		
-		
-
+func get_resourse(type, amount):
+	GameInstance.get_resource(type, amount)
