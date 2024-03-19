@@ -78,5 +78,5 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             Новый билд залит на itch.io
-            Фича: ${{github.event.pull_request.title}}
+            Фича: ${{github.event.head_commit.message}}
             Ссылка на игру: https://dreml.itch.io/onescreenadventure
