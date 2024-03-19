@@ -65,3 +65,17 @@ jobs:
       - name: Upload to itch.io
         run: |
           butler push ./build/web $ITCHIO_USERNAME/$ITCHIO_GAME:web
+          
+  telegram-notification:
+    name: Telegram Notification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send telegram notification
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            Новый билд залит на itch.io
+            Фича: ${{github.event.pull-request.name}}
+            https://dreml.itch.io/onescreenadventure
