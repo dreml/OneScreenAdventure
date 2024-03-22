@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwliq8r65x2r7"]
+
+[ext_resource type="Texture2D" uid="uid://bangi61ot7r4n" path="res://assets/sprites/Tiny Swords/Resources/Resources/W_Idle.png" id="1_3ct2e"]
+
+[node name="Wood" type="Sprite2D"]
+texture = ExtResource("1_3ct2e")

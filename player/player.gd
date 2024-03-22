@@ -45,6 +45,10 @@ var _animation_name_by_state = {
 	States.FOLLOW: "Running",
 }
 
+# ресурсы
+var gold_ore_amount = 0
+var wood_amount = 0
+
 func _ready():
 	_change_state(States.IDLE)
 	attack_cd_timer.set_wait_time(attack_cd)
@@ -113,6 +117,9 @@ func _update_animation_direction():
 
 	var animation_name = _animation_name_by_state[_state]
 	animation_tree[AT_BLEND_POSITION_PATH % animation_name] = _facing_direction.x
+
+func get_resourse(type, amount):
+	GameInstance.get_resource(type, amount)
 
 #region Атака
 func take_damage(damage_amount: int):
