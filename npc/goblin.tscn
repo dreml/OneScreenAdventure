@@ -156,9 +156,13 @@ animations = [{
 }]
 
 [node name="Goblin" groups=["goblins"] instance=ExtResource("1_mycac")]
+collision_layer = 2
 script = ExtResource("2_m6xmn")
 
-[node name="AnimatedSprite2D" parent="." index="0"]
+[node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_qjc4e")
 animation = &"run"
 frame_progress = 0.166662
+
+[node name="AttackCDTimer" type="Timer" parent="." index="4"]
+one_shot = true

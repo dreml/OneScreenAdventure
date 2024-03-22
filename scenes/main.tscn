@@ -54,7 +54,6 @@ goblins = [NodePath("../Goblin"), NodePath("../Goblin2"), NodePath("../Goblin3")
 [node name="DebugGrid" parent="." instance=ExtResource("8_0b33p")]
 position = Vector2(16, 16)
 map_size = Vector2(33, 59)
-line_opacity = null
 
 [node name="Pointer" parent="." instance=ExtResource("4")]
 position = Vector2(-100, -100)
@@ -110,7 +109,7 @@ position = Vector2(785, 676)
 position = Vector2(615, 486)
 
 [node name="Player" parent="." instance=ExtResource("2")]
-position = Vector2(565, 1571)
+position = Vector2(320, 1557)
 nav_path = NodePath("../NavigationMap")
 pointer_path = NodePath("../Pointer")
 
@@ -127,14 +126,15 @@ position = Vector2(734, 1633)
 build = true
 
 [node name="Goblin" parent="." instance=ExtResource("12_vor8f")]
-position = Vector2(643, 258)
+position = Vector2(469, 1503)
+scale = Vector2(-1, 1)
 
 [node name="Goblin3" parent="." instance=ExtResource("12_vor8f")]
 z_index = 1
 position = Vector2(916, 273)
 
 [node name="Goblin2" parent="." instance=ExtResource("12_vor8f")]
-position = Vector2(775, 355)
+position = Vector2(749, 347)
 scale = Vector2(-1, 1)
 
 [node name="CastleBlue" type="Sprite2D" parent="."]

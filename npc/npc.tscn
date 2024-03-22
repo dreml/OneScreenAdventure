@@ -1,7 +1,8 @@
-[gd_scene load_steps=41 format=3 uid="uid://6r2vkiqs6jtk"]
+[gd_scene load_steps=42 format=3 uid="uid://6r2vkiqs6jtk"]
 
 [ext_resource type="Texture2D" uid="uid://eapnw8dmbrr8" path="res://assets/sprites/Tiny Swords/Factions/Knights/Troops/Pawn/Blue/Pawn_Blue.png" id="1_ux38i"]
 [ext_resource type="Script" path="res://components/movement_component.gd" id="2_cgfcy"]
+[ext_resource type="Script" path="res://components/health_component.gd" id="3_2rot0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hy7cq"]
 atlas = ExtResource("1_ux38i")
@@ -293,6 +294,12 @@ size = Vector2(32, 32)
 
 [node name="Npc" type="CharacterBody2D"]
 
+[node name="MovementComponent" type="Node2D" parent="."]
+script = ExtResource("2_cgfcy")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("3_2rot0")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -23)
 sprite_frames = SubResource("7")
@@ -304,6 +311,3 @@ frame_progress = 0.0313705
 shape = SubResource("8")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-
-[node name="MovementComponent" type="Node2D" parent="."]
-script = ExtResource("2_cgfcy")

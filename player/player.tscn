@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://iviro4gjq1x1"]
+[gd_scene load_steps=30 format=3 uid="uid://iviro4gjq1x1"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://wywba2jc74ru" path="res://assets/sprites/Tiny Swords/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png" id="2"]
+[ext_resource type="Script" path="res://components/health_component.gd" id="3_xlymk"]
 
 [sub_resource type="RectangleShape2D" id="8"]
 size = Vector2(32, 32)
@@ -330,29 +331,10 @@ _data = {
 "RunRight": SubResource("Animation_je262")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2kp5t"]
-animation = &"AttackTopDownLeft"
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_751xt"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jv3mg"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0aefh"]
 animation = &"AttackTopDownRight"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vpn18"]
-animation = &"AttackTopDownDown"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3ld44"]
-animation = &"AttackTopDownUp"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_01we2"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_2kp5t")
-blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_jv3mg")
-blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_vpn18")
-blend_point_2/pos = Vector2(0, 1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_3ld44")
-blend_point_3/pos = Vector2(0, -1)
-snap = Vector2(1, 1)
-blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g2s6s"]
 animation = &"IdleLeft"
@@ -378,26 +360,13 @@ animation = &"RunLeft"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h4ll1"]
 animation = &"RunRight"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2wtkk"]
-animation = &"RunRight"
-
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_6u2c3"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_6jfim")
 blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_h4ll1")
 blend_point_1/pos = 1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_2wtkk")
-blend_point_2/pos = 0.0
 snap = 1.0
 blend_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nk4kf"]
-advance_mode = 2
-advance_condition = &"Attacking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a0o64"]
-advance_mode = 2
-advance_condition = &"Running"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tnhf1"]
 advance_mode = 2
@@ -410,36 +379,36 @@ advance_condition = &"Running"
 advance_mode = 2
 advance_condition = &"Idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5vesw"]
-advance_mode = 2
-advance_condition = &"Attacking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v2jwd"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"Idle"
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tn1xw"]
-states/Attacking/node = SubResource("AnimationNodeBlendSpace2D_01we2")
-states/Attacking/position = Vector2(544.92, 193.037)
 states/End/position = Vector2(740.5, 105.185)
 states/Idle/node = SubResource("AnimationNodeBlendSpace1D_vep2m")
 states/Idle/position = Vector2(341.254, 82.1987)
 states/Running/node = SubResource("AnimationNodeBlendSpace1D_6u2c3")
-states/Running/position = Vector2(543.795, 17.1725)
-states/Start/position = Vector2(143, 80.31)
-transitions = ["Running", "Attacking", SubResource("AnimationNodeStateMachineTransition_nk4kf"), "Attacking", "Running", SubResource("AnimationNodeStateMachineTransition_a0o64"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_tnhf1"), "Idle", "Running", SubResource("AnimationNodeStateMachineTransition_0554v"), "Running", "Idle", SubResource("AnimationNodeStateMachineTransition_iohgl"), "Idle", "Attacking", SubResource("AnimationNodeStateMachineTransition_5vesw"), "Attacking", "Idle", SubResource("AnimationNodeStateMachineTransition_v2jwd")]
-graph_offset = Vector2(110.715, -93.5175)
+states/Running/position = Vector2(535.795, 81.7265)
+states/Start/position = Vector2(143.5, 81.9626)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_tnhf1"), "Idle", "Running", SubResource("AnimationNodeStateMachineTransition_0554v"), "Running", "Idle", SubResource("AnimationNodeStateMachineTransition_iohgl")]
+graph_offset = Vector2(-69.285, -77.5175)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7dkse"]
-graph_offset = Vector2(21.2281, 5.19306)
+graph_offset = Vector2(-169.071, -1.50716)
+nodes/Attack/node = SubResource("AnimationNodeOneShot_751xt")
+nodes/Attack/position = Vector2(670, 100)
+nodes/AttackAnimation/node = SubResource("AnimationNodeAnimation_0aefh")
+nodes/AttackAnimation/position = Vector2(390, 250)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_tn1xw")
-nodes/StateMachine/position = Vector2(430, 80)
-nodes/output/position = Vector2(720, 150)
-node_connections = [&"output", 0, &"StateMachine"]
+nodes/StateMachine/position = Vector2(370, 30)
+nodes/output/position = Vector2(930, 100)
+node_connections = [&"Attack", 0, &"StateMachine", &"Attack", 1, &"AttackAnimation", &"output", 0, &"Attack"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydhpo"]
+size = Vector2(133, 49)
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 0
 script = ExtResource("1")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("3_xlymk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("8")
@@ -452,12 +421,13 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeBlendTree_7dkse")
 anim_player = NodePath("../AnimationPlayer")
-parameters/StateMachine/conditions/Attacking = false
+parameters/Attack/active = false
+parameters/Attack/internal_active = false
+parameters/Attack/request = 0
 parameters/StateMachine/conditions/Idle = false
-parameters/StateMachine/conditions/Running = false
-parameters/StateMachine/Attacking/blend_position = Vector2(-0.996219, 0.00970876)
+parameters/StateMachine/conditions/Running = true
 parameters/StateMachine/Idle/blend_position = 0.0
-parameters/StateMachine/Running/blend_position = 0.00330758
+parameters/StateMachine/Running/blend_position = 0.190782
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -469,3 +439,16 @@ texture = ExtResource("2")
 offset = Vector2(1, -23)
 hframes = 6
 vframes = 8
+
+[node name="DetectEnemyArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="DetectEnemyAreaShape" type="CollisionShape2D" parent="DetectEnemyArea"]
+position = Vector2(2.08165e-12, -22.5)
+shape = SubResource("RectangleShape2D_ydhpo")
+
+[node name="AttackCDTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="DetectEnemyArea" to="." method="_on_detect_enemy_area_body_entered"]
+[connection signal="body_exited" from="DetectEnemyArea" to="." method="_on_detect_enemy_area_body_exited"]
