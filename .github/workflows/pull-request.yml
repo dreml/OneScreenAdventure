@@ -1,7 +1,9 @@
 name: "pull request actions"
-on:
+on:  
+  push:
   pull_request:
-    types: [opened, reopened, edited]
+    branches:
+      - master
 
 env:
   GODOT_VERSION: 4.2.1
@@ -54,4 +56,4 @@ jobs:
           message: |
             Новый PR
             Фича: ${{github.event.pull_request.title}}
-            Ссылка на игру: https://dreml.github.io/${{github.event.pull_request.id}}/index.html
+            Ссылка на игру: https://dreml.github.io/OnesScreenAdventure/${{github.event.pull_request.id}}/
