@@ -1,6 +1,8 @@
 name: "pull request actions"
 on:  
   push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
@@ -56,4 +58,4 @@ jobs:
           message: |
             Новый PR
             Фича: ${{github.event.pull_request.title}}
-            Ссылка на игру: https://dreml.github.io/OnesScreenAdventure/${{github.event.pull_request.id}}/
+            Ссылка на игру: https://dreml.github.io/OneScreenAdventure/${{github.event.pull_request.id}}/
