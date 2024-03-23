@@ -55,4 +55,4 @@ jobs:
           message: |
             Новый PR
             Фича: ${{github.event.pull_request.title}}
-            Ссылка на игру: https://dreml.github.io/OneScreenAdventure/${{github.event.pull_request.id}}/
+            Ссылка на игру: https://dreml.github.io/OneScreenAdventure/${{github.event.pull_request.labels.id}}/
