@@ -38,7 +38,7 @@ jobs:
           github_token: ${{ github.token }}
           publish_dir: build/web
           publish_branch: gh-pages
-          destination_dir: /${{github.event.pull_request.id}}/
+          destination_dir: ${{github.event.pull_request.id}}
           keep_files: true
           
   telegram-notification:
