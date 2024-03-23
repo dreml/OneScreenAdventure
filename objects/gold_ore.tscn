@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://mdno3ej0qmg4"]
-
-[ext_resource type="Texture2D" uid="uid://cdbiektkjf41" path="res://assets/sprites/Tiny Swords/Resources/Resources/G_Idle_(NoShadow).png" id="1_lbplm"]
-
-[node name="IronOre" type="Sprite2D"]
-texture = ExtResource("1_lbplm")

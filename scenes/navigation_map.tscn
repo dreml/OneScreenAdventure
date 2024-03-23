@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8drfjktww73l"]
-
-[ext_resource type="Script" path="res://scenes/navigation_map.gd" id="1_kis4n"]
-
-[node name="NavigationMap" type="TileMap"]
-format = 2
-script = ExtResource("1_kis4n")

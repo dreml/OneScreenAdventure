@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdf0ko4xjq3xi"]
-
-[ext_resource type="Texture2D" uid="uid://g4626mwuuoa7" path="res://assets/sprites/Tiny Swords/Resources/Resources/M_Idle_(NoShadow).png" id="1_uucn7"]
-
-[node name="Meat" type="Sprite2D"]
-texture = ExtResource("1_uucn7")
