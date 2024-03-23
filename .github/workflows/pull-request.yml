@@ -44,7 +44,7 @@ jobs:
   telegram-notification:
     name: Telegram Notification
     runs-on: ubuntu-latest
-    needs: [export-windows, export-web]
+    needs: [export-web]
     steps:
       - name: Send telegram notification
         uses: appleboy/telegram-action@master
