@@ -9,6 +9,9 @@ signal constructed
 
 var _hp_left = 0
 
+func start_building() -> void:
+	$AnimationPlayer.play("construction")
+
 func build(hp_to_add: float) -> void:
 	_hp_left = min(_hp_left + hp_to_add, hp)
 	
@@ -23,8 +26,8 @@ func destroy(damage: float) -> void:
 		$AnimationPlayer.play("destroyed")
 
 func get_rect_global() -> Rect2:
-	var sh = $CollisionShape2D
+	var collision = $CollisionShape2D
 	var result = $CollisionShape2D.shape.get_rect()
 	
-	result.position = global_position + sh.position
+	result.position = global_position + collision.position
 	return result
