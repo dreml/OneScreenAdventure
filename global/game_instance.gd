@@ -7,6 +7,8 @@ var wood_amount := 0
 var gold_amount := 0
 var meat_amount := 0
 
+var pawns_orders := []
+
 func _ready() -> void:
 	pass
 	

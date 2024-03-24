@@ -3,9 +3,11 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-@onready var gold_label: Label = get_node('GoldLabel')
-@onready var wood_label: Label = get_node('WoodLabel')
-@onready var meat_label: Label = get_node('MeatLabel')
+@onready var gold_label: Label = $GUI/Resources/Gold/Label
+@onready var wood_label: Label = $GUI/Resources/Wood/Label
+@onready var meat_label: Label = $GUI/Resources/Meat/Label
+
+var _commands = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

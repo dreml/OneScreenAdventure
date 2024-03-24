@@ -50,7 +50,7 @@ func _process(_delta) -> void:
 	if _arrived_to_next_point:
 		_path.remove_at(0)
 		if len(_path) == 0:
-			_change_state(States.IDLE)
+			_reach_target()
 			return
 		_target_point_world = _path[0]
 	
@@ -68,7 +68,7 @@ func _start_following():
 	var destination: Vector2
 	
 	if is_instance_valid(_target_building):
-		destination = _get_target_building_entrance_point()
+		destination = _target_building.get_entrance()
 	else:
 		destination = get_global_mouse_position()
 
@@ -78,11 +78,6 @@ func _start_following():
 		_target_position = destination
 
 	_change_state(States.FOLLOW)
-	
-func _get_target_building_entrance_point():
-	var rect = _target_building.get_rect_global()
-	
-	return _target_building.global_position + Vector2(0, rect.size.y * 2)
 
 func _get_target_building():
 	var space_state = PhysicsServer2D.space_get_direct_state(get_world_2d().space)
@@ -105,6 +100,8 @@ func _move_to(world_position) -> bool:
 
 func _change_state(new_state) -> void:
 	if new_state == States.FOLLOW:
+		pointer.reset()
+
 		_path = nav.get_astar_path(position, _target_position)
 		if not _path or len(_path) == 1:
 			_change_state(States.IDLE)
@@ -113,15 +110,13 @@ func _change_state(new_state) -> void:
 
 		if is_instance_valid(_target_building):
 			var rect = _target_building.get_rect_global()
-			
-			pointer.wrap_around(rect)
 			pointer.position = rect.position
+
+			pointer.wrap_around(rect)
 		else:
 			pointer.position = _path.back()
 	elif new_state == States.IDLE:
 		pointer.position = Vector2(-100, -100)
-		pointer.reset()
-		_target_building = null
 
 	_state = new_state
 	_switch_animation()
@@ -139,6 +134,16 @@ func _update_animation_direction():
 		blend_position = blend_position.x
 
 	animation_tree[AT_BLEND_POSITION_PATH % animation_name] = blend_position
+
+func _reach_target():
+	_change_state(States.IDLE)
+
+	if _target_building != null && _target_building.start_building():
+		GameInstance.pawns_orders.append(
+			Command.new(Command.ActionType.Build, _target_building)
+		)
+
+	_target_building = null
 
 func attack():
 	print("Attacking")

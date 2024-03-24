@@ -44,6 +44,8 @@ position = Vector2(-0.5, -13)
 shape = SubResource("RectangleShape2D_0eqrx")
 
 [node name="GatherZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="GatherZoneShape" type="CollisionShape2D" parent="GatherZone"]
 position = Vector2(-2, 33)
