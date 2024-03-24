@@ -6,11 +6,11 @@ signal constructed
 enum State {FOUNDATION, CONSTRUCTION, IDLE, DESTROYED}
 const _resource_spent_template = "-%s"
 const _forbidden_color = Color("#ff6a43")
-const _global_rect_adjustment = Vector2(0, -10.0)
 
 @export var hp: float
 @export var gold_requires: int
 @export var wood_requires: int
+@export var global_rect_adjustment: Vector2
 
 var _hp_left = 0
 var _state = State.FOUNDATION
@@ -54,7 +54,7 @@ func destroy(damage: float) -> void:
 
 func get_rect_global() -> Rect2:
 	var result = $CollisionShape2D.shape.get_rect()
-	result.position = global_position + $CollisionShape2D.position + _global_rect_adjustment
+	result.position = global_position + $CollisionShape2D.position + global_rect_adjustment
 
 	return result
 	
