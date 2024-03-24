@@ -1,4 +1,4 @@
-﻿class_name MovementComponent
+class_name MovementComponent
 extends Node2D
 
 signal arrived
@@ -6,6 +6,7 @@ signal arrived
 const MASS: float = 10.0
 const ARRIVE_DISTANCE: float = 5.0
 
+@onready var nav: NavigationMap = get_tree().get_root().get_node('Main/NavigationMap')
 @onready var owner_actor: Node2D = get_parent()
 
 @export var speed: float = 200.0
@@ -13,11 +14,7 @@ const ARRIVE_DISTANCE: float = 5.0
 var _path = []
 var _target_point_world: Vector2 = Vector2()
 var _velocity: Vector2 = Vector2()
-var nav: Pathfinding
 var can_move := false
-
-func _ready():
-	nav = get_tree().get_root().get_node('Main/TileMap')
 
 func _process(_delta) -> void:
 	if not can_move:

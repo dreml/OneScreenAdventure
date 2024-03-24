@@ -155,7 +155,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Goblin" instance=ExtResource("1_mycac")]
+[node name="Goblin" groups=["goblins"] instance=ExtResource("1_mycac")]
 script = ExtResource("2_m6xmn")
 
 [node name="AnimatedSprite2D" parent="." index="0"]

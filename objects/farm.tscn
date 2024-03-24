@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0t7rqwtvm8m8"]
+
+[ext_resource type="Script" path="res://objects/farm.gd" id="1_8fcir"]
+[ext_resource type="PackedScene" uid="uid://cgxdgslj44ggc" path="res://objects/product_building.tscn" id="1_wpg3k"]
+[ext_resource type="Texture2D" uid="uid://cinel71my562d" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Destroyed.png" id="2_6pnjq"]
+[ext_resource type="PackedScene" uid="uid://cdf0ko4xjq3xi" path="res://objects/meat.tscn" id="3_lax5o"]
+[ext_resource type="Texture2D" uid="uid://bkedrag1rmq7y" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Red.png" id="3_vp45t"]
+[ext_resource type="AudioStream" uid="uid://beg5x5otewbt6" path="res://assets/audio/get_meat_sound.wav" id="6_vmckg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fbwc8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6pnjq")
+}],
+"loop": true,
+"name": &"destroyed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vp45t")
+}],
+"loop": true,
+"name": &"full_stock",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vp45t")
+}],
+"loop": true,
+"name": &"production",
+"speed": 5.0
+}]
+
+[node name="Farm" instance=ExtResource("1_wpg3k")]
+sprite_frames = SubResource("SpriteFrames_fbwc8")
+animation = &"full_stock"
+script = ExtResource("1_8fcir")
+storage_max = 4
+output = 1
+output_time = 3
+gather_res_time = 2
+res_sprite = ExtResource("3_lax5o")
+res_y = 50
+res_type = 2
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-0.5, -4.5)
+
+[node name="GatherZoneShape" parent="GatherZone" index="0"]
+position = Vector2(-1, 68)
+
+[node name="CollectSound" parent="." index="5"]
+stream = ExtResource("6_vmckg")
