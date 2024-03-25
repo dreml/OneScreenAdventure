@@ -76,6 +76,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
           message: |
             *Новый билд залит на itch.io*
             Фича: ${{github.event.head_commit.message}}
