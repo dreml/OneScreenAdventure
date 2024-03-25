@@ -1,7 +1,7 @@
 ﻿name: "godot-ci export"
-on: 
+on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
 
 env:
   GODOT_VERSION: 4.2.1
@@ -9,7 +9,7 @@ env:
   PROJECT_PATH: osa
   ITCHIO_USERNAME: ${{ secrets.ITCHIO_USERNAME }}
   ITCHIO_GAME: ${{ secrets.ITCHIO_GAME }}
-  BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }} 
+  BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
 
 jobs:
   export-windows:
@@ -65,7 +65,7 @@ jobs:
       - name: Upload to itch.io
         run: |
           butler push ./build/web $ITCHIO_USERNAME/$ITCHIO_GAME:web
-          
+
   telegram-notification:
     name: Telegram Notification
     runs-on: ubuntu-latest
@@ -77,6 +77,6 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Новый билд залит на itch.io
+            *Новый билд залит на itch.io*
             Фича: ${{github.event.head_commit.message}}
-            Ссылка на игру: https://dreml.itch.io/onescreenadventure
+            [Ссылка на игру](https://dreml.itch.io/onescreenadventure)
