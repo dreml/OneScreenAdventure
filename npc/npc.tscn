@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://6r2vkiqs6jtk"]
+[gd_scene load_steps=42 format=3 uid="uid://6r2vkiqs6jtk"]
 
 [ext_resource type="Script" path="res://components/movement_component.gd" id="2_cgfcy"]
+[ext_resource type="Script" path="res://components/health_component.gd" id="3_osv81"]
 
 [sub_resource type="RectangleShape2D" id="8"]
 size = Vector2(32, 32)
@@ -16,3 +17,6 @@ shape = SubResource("8")
 script = ExtResource("2_cgfcy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("3_osv81")
