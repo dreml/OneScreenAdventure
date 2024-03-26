@@ -1,6 +1,6 @@
 class_name Command
 
-enum ActionType {Build}
+enum ActionType { Build }
 
 var action_type: ActionType
 var target: Node2D

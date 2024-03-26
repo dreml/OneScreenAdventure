@@ -19,7 +19,6 @@ var _ANIMATIONS_BY_STATES = {
 @export var wood_requires: int
 @export var global_rect_adjustment: Vector2
 
-var _hp_left = 0
 var _state = State.FOUNDATION
 
 func _process(_delta):
