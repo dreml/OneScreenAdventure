@@ -5,6 +5,8 @@ extends Node2D
 
 @onready var attack_timer: Timer = $AttackTimer
 
+static var pawns_orders: Array[Command] = []
+
 func _ready():
 #	attack_timer.start()
 	attack_timer.timeout.connect(move_goblins)
@@ -19,3 +21,15 @@ func _process(delta):
 func move_goblins():
 	for goblin in goblins:
 		goblin.move_to(Vector2(600, 1500))
+
+static func create_order(order: Command):
+	pawns_orders.append(order)
+	
+static func take_order() -> Command:
+	if has_orders():
+		return pawns_orders.pop_front()
+		
+	return null
+
+static func has_orders() -> bool:
+	return pawns_orders.size() > 0

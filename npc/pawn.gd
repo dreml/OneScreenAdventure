@@ -2,7 +2,7 @@ extends Npc
 
 enum OwnStates { BUILD }
 
-@export var productivity: float = 0
+@export var productivity: int = 0
 
 var _command_in_action: Command
 
@@ -16,11 +16,13 @@ func _ready() -> void:
 		}
 	])
 	
+	$MovementComponent.arrived.connect(_handle_arrival)
+	
 	print('hi from pawn')
 
 func _process(delta):
-	if _command_in_action == null && GameInstance.pawns_orders.size() > 0:
-		_command_in_action = GameInstance.pawns_orders.pop_front()
+	if _command_in_action == null && GameDirector.has_orders():
+		_command_in_action = GameDirector.take_order()
 		_start_command()
 
 func _start_command():
@@ -30,10 +32,9 @@ func _start_command():
 		)
 		_switch_state(States.FOLLOW)
 
-func _handle_switch_state():
-	if state == States.IDLE && prev_state == States.FOLLOW:
-		if _command_in_action != null && _command_in_action.action_type == Command.ActionType.Build:
-			_start_building()
+func _handle_arrival():
+	if _command_in_action != null && _command_in_action.action_type == Command.ActionType.Build:
+		_start_building()
 		
 func _start_building():
 	_switch_state(OwnStates.BUILD)

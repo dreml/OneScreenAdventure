@@ -64,18 +64,11 @@ func _unhandled_input(event) -> void:
 
 func _start_following():
 	_target_building = _get_target_building()
-	
-	var destination: Vector2
-	
-	if is_instance_valid(_target_building):
-		destination = _target_building.get_entrance()
-	else:
-		destination = get_global_mouse_position()
 
-	if Input.is_key_pressed(KEY_SHIFT):
-		global_position = destination
+	if is_instance_valid(_target_building):
+		_target_position = _target_building.get_entrance()
 	else:
-		_target_position = destination
+		_target_position = get_global_mouse_position()
 
 	_change_state(States.FOLLOW)
 
@@ -100,26 +93,29 @@ func _move_to(world_position) -> bool:
 
 func _change_state(new_state) -> void:
 	if new_state == States.FOLLOW:
-		pointer.reset()
-
-		_path = nav.get_astar_path(position, _target_position)
-		if not _path or len(_path) == 1:
-			_change_state(States.IDLE)
-			return
-		_target_point_world = _path[1]
-
-		if is_instance_valid(_target_building):
-			var rect = _target_building.get_rect_global()
-			pointer.position = rect.position
-
-			pointer.wrap_around(rect)
-		else:
-			pointer.position = _path.back()
+		_process_follow_state()
 	elif new_state == States.IDLE:
 		pointer.position = Vector2(-100, -100)
 
 	_state = new_state
 	_switch_animation()
+	
+func _process_follow_state():
+	pointer.reset()
+
+	_path = nav.get_astar_path(position, _target_position)
+	if not _path or len(_path) == 1:
+		_change_state(States.IDLE)
+		return
+	_target_point_world = _path[1]
+
+	if is_instance_valid(_target_building):
+		var rect = _target_building.get_rect_global()
+		pointer.position = rect.position
+
+		pointer.wrap_around(rect)
+	else:
+		pointer.position = _path.back()
 
 func _switch_animation():
 	for state in States:
@@ -139,7 +135,7 @@ func _reach_target():
 	_change_state(States.IDLE)
 
 	if _target_building != null && _target_building.start_building():
-		GameInstance.pawns_orders.append(
+		GameDirector.create_order(
 			Command.new(Command.ActionType.Build, _target_building)
 		)
 
