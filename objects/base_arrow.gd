@@ -26,7 +26,7 @@ func take_aim(target):
 
 func _on_area_2d_body_entered(body):
 	if  body.is_in_group("goblins"):
-		body.take_damage(damage * _damage_multiplier)
+		body.health_component.take_damage(damage * _damage_multiplier)
 		queue_free()
 		
 func targeting(target, multiplier):

@@ -311,3 +311,4 @@ script = ExtResource("2_cgfcy")
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("3_osv81")
+max_health = 30
