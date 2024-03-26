@@ -9,8 +9,11 @@ const ANIMATIONS_BY_STATES: Dictionary = {
 	States.ATTACK: 'attack',
 }
 
+signal dead
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var movement_component: MovementComponent = $MovementComponent
+@onready var health_component: HealthComponent = $HealthComponent
 
 var state := States.IDLE
 
@@ -18,6 +21,11 @@ var state := States.IDLE
 
 func _ready() -> void:
 	movement_component.arrived.connect(func(): _switch_state(States.IDLE))
+	health_component.dead.connect(
+		func():
+			queue_free()
+			dead.emit()
+	)
 
 func _switch_state(new_state):
 	state = new_state
