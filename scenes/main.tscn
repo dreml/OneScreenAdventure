@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cw5i2jwtg0fc"]
+[gd_scene load_steps=33 format=3 uid="uid://cw5i2jwtg0fc"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://iviro4gjq1x1" path="res://player/player.tscn" id="2"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://c0t7rqwtvm8m8" path="res://objects/farm.tscn" id="28_plbmx"]
 [ext_resource type="PackedScene" uid="uid://cdf0ko4xjq3xi" path="res://objects/meat.tscn" id="29_gx2jf"]
 [ext_resource type="PackedScene" uid="uid://ddlyj6mvb07tv" path="res://ui/meat_label.tscn" id="30_5cdgt"]
+[ext_resource type="PackedScene" uid="uid://c5dhqm272434t" path="res://objects/battle_tower.tscn" id="30_pd3g0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a3vrb"]
 texture = ExtResource("2_mtkva")
@@ -62,7 +63,6 @@ goblins = [NodePath("../Goblin"), NodePath("../Goblin2"), NodePath("../Goblin3")
 [node name="DebugGrid" parent="." instance=ExtResource("8_0b33p")]
 position = Vector2(16, 16)
 map_size = Vector2(33, 59)
-line_opacity = null
 
 [node name="Pointer" parent="." instance=ExtResource("4")]
 position = Vector2(-100, -100)
@@ -135,14 +135,14 @@ position = Vector2(734, 1633)
 build = true
 
 [node name="Goblin" parent="." instance=ExtResource("12_vor8f")]
-position = Vector2(643, 258)
+position = Vector2(386, 1096)
 
 [node name="Goblin3" parent="." instance=ExtResource("12_vor8f")]
 z_index = 1
-position = Vector2(916, 273)
+position = Vector2(265, 1108)
 
 [node name="Goblin2" parent="." instance=ExtResource("12_vor8f")]
-position = Vector2(775, 355)
+position = Vector2(213, 1007)
 scale = Vector2(-1, 1)
 
 [node name="CastleBlue" type="Sprite2D" parent="."]
@@ -215,7 +215,7 @@ theme_override_font_sizes/font_size = 40
 text = "0"
 
 [node name="Building" parent="." groups=["obstacles2"] instance=ExtResource("21_r3nht")]
-position = Vector2(128, 1071)
+position = Vector2(131, 1077)
 
 [node name="Meat" parent="." instance=ExtResource("29_gx2jf")]
 position = Vector2(987, 1760)
@@ -240,3 +240,6 @@ position = Vector2(723, 801)
 
 [node name="Sawmill" parent="." instance=ExtResource("24_o0eek")]
 position = Vector2(356, 1371)
+
+[node name="BattleTower" parent="." instance=ExtResource("30_pd3g0")]
+position = Vector2(312, 939)

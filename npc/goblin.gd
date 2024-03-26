@@ -1,6 +1,8 @@
 class_name Goblin
 extends Npc
 
+var hp = 50
+
 #func _ready() -> void:
 #	super._ready()
 
@@ -11,3 +13,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func move_to(location: Vector2):
 	movement_component.set_target_position(location)
 	_switch_state(States.FOLLOW)
+
+func take_damage(damage):
+	hp -= damage
+	if hp <= 0:
+		queue_free()
+
