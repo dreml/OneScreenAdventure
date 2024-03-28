@@ -34,3 +34,6 @@ func _switch_state(new_state):
 	
 	if ANIMATIONS_BY_STATES.has(state):
 		sprite.play(ANIMATIONS_BY_STATES[state])
+
+func take_damage(damage_amount: int):
+	health_component.take_damage(damage_amount)
