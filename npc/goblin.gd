@@ -33,9 +33,6 @@ func move_to(location: Vector2):
 	movement_component.set_target_position(location)
 	_change_state(States.FOLLOW)
 
-func take_damage(damage_amount: int):
-	health_component.take_damage(damage_amount)
-
 func attacked():
 	_change_state(States.ATTACK)
 

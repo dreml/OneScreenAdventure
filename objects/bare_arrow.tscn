@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfuxx7lffgrtc"]
+[gd_scene load_steps=7 format=3 uid="uid://b42hssw06gj4j"]
 
-[ext_resource type="PackedScene" uid="uid://cen34kc4mw87e" path="res://objects/base_arrow.tscn" id="1_e23fb"]
+[ext_resource type="PackedScene" uid="uid://bsblrdypbwc8" path="res://objects/base_arrow.tscn" id="1_e23fb"]
 [ext_resource type="Texture2D" uid="uid://bgrgcde1pdiie" path="res://assets/sprites/Tiny Swords/Factions/Knights/Troops/Archer/Arrow/Arrow.png" id="2_hffpr"]
 [ext_resource type="Script" path="res://objects/bare_arrow.gd" id="3_7t2kh"]
 
@@ -24,7 +24,7 @@ size = Vector2(60, 11)
 
 [node name="BareArrow" instance=ExtResource("1_e23fb")]
 script = ExtResource("3_7t2kh")
-damage = 5
+damage = 2
 speed = 500
 shoot_sound_path = "res://assets/audio/shoot_bare_arrow.wav"
 

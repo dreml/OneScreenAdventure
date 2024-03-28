@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5dhqm272434t"]
+[gd_scene load_steps=5 format=3 uid="uid://dhd4n7dpc71s7"]
 
 [ext_resource type="Texture2D" uid="uid://ec7747wh31ts" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Blue.png" id="1_6e20y"]
 [ext_resource type="Script" path="res://objects/battle_tower.gd" id="1_pxmrl"]
@@ -24,6 +24,8 @@ script = ExtResource("1_pxmrl")
 
 [node name="AttackZone" type="Area2D" parent="."]
 position = Vector2(-1, 0)
+collision_layer = 4
+collision_mask = 2
 
 [node name="AttackZoneShape" type="CollisionShape2D" parent="AttackZone"]
 shape = SubResource("CircleShape2D_rvxky")

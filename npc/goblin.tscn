@@ -159,7 +159,7 @@ animations = [{
 collision_layer = 2
 script = ExtResource("2_m6xmn")
 
-[node name="AnimatedSprite2D" parent="." index="1"]
+[node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = SubResource("SpriteFrames_qjc4e")
 animation = &"run"
 frame_progress = 0.166662
