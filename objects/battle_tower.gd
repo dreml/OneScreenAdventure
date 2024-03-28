@@ -14,14 +14,12 @@ var _target_act = null # текущая цель
 var _target_list : Array # массив целей
 var _state_act = State.WAIT
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	reload_timer.set_wait_time(_attack_speed)
 	get_shoot_sound(_arrow_act)
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+#func _process(delta):
+	#pass
 	
 func attack_zone_update(proc):
 	_attack_zone.scale *= (1+proc/100).round(2)
@@ -33,7 +31,7 @@ func attacking(target):
 	var shoot = _arrow_act.instantiate()
 	_shoot_sound.play()
 	shoot.targeting(target, _damage_multiplier)
-	add_child(shoot)
+	call_deferred("add_child", shoot)
 	
 	reload_timer.start()
 	
@@ -47,7 +45,6 @@ func _on_attack_zone_body_entered(body):
 			_target_act = _target_list[0]
 		if reload_timer.is_stopped():
 			attacking(_target_act)
-		print(_target_list)
 	
 func _on_attack_zone_body_exited(body):
 	if body.is_in_group("goblins"):
@@ -59,8 +56,7 @@ func _on_attack_zone_body_exited(body):
 				_target_act = null
 		else:
 			_target_list.erase(body)
-		print(_target_list)
 		
 func get_shoot_sound(arrow):
 	var shoot = _arrow_act.instantiate()
-	_shoot_sound.stream = load(shoot.bring_sound())
+	_shoot_sound.stream = load(shoot.shoot_sound_path)

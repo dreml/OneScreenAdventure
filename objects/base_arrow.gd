@@ -9,11 +9,9 @@ class_name BaseArrow
 var _target_act = null # актуальная цель стрелы
 var _damage_multiplier = 1 # множитель урона
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	look_at(_target_act.global_position)
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	take_aim(_target_act)
 	move_and_slide()
@@ -26,12 +24,9 @@ func take_aim(target):
 
 func _on_area_2d_body_entered(body):
 	if  body.is_in_group("goblins"):
-		body.health_component.take_damage(damage * _damage_multiplier)
+		body.take_damage(damage * _damage_multiplier)
 		queue_free()
 		
 func targeting(target, multiplier):
 	_target_act = target
 	_damage_multiplier = multiplier
-
-func bring_sound():
-	return shoot_sound_path
