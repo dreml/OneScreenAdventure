@@ -7,12 +7,13 @@ enum States {
 }
 
 signal dead
-signal health_changed
+signal health_changed(current_health: int)
 
 const MASS: float = 1.0
 const ARRIVE_DISTANCE: float = 5.0
 const AT_CONDITION_PATH: String = "parameters/StateMachine/conditions/%s"
 const AT_BLEND_POSITION_PATH: String = "parameters/StateMachine/%s/blend_position"
+const AT_ATTACK_BLEND_POSITION_PATH: String = "parameters/AttackBlendSpace/blend_position"
 const AT_ATTACK_PATH: String = "parameters/Attack/request"
 
 @export var speed: float = 200.0
@@ -52,8 +53,8 @@ var wood_amount = 0
 func _ready():
 	_change_state(States.IDLE)
 	attack_cd_timer.set_wait_time(attack_cd)
-	attack_cd_timer.timeout.connect(_make_attack)
-	health_component.health_changed.connect(func(): health_changed.emit())
+	attack_cd_timer.timeout.connect(_play_attack_animation)
+	health_component.health_changed.connect(func(current_health: int): health_changed.emit(current_health))
 	health_component.dead.connect(func(): dead.emit())
 
 func _process(_delta) -> void:
@@ -90,7 +91,9 @@ func _move_to(world_position) -> bool:
 
 func _change_state(new_state) -> void:
 	if new_state == States.FOLLOW:
-		_attack_target = null
+		if _attack_target:
+			_attack_target.dead.disconnect(_attack_target_dead)
+			_attack_target = null
 		attack_cd_timer.stop()
 		animation_tree[AT_ATTACK_PATH] = AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT
 
@@ -102,6 +105,8 @@ func _change_state(new_state) -> void:
 		pointer.position = _path.back()
 	elif new_state == States.IDLE:
 		pointer.position = Vector2(-100, -100)
+		if _get_enemy_in_range():
+			_attack_next_target()
 
 	_state = new_state
 	_switch_animation()
@@ -112,9 +117,6 @@ func _switch_animation():
 		animation_tree[AT_CONDITION_PATH % animation_name] = States[state] == _state
 
 func _update_animation_direction():
-	if _state != States.FOLLOW:
-		return
-
 	var animation_name = _animation_name_by_state[_state]
 	animation_tree[AT_BLEND_POSITION_PATH % animation_name] = _facing_direction.x
 
@@ -139,20 +141,28 @@ func _on_detect_enemy_area_body_exited(body):
 		return
 
 	if body == _attack_target:
+		_attack_target.dead.disconnect(_attack_target_dead)
 		_attack_next_target()
 
-func _make_attack():
-	attack_cd_timer.start()
+func _play_attack_animation():
+	var direction_to_enemy = position.direction_to(_attack_target.position).normalized()
+	_facing_direction = Vector2(direction_to_enemy.x, -direction_to_enemy.y)
+	animation_tree[AT_ATTACK_BLEND_POSITION_PATH] = _facing_direction
 	animation_tree[AT_ATTACK_PATH] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-	await get_tree().create_timer(0.3).timeout
 
+
+func _make_attack():
 	if _attack_target and _attack_target.has_method("take_damage"):
 		_attack_target.take_damage(attack_damage)
 
 func _can_attack_target(target: Node2D) -> bool:
-	return target.is_in_group("goblins") and target.has_method("attacked") and not _attack_target
+	return not target.is_queued_for_deletion() and target.is_in_group("goblins") and target.has_method("attacked") 
 
 func _start_attack(target: Node2D):
+	if _attack_target and not _attack_target.is_queued_for_deletion():
+		target.attacked()
+		return
+
 	attack_cd_timer.start()
 	_attack_target = target
 	_attack_target.dead.connect(_attack_target_dead)
@@ -163,8 +173,8 @@ func _attack_target_dead():
 	_attack_next_target()
 
 func _attack_next_target():
+	_stop_attack()
 	var next_enemy := _get_enemy_in_range()
-	_attack_target = null
 	if next_enemy:
 		_start_attack(next_enemy)
 	else:
@@ -173,14 +183,17 @@ func _attack_next_target():
 func _get_enemy_in_range() -> Node2D:
 	var enemies: Array[Node2D] = $DetectEnemyArea.get_overlapping_bodies()
 	for enemy in enemies:
-		if enemy == _attack_target or not _can_attack_target(enemy):
-			return
+		if not _can_attack_target(enemy):
+			continue
 		
 		return enemy
 
 	return null
 
 func _stop_attack():
-	attack_cd_timer.stop()
+	if _attack_target and _attack_target.dead.is_connected(_attack_target_dead):
+		_attack_target.dead.disconnect(_attack_target_dead)
+
 	_attack_target = null
+	attack_cd_timer.stop()
 #endregion

@@ -21,11 +21,13 @@ func _change_state(new_state: States):
 	
 	super._change_state(new_state)
 
-	if _state == States.ATTACK:
-		attack_cd_timer.start()
-
 	if prev_state == States.ATTACK:
 		attack_cd_timer.stop()
+
+	if _state == States.ATTACK:
+		attack_cd_timer.start()
+		if prev_state == States.FOLLOW:
+			movement_component.stop()
 
 func move_to(location: Vector2):
 	movement_component.set_target_position(location)

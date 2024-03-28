@@ -39,3 +39,8 @@ func set_target_position(target_position: Vector2):
 	_target_point_world = _path[1]
 	if not _path or len(_path) == 1:
 		arrived.emit()
+
+func stop():
+	_target_point_world = position
+	_path = []
+

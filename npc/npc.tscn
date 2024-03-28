@@ -311,9 +311,3 @@ frame_progress = 0.0313705
 shape = SubResource("8")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-
-[node name="MovementComponent" type="Node2D" parent="."]
-script = ExtResource("2_cgfcy")
-
-[node name="HealthComponent" type="Node2D" parent="."]
-script = ExtResource("3_osv81")
