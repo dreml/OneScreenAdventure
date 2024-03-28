@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5dhqm272434t"]
+
+[ext_resource type="Texture2D" uid="uid://ec7747wh31ts" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Blue.png" id="1_6e20y"]
+[ext_resource type="Script" path="res://objects/battle_tower.gd" id="1_pxmrl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hfnny"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6e20y")
+}],
+"loop": true,
+"name": &"based",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rvxky"]
+radius = 197.0
+
+[node name="BattleTower" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_hfnny")
+animation = &"based"
+script = ExtResource("1_pxmrl")
+
+[node name="AttackZone" type="Area2D" parent="."]
+position = Vector2(-1, 0)
+
+[node name="AttackZoneShape" type="CollisionShape2D" parent="AttackZone"]
+shape = SubResource("CircleShape2D_rvxky")
+one_way_collision_margin = 0.0
+
+[node name="ReloadTimer" type="Timer" parent="."]
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+
+[connection signal="body_entered" from="AttackZone" to="." method="_on_attack_zone_body_entered"]
+[connection signal="body_exited" from="AttackZone" to="." method="_on_attack_zone_body_exited"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

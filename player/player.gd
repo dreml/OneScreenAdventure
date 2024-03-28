@@ -46,10 +46,6 @@ var _animation_name_by_state = {
 	States.FOLLOW: "Running",
 }
 
-# ресурсы
-var gold_ore_amount = 0
-var wood_amount = 0
-
 func _ready():
 	_change_state(States.IDLE)
 	attack_cd_timer.set_wait_time(attack_cd)
