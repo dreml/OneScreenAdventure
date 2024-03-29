@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cw5i2jwtg0fc"]
+[gd_scene load_steps=34 format=3 uid="uid://cw5i2jwtg0fc"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://iviro4gjq1x1" path="res://player/player.tscn" id="2"]
@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://cdf0ko4xjq3xi" path="res://objects/meat.tscn" id="29_gx2jf"]
 [ext_resource type="PackedScene" uid="uid://ddlyj6mvb07tv" path="res://ui/meat_label.tscn" id="30_5cdgt"]
 [ext_resource type="PackedScene" uid="uid://c5dhqm272434t" path="res://objects/battle_tower.tscn" id="30_pd3g0"]
+[ext_resource type="PackedScene" uid="uid://liaq83i85tc6" path="res://ui/sound_off_button.tscn" id="31_dnxdd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a3vrb"]
 texture = ExtResource("2_mtkva")
@@ -243,3 +244,6 @@ position = Vector2(356, 1371)
 
 [node name="BattleTower" parent="." instance=ExtResource("30_pd3g0")]
 position = Vector2(312, 939)
+
+[node name="SoundOffButton" parent="." instance=ExtResource("31_dnxdd")]
+position = Vector2(1003, 101)
