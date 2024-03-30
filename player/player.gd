@@ -135,7 +135,7 @@ func _reach_target():
 	_change_state(States.IDLE)
 
 	if _target_building != null && _target_building.start_building():
-		GameDirector.create_order(
+		GameInstance.game_director.create_order(
 			Command.new(Command.ActionType.Build, _target_building)
 		)
 
