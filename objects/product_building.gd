@@ -75,8 +75,9 @@ func _on_gather_zone_body_entered(body):
 		_gatherer = body
 
 func _on_gather_zone_body_exited(body):
-	gather_timer.stop()
-	_gatherer = null
+	if body == _gatherer:
+		gather_timer.stop()
+		_gatherer = null
 
 func _on_output_timer_timeout():
 	production()

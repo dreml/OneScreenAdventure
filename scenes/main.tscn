@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cw5i2jwtg0fc"]
+[gd_scene load_steps=35 format=3 uid="uid://cw5i2jwtg0fc"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://iviro4gjq1x1" path="res://player/player.tscn" id="2"]
@@ -30,6 +30,8 @@
 [ext_resource type="PackedScene" uid="uid://cdf0ko4xjq3xi" path="res://objects/meat.tscn" id="29_gx2jf"]
 [ext_resource type="PackedScene" uid="uid://ddlyj6mvb07tv" path="res://ui/meat_label.tscn" id="30_5cdgt"]
 [ext_resource type="PackedScene" uid="uid://c5dhqm272434t" path="res://objects/battle_tower.tscn" id="30_pd3g0"]
+[ext_resource type="PackedScene" uid="uid://b2bhh6e0jj1lo" path="res://objects/sheep_container.tscn" id="31_t77yh"]
+[ext_resource type="PackedScene" uid="uid://dfly65lc2onrm" path="res://objects/house_ruin_container.tscn" id="32_ponan"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a3vrb"]
 texture = ExtResource("2_mtkva")
@@ -135,14 +137,14 @@ position = Vector2(734, 1633)
 build = true
 
 [node name="Goblin" parent="." instance=ExtResource("12_vor8f")]
-position = Vector2(386, 1096)
+position = Vector2(108, 1222)
 
 [node name="Goblin3" parent="." instance=ExtResource("12_vor8f")]
 z_index = 1
-position = Vector2(265, 1108)
+position = Vector2(213, 1245)
 
 [node name="Goblin2" parent="." instance=ExtResource("12_vor8f")]
-position = Vector2(213, 1007)
+position = Vector2(970, 933)
 scale = Vector2(-1, 1)
 
 [node name="CastleBlue" type="Sprite2D" parent="."]
@@ -243,3 +245,12 @@ position = Vector2(356, 1371)
 
 [node name="BattleTower" parent="." instance=ExtResource("30_pd3g0")]
 position = Vector2(312, 939)
+
+[node name="Sheep_container" parent="." instance=ExtResource("31_t77yh")]
+position = Vector2(657, 1509)
+
+[node name="Sheep_container2" parent="." instance=ExtResource("31_t77yh")]
+position = Vector2(810, 1007)
+
+[node name="HouseRuinContainer" parent="." instance=ExtResource("32_ponan")]
+position = Vector2(485, 1421)
