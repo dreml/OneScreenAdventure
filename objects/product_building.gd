@@ -20,14 +20,12 @@ var _storage_act = 0 # кол-во ресурса сейчас на складе
 var _state_act = State.WORK
 var _gatherer: Node2D = null # кто занял зону сбора
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	output_timer.set_wait_time(output_time)
 	output_timer.start()
 	gather_timer.set_wait_time(gather_res_time)
 	state_change(State.WORK)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cen34kc4mw87e"]
+
+[ext_resource type="Script" path="res://objects/base_arrow.gd" id="1_1sn8h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m11kx"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"attacking",
+"speed": 5.0
+}]
+
+[node name="BaseArrow" type="CharacterBody2D"]
+script = ExtResource("1_1sn8h")
+
+[node name="ArrowBody2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m11kx")
+animation = &"attacking"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
