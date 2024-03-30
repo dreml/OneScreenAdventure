@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://c5dhqm272434t" path="res://objects/battle_tower.tscn" id="30_pd3g0"]
 [ext_resource type="PackedScene" uid="uid://b2bhh6e0jj1lo" path="res://objects/sheep_container.tscn" id="31_t77yh"]
 [ext_resource type="PackedScene" uid="uid://dfly65lc2onrm" path="res://objects/house_ruin_container.tscn" id="32_ponan"]
+[ext_resource type="PackedScene" uid="uid://liaq83i85tc6" path="res://ui/sound_off_button.tscn" id="31_dnxdd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a3vrb"]
 texture = ExtResource("2_mtkva")
@@ -254,3 +255,5 @@ position = Vector2(810, 1007)
 
 [node name="HouseRuinContainer" parent="." instance=ExtResource("32_ponan")]
 position = Vector2(485, 1421)
+[node name="SoundOffButton" parent="." instance=ExtResource("31_dnxdd")]
+position = Vector2(1003, 101)
