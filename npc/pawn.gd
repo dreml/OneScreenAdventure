@@ -4,6 +4,8 @@ enum OwnStates { BUILD }
 
 @export var productivity: int = 0
 
+@onready var sprite: Sprite2D = $Sprite2D
+
 var _command_in_action: Command
 
 func _ready() -> void:
@@ -16,13 +18,13 @@ func _ready() -> void:
 		}
 	])
 	
-	$MovementComponent.arrived.connect(_handle_arrival)
+	movement_component.arrived.connect(_handle_arrival)
 	
 	print('hi from pawn')
 
 func _process(delta):
-	if _command_in_action == null && GameDirector.has_orders():
-		_command_in_action = GameDirector.take_order()
+	if _command_in_action == null && GameInstance.game_director.has_orders():
+		_command_in_action = GameInstance.game_director.take_order()
 		_start_command()
 
 func _start_command():
@@ -38,7 +40,7 @@ func _handle_arrival():
 		
 func _start_building():
 	_switch_state(OwnStates.BUILD)
-	$Sprite2D.flip_h = movement_component.facing_direction.x < 0
+	sprite.flip_h = movement_component.facing_direction.x < 0
 	
 	await _command_in_action.target.constructed
 	_command_in_action = null
