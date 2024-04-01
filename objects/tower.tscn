@@ -1,0 +1,397 @@
+[gd_scene load_steps=16 format=3 uid="uid://dd8c2ncqldrck"]
+
+[ext_resource type="Script" path="res://objects/building.gd" id="1_3t5oj"]
+[ext_resource type="Texture2D" uid="uid://cbsj1kmh6qu4f" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Construction.png" id="1_ncwwv"]
+[ext_resource type="Texture2D" uid="uid://ec7747wh31ts" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Blue.png" id="3_utllb"]
+[ext_resource type="PackedScene" uid="uid://djknjr0mpajet" path="res://ui/resource.tscn" id="4_wyep4"]
+[ext_resource type="Texture2D" uid="uid://51dxy87hapxj" path="res://ui/gold_texture_cropped.tres" id="5_di564"]
+[ext_resource type="Texture2D" uid="uid://ccayd7nfsqu3a" path="res://ui/wood_texture_cropped.tres" id="6_kx4p3"]
+[ext_resource type="Script" path="res://components/health_component.gd" id="7_0u2s5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fijf"]
+size = Vector2(88, 55)
+
+[sub_resource type="GDScript" id="GDScript_8yrhr"]
+script/source = "class_name BuildingCollision
+extends CollisionShape2D
+
+func get_rect_global() -> Rect2:
+	var result = shape.get_rect()
+	result.position = global_position + position
+
+	return result
+
+func get_entrance():
+	var rect = get_rect_global()
+	
+	return self.global_position + Vector2(0, rect.size.y * 2)
+"
+
+[sub_resource type="Animation" id="Animation_takw2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_ncwwv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GoldSpent:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WoodSpent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GoldSpent:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-25, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GoldSpent:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("WoodSpent:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-28, 40)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("WoodSpent:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yvqxx"]
+resource_name = "construction"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_ncwwv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GoldSpent:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WoodSpent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.7, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GoldSpent:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(-40, 40), Vector2(-40, -30)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GoldSpent:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 4),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("WoodSpent:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.7, 1.2),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(-40, 40), Vector2(-40, -30)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("WoodSpent:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.7, 1.2),
+"transitions": PackedFloat32Array(1, 4),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o23yu"]
+resource_name = "Destroyed"
+
+[sub_resource type="Animation" id="Animation_yw2ij"]
+resource_name = "foundation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_ncwwv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.588235)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GoldSpent:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WoodSpent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_pj8ky"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_utllb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GoldSpent:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WoodSpent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bhpfk"]
+_data = {
+"RESET": SubResource("Animation_takw2"),
+"construction": SubResource("Animation_yvqxx"),
+"destroyed": SubResource("Animation_o23yu"),
+"foundation": SubResource("Animation_yw2ij"),
+"idle": SubResource("Animation_pj8ky")
+}
+
+[node name="Tower" type="StaticBody2D" groups=["buildings"]]
+collision_mask = 2
+constant_linear_velocity = Vector2(2.08165e-12, 2.08165e-12)
+script = ExtResource("1_3t5oj")
+hp = 1.0
+gold_requires = 2
+wood_requires = 4
+global_rect_adjustment = Vector2(2.08165e-12, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 69.5)
+shape = SubResource("RectangleShape2D_3fijf")
+script = SubResource("GDScript_8yrhr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("1_ncwwv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bhpfk")
+}
+autoplay = "foundation"
+
+[node name="GoldSpent" parent="." instance=ExtResource("4_wyep4")]
+modulate = Color(1, 1, 1, 0)
+offset_left = -81.0
+offset_top = 40.0
+offset_right = 25.0
+offset_bottom = 95.0
+
+[node name="TextureRect" type="TextureRect" parent="GoldSpent"]
+layout_mode = 2
+texture = ExtResource("5_di564")
+stretch_mode = 5
+
+[node name="WoodSpent" parent="." instance=ExtResource("4_wyep4")]
+modulate = Color(1, 1, 1, 0)
+offset_left = -85.0
+offset_top = 40.0
+offset_right = 28.0
+offset_bottom = 95.0
+
+[node name="TextureRect" type="TextureRect" parent="WoodSpent"]
+layout_mode = 2
+texture = ExtResource("6_kx4p3")
+stretch_mode = 5
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("7_0u2s5")
+max_health = 10
+start_with_zero_health = true
+
+[connection signal="dead" from="HealthComponent" to="." method="_on_destroyed"]
+[connection signal="full_health" from="HealthComponent" to="." method="_on_built"]

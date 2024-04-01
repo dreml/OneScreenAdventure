@@ -23,6 +23,7 @@ var _target_point_world: Vector2 = Vector2()
 var _target_position: Vector2 = Vector2()
 var _facing_direction: Vector2 = Vector2()
 var _velocity: Vector2 = Vector2()
+var _target_building: Building
 
 var _animation_name_by_state = {
 	States.IDLE: "Idle",
@@ -45,7 +46,7 @@ func _process(_delta) -> void:
 	if _arrived_to_next_point:
 		_path.remove_at(0)
 		if len(_path) == 0:
-			_change_state(States.IDLE)
+			_reach_target()
 			return
 		_target_point_world = _path[0]
 	
@@ -55,14 +56,30 @@ func _unhandled_input(event) -> void:
 		return
 	
 	if event.is_action_pressed("click"):
-		var global_mouse_pos: Vector2 = get_global_mouse_position()
-		if Input.is_key_pressed(KEY_SHIFT):
-			global_position = global_mouse_pos
-		else:
-			_target_position = global_mouse_pos
+		_start_following()
+
+func _start_following():
+	_target_building = _get_target_building()
+
+	if is_instance_valid(_target_building):
+		_target_position = _target_building.get_entrance()
+	else:
+		_target_position = get_global_mouse_position()
+
+	_change_state(States.FOLLOW)
+
+func _get_target_building():
+	var space_state = PhysicsServer2D.space_get_direct_state(get_world_2d().space)
+	var query = PhysicsPointQueryParameters2D.new()
+	query.position = get_global_mouse_position()
+	var intersections = space_state.intersect_point(query, 1)
+	
+	for intersection in intersections:
+		if intersection.collider.is_in_group("buildings"):
+			return intersection.collider
 		
-		_change_state(States.FOLLOW)
-		
+	return null
+
 func _move_to(world_position) -> bool:
 	var desired_velocity = (world_position - position).normalized() * speed
 	var steering = desired_velocity - _velocity
@@ -72,17 +89,29 @@ func _move_to(world_position) -> bool:
 
 func _change_state(new_state) -> void:
 	if new_state == States.FOLLOW:
-		_path = nav.get_astar_path(position, _target_position)
-		if not _path or len(_path) == 1:
-			_change_state(States.IDLE)
-			return
-		_target_point_world = _path[1]
-		pointer.position = _path.back()
+		_process_follow_state()
 	elif new_state == States.IDLE:
 		pointer.position = Vector2(-100, -100)
 
 	_state = new_state
 	_switch_animation()
+	
+func _process_follow_state():
+	pointer.reset()
+
+	_path = nav.get_astar_path(position, _target_position)
+	if not _path or len(_path) == 1:
+		_change_state(States.IDLE)
+		return
+	_target_point_world = _path[1]
+
+	if is_instance_valid(_target_building):
+		var rect = _target_building.get_rect_global()
+		pointer.position = rect.position
+
+		pointer.wrap_around(rect)
+	else:
+		pointer.position = _path.back()
 
 func _switch_animation():
 	for state in States:
@@ -97,6 +126,16 @@ func _update_animation_direction():
 		blend_position = blend_position.x
 
 	animation_tree[AT_BLEND_POSITION_PATH % animation_name] = blend_position
+
+func _reach_target():
+	_change_state(States.IDLE)
+
+	if _target_building != null && _target_building.start_building():
+		GameInstance.game_director.create_order(
+			Command.new(Command.ActionType.Build, _target_building)
+		)
+
+	_target_building = null
 
 func attack():
 	print("Attacking")

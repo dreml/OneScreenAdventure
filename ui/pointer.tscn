@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://p22balhrj22n"]
+[gd_scene load_steps=9 format=3 uid="uid://p22balhrj22n"]
 
+[ext_resource type="Script" path="res://ui/pointer.gd" id="1_wt26m"]
 [ext_resource type="Texture2D" uid="uid://dqwimwdq3cj6v" path="res://assets/sprites/Tiny Swords/UI/Pointers/03.png" id="2_5tuyw"]
 [ext_resource type="Texture2D" uid="uid://bcve0c0i5rm4m" path="res://assets/sprites/Tiny Swords/UI/Pointers/04.png" id="3_lagd2"]
 [ext_resource type="Texture2D" uid="uid://d2u0ujpvdb1ng" path="res://assets/sprites/Tiny Swords/UI/Pointers/05.png" id="4_omupu"]
@@ -10,7 +11,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TopLeft:offset")
+tracks/0/path = NodePath("TopLeft/Sprite2D:offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -22,7 +23,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TopRight:offset")
+tracks/1/path = NodePath("TopRight/Sprite2D:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -34,7 +35,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("BottomLeft:offset")
+tracks/2/path = NodePath("BottomLeft/Sprite2D:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -46,7 +47,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("BottomRight:offset")
+tracks/3/path = NodePath("BottomRight/Sprite2D:offset")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -57,14 +58,14 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_j8i6u"]
-resource_name = "breathing"
+resource_name = "pulsate"
 length = 0.3
 loop_mode = 2
 step = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TopLeft:offset")
+tracks/0/path = NodePath("TopLeft/Sprite2D:offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -76,7 +77,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TopRight:offset")
+tracks/1/path = NodePath("TopRight/Sprite2D:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -88,7 +89,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("BottomLeft:offset")
+tracks/2/path = NodePath("BottomLeft/Sprite2D:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -100,7 +101,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("BottomRight:offset")
+tracks/3/path = NodePath("BottomRight/Sprite2D:offset")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -113,24 +114,33 @@ tracks/3/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6jefc"]
 _data = {
 "RESET": SubResource("Animation_xsf1e"),
-"breathing": SubResource("Animation_j8i6u")
+"pulsate": SubResource("Animation_j8i6u")
 }
 
 [node name="Pointer" type="Node2D"]
+script = ExtResource("1_wt26m")
 
-[node name="TopLeft" type="Sprite2D" parent="."]
+[node name="TopLeft" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="TopLeft"]
 texture = ExtResource("2_5tuyw")
 offset = Vector2(-19, -16)
 
-[node name="TopRight" type="Sprite2D" parent="."]
+[node name="TopRight" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="TopRight"]
 texture = ExtResource("3_lagd2")
 offset = Vector2(18, -16)
 
-[node name="BottomLeft" type="Sprite2D" parent="."]
+[node name="BottomLeft" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="BottomLeft"]
 texture = ExtResource("4_omupu")
 offset = Vector2(-19, 17)
 
-[node name="BottomRight" type="Sprite2D" parent="."]
+[node name="BottomRight" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="BottomRight"]
 texture = ExtResource("5_of8dq")
 offset = Vector2(18, 17)
 
@@ -138,4 +148,4 @@ offset = Vector2(18, 17)
 libraries = {
 "": SubResource("AnimationLibrary_6jefc")
 }
-autoplay = "breathing"
+autoplay = "pulsate"

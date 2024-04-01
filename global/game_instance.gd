@@ -11,9 +11,19 @@ func _ready() -> void:
 	pass
 	
 func get_resource(type, amount):
-	if type == Globals.ResourceType.GOLD_ORE:
-		gold_amount += amount
-	if type == Globals.ResourceType.WOOD:
-		wood_amount += amount
-	if type == Globals.ResourceType.MEAT:
-		meat_amount += amount
+	match type:
+		Globals.ResourceType.GOLD_ORE:
+			gold_amount += amount
+		Globals.ResourceType.WOOD:
+			wood_amount += amount
+		Globals.ResourceType.MEAT:
+			meat_amount += amount
+
+func spend_resource(type, amount):
+	match type:
+		Globals.ResourceType.GOLD_ORE:
+			gold_amount -= amount
+		Globals.ResourceType.WOOD:
+			wood_amount -= amount
+		Globals.ResourceType.MEAT:
+			meat_amount -= amount
