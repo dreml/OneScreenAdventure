@@ -125,8 +125,6 @@ sprite_frames = SubResource("SpriteFrames_t0bf6")
 animation = &"CLOSED"
 script = ExtResource("2_x5bji")
 _meat_qnt = 2
-_wood_qnt = 3
-_gold_qnt = 1
 
 [node name="GatherZoneShape" parent="GatherZone" index="0"]
 position = Vector2(0, 13)

@@ -4,43 +4,43 @@ class_name ResourceContainer
 
 enum State {CLOSED, OPENED}
 
-@onready var _drop = $Drop
-@onready var _delete_timer = $DeleteTimer
-@onready var _drop_butt_vis_timer = $DropButtonVisible
-@onready var main = get_tree().get_root().get_node('Main')
-@onready var _drop_butt = $DropButton
-
 @export var _meat_qnt = 0
 @export var _wood_qnt = 0
 @export var _gold_qnt = 0
 
-var _container_list = [_meat_qnt, _wood_qnt, _gold_qnt]
-var _res_scene_list = []
-var _res_type_list = []
-var _state_act = State.CLOSED
-var _gatherer = null
+@onready var _drop = $Drop
+@onready var _delete_timer = $DeleteTimer
+@onready var _gather_timer = $GatherTimer
+@onready var _drop_butt_vis_timer = $DropButtonVisible
+@onready var _drop_butt = $DropButton
+@onready var _gatherer : Player = GameInstance.player
+@onready var _container_list = {Globals.ResourceType.MEAT : _meat_qnt, Globals.ResourceType.WOOD : _wood_qnt, Globals.ResourceType.GOLD_ORE : _gold_qnt}
 
+@export_file("*.tscn") var _meat_path : String
+@export_file("*.tscn") var _wood_path : String
+@export_file("*.tscn") var _gold_path : String
+
+var _res_scene_list = []
+var _state_act = State.CLOSED
 
 func _ready():
 	state_change(State.CLOSED)
 	load_resources()
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+
+#func _process(delta):
+	#pass
 
 func load_resources():
-	load_res_scene(Globals.ResourceType.MEAT, _meat_qnt, "res://objects/meat_drop.tscn")
-	load_res_scene(Globals.ResourceType.WOOD, _wood_qnt, "res://objects/wood_drop.tscn")
-	load_res_scene(Globals.ResourceType.GOLD_ORE, _gold_qnt, "res://objects/gold_ore_drop.tscn")
+	load_res_scene(_meat_qnt, _meat_path)
+	load_res_scene(_wood_qnt, _wood_path)
+	load_res_scene(_gold_qnt, _gold_path)
 	
-func load_res_scene(res_type, qnt, path):
+func load_res_scene(qnt, path):
 	var res
 	if qnt > 0:
 		res = load(path)
 		for n in qnt:
-			_res_scene_list.append(res)
-			_res_type_list.append(res_type)
+			_res_scene_list.append(res)	
 	
 func state_change(state):
 	_state_act = state	
@@ -55,18 +55,21 @@ func drop_resources():
 	state_change(State.OPENED)
 	var k = 0
 	for i in _res_scene_list:
-		k += 1
 		var res_inst = i.instantiate()
-		res_inst.position = Vector2(global_position.x + (k * 10), global_position.y)
-		main.call_deferred("add_child", res_inst)
+		res_inst.set_container(true)
+		res_inst.play("DROP")
+		res_inst.position = Vector2(randi() % 5 + (k * randi() % 20), randi() % 20)
+		k += 1
+		_drop.call_deferred("add_child", res_inst)
 		
-	$DeleteTimer.start()
+	_gather_timer.start()
 		
 func bring_resources(target):
-	pass
-
-func clean_container(res_type):
-	_res_type_list.erase(res_type)
+	target.get_resource_from_container(_container_list)
+	for i in _drop.get_children():
+		i.play('BRING')
+		i.bring_sound.play()
+	_delete_timer.start()
 
 func _on_delete_timer_timeout():
 	queue_free()	
@@ -86,3 +89,6 @@ func _on_gather_zone_body_exited(body):
 	if body.name == "Player":
 		_drop_butt_vis_timer.stop()
 		_drop_butt.visible = false
+
+func _on_gather_timer_timeout():
+	bring_resources(_gatherer)

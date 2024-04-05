@@ -32,6 +32,7 @@ sprite_frames = SubResource("SpriteFrames_4xx4s")
 script = ExtResource("2_hc4h5")
 _meat_qnt = 1
 _wood_qnt = 4
+_gold_qnt = 1
 
 [node name="GatherZoneShape" parent="GatherZone" index="0"]
 position = Vector2(-2, 32)

@@ -64,13 +64,13 @@ func resource_return():
 	state_change(State.WORK)
 	
 func resoure_bring(target):
-	target.get_resourse(res_type, _storage_act)
+	target.get_resource(res_type, _storage_act)
 	$CollectSound.play()
 	resource_return()
 	gather_timer.stop()
 
 func _on_gather_zone_body_entered(body):
-	if body.has_method('get_resourse') and _gatherer == null:
+	if body.has_method('get_resource') and _gatherer == null:
 		gather_timer.start()	
 		_gatherer = body
 

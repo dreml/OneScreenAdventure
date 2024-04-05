@@ -102,6 +102,9 @@ func attack():
 	print("Attacking")
 	_change_state(States.IDLE)
 	
-func get_resourse(type, amount):
+func get_resource(type, amount):
 	GameInstance.get_resource(type, amount)
+
+func get_resource_from_container(dict):
+	GameInstance.get_resource_from_container(dict)
 	
