@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfly65lc2onrm"]
+[gd_scene load_steps=6 format=3 uid="uid://dfly65lc2onrm"]
 
 [ext_resource type="PackedScene" uid="uid://ybrdxk7tk7f2" path="res://objects/resource_container.tscn" id="1_teqm8"]
 [ext_resource type="Texture2D" uid="uid://cinel71my562d" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Destroyed.png" id="2_67nit"]
@@ -23,24 +23,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="GDScript" id="GDScript_duioo"]
-script/source = "extends ResourceContainer
-
-#func _ready():
-	#pass
-
-#func _process(delta):
-	#pass
-"
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_v4kql"]
 radius = 36.0139
 
 [node name="HouseRuinContainer" instance=ExtResource("1_teqm8")]
 sprite_frames = SubResource("SpriteFrames_4xx4s")
-script = SubResource("GDScript_duioo")
-_meat_qnt = 1
-_wood_qnt = 4
+_wood_qnt = 3
 _gold_qnt = 1
 
 [node name="GatherZoneShape" parent="GatherZone" index="0"]

@@ -143,7 +143,7 @@ position = Vector2(108, 1222)
 
 [node name="Goblin3" parent="." instance=ExtResource("12_vor8f")]
 z_index = 1
-position = Vector2(213, 1245)
+position = Vector2(270, 1112)
 
 [node name="Goblin2" parent="." instance=ExtResource("12_vor8f")]
 position = Vector2(970, 933)
@@ -236,9 +236,6 @@ text = "0"
 [node name="sawmill2" parent="." instance=ExtResource("24_o0eek")]
 position = Vector2(683, 589)
 
-[node name="GoldMine" parent="." instance=ExtResource("21_jmlor")]
-position = Vector2(348, 305)
-
 [node name="Farm" parent="." instance=ExtResource("28_plbmx")]
 position = Vector2(723, 801)
 
@@ -262,3 +259,6 @@ position = Vector2(1003, 101)
 
 [node name="MeatDrop" parent="." instance=ExtResource("34_40kpr")]
 position = Vector2(713, 1733)
+
+[node name="GoldMine" parent="." instance=ExtResource("21_jmlor")]
+position = Vector2(363, 308)

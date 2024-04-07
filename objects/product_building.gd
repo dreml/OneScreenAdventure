@@ -17,7 +17,7 @@ enum State {WORK, WAIT, DESTROYED} # возможные состояния зд�
 @export var res_type : Globals.ResourceType 
 
 var _storage_act = 0 # кол-во ресурса сейчас на складе
-var _state_act = State.WORK
+var _state_act = null
 var _gatherer: Node2D = null # кто занял зону сбора
 
 func _ready():

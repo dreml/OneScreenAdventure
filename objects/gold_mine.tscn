@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://f3hbf7mpfefr"]
+[gd_scene load_steps=8 format=3 uid="uid://f3hbf7mpfefr"]
 
-[ext_resource type="Script" path="res://objects/gold_mine.gd" id="1_7yebf"]
 [ext_resource type="Texture2D" uid="uid://4jgqtkb8o5fv" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Destroyed.png" id="1_325qu"]
 [ext_resource type="PackedScene" uid="uid://cgxdgslj44ggc" path="res://objects/product_building.tscn" id="1_wowso"]
 [ext_resource type="Texture2D" uid="uid://dj8rtxqgwh11v" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Active.png" id="2_h5che"]
@@ -40,10 +39,9 @@ animations = [{
 
 [node name="GoldMine" instance=ExtResource("1_wowso")]
 sprite_frames = SubResource("SpriteFrames_pfdc2")
-script = ExtResource("1_7yebf")
 storage_max = 3
 output = 1
-output_time = 3
+output_time = 5
 gather_res_time = 2
 res_sprite = ExtResource("6_b638p")
 res_y = 10

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://byb75qek45f7v"]
+[gd_scene load_steps=7 format=3 uid="uid://byb75qek45f7v"]
 
 [ext_resource type="PackedScene" uid="uid://cgxdgslj44ggc" path="res://objects/product_building.tscn" id="1_5gdii"]
 [ext_resource type="Texture2D" uid="uid://cinel71my562d" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Destroyed.png" id="1_aqdm0"]
@@ -33,23 +33,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="GDScript" id="GDScript_yoqvr"]
-script/source = "extends ProductBuilding
-
-# Called when the node enters the scene tree for the first time.
-#func _ready():
-	#pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#pass
-"
-
 [node name="Sawmill" instance=ExtResource("1_5gdii")]
 sprite_frames = SubResource("SpriteFrames_ioirx")
-script = SubResource("GDScript_yoqvr")
 storage_max = 5
-output = 3
+output = 2
 output_time = 2
 gather_res_time = 1
 res_sprite = ExtResource("4_56tuf")

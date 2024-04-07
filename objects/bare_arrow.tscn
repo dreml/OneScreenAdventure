@@ -1,20 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfuxx7lffgrtc"]
+[gd_scene load_steps=6 format=3 uid="uid://dfuxx7lffgrtc"]
 
 [ext_resource type="PackedScene" uid="uid://cen34kc4mw87e" path="res://objects/base_arrow.tscn" id="1_e23fb"]
 [ext_resource type="Texture2D" uid="uid://bgrgcde1pdiie" path="res://assets/sprites/Tiny Swords/Factions/Knights/Troops/Archer/Arrow/Arrow.png" id="2_hffpr"]
-
-[sub_resource type="GDScript" id="GDScript_c23s0"]
-script/source = "extends BaseArrow
-
-# Called when the node enters the scene tree for the first time.
-#func _ready():
-	#pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#pass
-"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xk2fm"]
 atlas = ExtResource("2_hffpr")
@@ -35,9 +22,8 @@ animations = [{
 size = Vector2(60, 11)
 
 [node name="BareArrow" instance=ExtResource("1_e23fb")]
-script = SubResource("GDScript_c23s0")
-damage = 5
-speed = 500
+damage = 10
+speed = 300
 shoot_sound_path = "res://assets/audio/shoot_bare_arrow.wav"
 
 [node name="ArrowBody2D" parent="." index="0"]

@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://bnylfxthcyehm"]
+[gd_scene load_steps=16 format=3 uid="uid://bnylfxthcyehm"]
 
 [ext_resource type="PackedScene" uid="uid://da1nxprpvwnh" path="res://objects/resource_droppable.tscn" id="1_h0ej1"]
 [ext_resource type="Texture2D" uid="uid://b0i0oifdftbei" path="res://assets/sprites/Tiny Swords/Resources/Resources/W_Spawn.png" id="2_h0t6s"]
-[ext_resource type="Script" path="res://objects/wood_drop.gd" id="3_b5bl7"]
 [ext_resource type="AudioStream" uid="uid://d251yvg68vu3j" path="res://assets/audio/get_wood_sound.wav" id="4_0kvdr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fvp6j"]
@@ -94,8 +93,6 @@ radius = 19.6977
 [node name="WoodDrop" instance=ExtResource("1_h0ej1")]
 sprite_frames = SubResource("SpriteFrames_iyitq")
 animation = &"BRING"
-script = ExtResource("3_b5bl7")
-res_type = 1
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_qjnhu")
