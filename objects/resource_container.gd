@@ -79,7 +79,7 @@ func _on_drop_button_pressed():
 	_drop_butt.visible = false
 
 func _on_gather_zone_body_entered(body):
-	if body.name == "Player" and _state_act == State.CLOSED:
+	if body == GameInstance.player and _state_act == State.CLOSED:
 		_drop_butt_vis_timer.start()
 		
 func _on_drop_button_visible_timeout():

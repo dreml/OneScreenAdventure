@@ -1,7 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://bnswwernd0fj6"]
 
 [ext_resource type="PackedScene" uid="uid://da1nxprpvwnh" path="res://objects/resource_droppable.tscn" id="1_3pib6"]
-[ext_resource type="Script" path="res://objects/gold_ore_drop.gd" id="2_ndh4a"]
 [ext_resource type="Texture2D" uid="uid://bpe768qrr841a" path="res://assets/sprites/Tiny Swords/Resources/Resources/G_Spawn.png" id="2_r6ya7"]
 [ext_resource type="AudioStream" uid="uid://3dolqk076vd" path="res://assets/audio/get_gold_sound.wav" id="3_omyid"]
 
@@ -88,13 +87,23 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="GDScript" id="GDScript_xsev8"]
+script/source = "extends ResourceDroppable
+
+#func _ready():
+	#pass
+
+#func _process(delta):
+	#pass
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_vve2g"]
 radius = 19.0263
 
 [node name="GoldOreDrop" instance=ExtResource("1_3pib6")]
 sprite_frames = SubResource("SpriteFrames_u5645")
 animation = &"BRING"
-script = ExtResource("2_ndh4a")
+script = SubResource("GDScript_xsev8")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_vve2g")

@@ -255,7 +255,7 @@ position = Vector2(657, 1509)
 position = Vector2(810, 1007)
 
 [node name="HouseRuinContainer" parent="." instance=ExtResource("32_ponan")]
-position = Vector2(485, 1421)
+position = Vector2(188, 1675)
 
 [node name="SoundOffButton" parent="." instance=ExtResource("31_dnxdd")]
 position = Vector2(1003, 101)

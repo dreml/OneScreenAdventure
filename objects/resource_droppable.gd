@@ -22,14 +22,11 @@ func _ready():
 	#pass
 	
 func _on_area_2d_body_entered(body):
-	print("Зона")
-	print(_container)
 	if _container:
 		return
 	if body.has_method('get_resource') and _gatherer == null:
 		_gather_timer.start()	
 		_gatherer = body
-		print(_gatherer)
 		
 func resoure_bring(target):
 	target.get_resource(res_type, res_qnt)
@@ -52,4 +49,3 @@ func _on_area_2d_body_exited(body):
 	if body == _gatherer:
 		_gather_timer.stop()
 		_gatherer = null
-	

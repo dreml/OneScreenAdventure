@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://da1nxprpvwnh" path="res://objects/resource_droppable.tscn" id="1_jq7yp"]
 [ext_resource type="Texture2D" uid="uid://cltliuoay74p8" path="res://assets/sprites/Tiny Swords/Resources/Resources/M_Spawn.png" id="2_5ficg"]
-[ext_resource type="Script" path="res://objects/meat_drop.gd" id="3_t0u7a"]
 [ext_resource type="AudioStream" uid="uid://beg5x5otewbt6" path="res://assets/audio/get_meat_sound.wav" id="4_ow2h7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_orbqu"]
@@ -88,13 +87,23 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="GDScript" id="GDScript_yjtp4"]
+script/source = "extends ResourceDroppable
+
+#func _ready():
+	#pass # Replace with function body.
+
+#func _process(delta):
+	#pass
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_hba6h"]
 radius = 18.2483
 
 [node name="MeatDrop" instance=ExtResource("1_jq7yp")]
 sprite_frames = SubResource("SpriteFrames_fiv0c")
 animation = &"BRING"
-script = ExtResource("3_t0u7a")
+script = SubResource("GDScript_yjtp4")
 res_type = 2
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
