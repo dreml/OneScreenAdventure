@@ -117,8 +117,6 @@ animations = [{
 
 [node name="Sheep" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_i5nhu")
-animation = &"bounce"
+animation = &"idle"
 autoplay = "idle"
-frame = 5
-frame_progress = 1.0
 script = ExtResource("3_xxt21")

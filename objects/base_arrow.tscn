@@ -12,6 +12,7 @@ animations = [{
 
 [node name="BaseArrow" type="CharacterBody2D"]
 script = ExtResource("1_1sn8h")
+speed = 50
 
 [node name="ArrowBody2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_m11kx")

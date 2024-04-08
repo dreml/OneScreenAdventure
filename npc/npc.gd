@@ -1,16 +1,17 @@
 class_name Npc
 extends CharacterBody2D
 
-enum States { IDLE, FOLLOW, ATTACK }
+signal dead
 
-const ANIMATIONS_BY_STATES: Dictionary = {
+# такие числа, чтобы потомки легко могли задавать свои состояния
+enum States { IDLE = 100, FOLLOW = 101, ATTACK = 102 }
+
+var ANIMATIONS_BY_STATES: Dictionary = {
 	States.IDLE: 'idle',
 	States.FOLLOW: 'run',
 }
 
-signal dead
-
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var movement_component: MovementComponent = $MovementComponent
 @onready var health_component: HealthComponent = $HealthComponent
 
@@ -34,7 +35,7 @@ func _change_state(new_state: States):
 	movement_component.can_move = _state == States.FOLLOW
 	
 	if ANIMATIONS_BY_STATES.has(_state):
-		sprite.play(ANIMATIONS_BY_STATES[_state])
+		animation_player.play(ANIMATIONS_BY_STATES[_state])
 
 func take_damage(damage_amount: int):
 	health_component.take_damage(damage_amount)

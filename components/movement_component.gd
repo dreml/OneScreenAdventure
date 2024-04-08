@@ -13,12 +13,16 @@ const ARRIVE_DISTANCE: float = 5.0
 var _path = []
 var _target_point_world: Vector2 = Vector2()
 var _velocity: Vector2 = Vector2()
+var facing_direction := Vector2()
 var can_move := false
 
 func _process(_delta) -> void:
 	if not can_move:
 		return
 		
+		
+	facing_direction = owner_actor.global_position.direction_to(_target_point_world).normalized()
+
 	var _arrived_to_next_point: bool = _move_to(_target_point_world)
 	if _arrived_to_next_point:
 		_path.remove_at(0)

@@ -1,0 +1,101 @@
+[gd_scene load_steps=16 format=3 uid="uid://bnylfxthcyehm"]
+
+[ext_resource type="PackedScene" uid="uid://da1nxprpvwnh" path="res://objects/resource_droppable.tscn" id="1_h0ej1"]
+[ext_resource type="Texture2D" uid="uid://b0i0oifdftbei" path="res://assets/sprites/Tiny Swords/Resources/Resources/W_Spawn.png" id="2_h0t6s"]
+[ext_resource type="AudioStream" uid="uid://d251yvg68vu3j" path="res://assets/audio/get_wood_sound.wav" id="4_0kvdr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvp6j"]
+atlas = ExtResource("2_h0t6s")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u26p0"]
+atlas = ExtResource("2_h0t6s")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu1pp"]
+atlas = ExtResource("2_h0t6s")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37x2g"]
+atlas = ExtResource("2_h0t6s")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkivw"]
+atlas = ExtResource("2_h0t6s")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i1sx"]
+atlas = ExtResource("2_h0t6s")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7tfy"]
+atlas = ExtResource("2_h0t6s")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5j7mv"]
+atlas = ExtResource("2_h0t6s")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etiwe"]
+atlas = ExtResource("2_h0t6s")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pxgd"]
+atlas = ExtResource("2_h0t6s")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iyitq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvp6j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u26p0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu1pp")
+}],
+"loop": false,
+"name": &"BRING",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37x2g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkivw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0i1sx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7tfy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5j7mv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etiwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pxgd")
+}],
+"loop": false,
+"name": &"DROP",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qjnhu"]
+radius = 19.6977
+
+[node name="WoodDrop" instance=ExtResource("1_h0ej1")]
+sprite_frames = SubResource("SpriteFrames_iyitq")
+animation = &"BRING"
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_qjnhu")
+
+[node name="BringSound" parent="." index="1"]
+stream = ExtResource("4_0kvdr")

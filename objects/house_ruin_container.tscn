@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfly65lc2onrm"]
+
+[ext_resource type="PackedScene" uid="uid://ybrdxk7tk7f2" path="res://objects/resource_container.tscn" id="1_teqm8"]
+[ext_resource type="Texture2D" uid="uid://cinel71my562d" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Destroyed.png" id="2_67nit"]
+[ext_resource type="AudioStream" uid="uid://ci658jtid625h" path="res://assets/audio/ruin_research.wav" id="4_ywli1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4xx4s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_67nit")
+}],
+"loop": true,
+"name": &"CLOSED",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_67nit")
+}],
+"loop": true,
+"name": &"OPENED",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v4kql"]
+radius = 36.0139
+
+[node name="HouseRuinContainer" instance=ExtResource("1_teqm8")]
+sprite_frames = SubResource("SpriteFrames_4xx4s")
+_wood_qnt = 3
+_gold_qnt = 1
+
+[node name="GatherZoneShape" parent="GatherZone" index="0"]
+position = Vector2(-2, 32)
+shape = SubResource("CircleShape2D_v4kql")
+
+[node name="DropButton" parent="." index="3"]
+offset_left = -11.0
+offset_top = 79.0
+offset_right = 181.0
+offset_bottom = 271.0
+
+[node name="DropSound" parent="." index="5"]
+stream = ExtResource("4_ywli1")
