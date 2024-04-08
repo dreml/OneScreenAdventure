@@ -40,9 +40,9 @@ func cancel_attack():
 	_change_state(States.IDLE)
 
 func _make_attack():
-	sprite.play("attack")
-	await sprite.animation_finished
+	animation_player.play("attack")
+	await animation_player.animation_finished
 
 	GameInstance.player.take_damage(attack_damage)
-	sprite.play("idle")
+	animation_player.play("idle")
 	attack_cd_timer.start()
