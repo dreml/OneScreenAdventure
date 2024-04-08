@@ -1,0 +1,138 @@
+[gd_scene load_steps=21 format=3 uid="uid://b2bhh6e0jj1lo"]
+
+[ext_resource type="PackedScene" uid="uid://ybrdxk7tk7f2" path="res://objects/resource_container.tscn" id="1_iaveo"]
+[ext_resource type="Texture2D" uid="uid://bf7nb4tp4i2vs" path="res://assets/sprites/Tiny Swords/Resources/Sheep/HappySheep_Idle.png" id="2_hdi01"]
+[ext_resource type="Texture2D" uid="uid://ctu16qksivcdm" path="res://assets/sprites/Tiny Swords/Resources/Sheep/HappySheep_All.png" id="3_x5mw4"]
+[ext_resource type="AudioStream" uid="uid://b81nyf44mjab5" path="res://assets/audio/sheep_death.wav" id="5_somvl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12hjx"]
+atlas = ExtResource("2_hdi01")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dwhd"]
+atlas = ExtResource("2_hdi01")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4m0o"]
+atlas = ExtResource("2_hdi01")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgwqq"]
+atlas = ExtResource("2_hdi01")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdl2a"]
+atlas = ExtResource("2_hdi01")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2huh"]
+atlas = ExtResource("2_hdi01")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tubn7"]
+atlas = ExtResource("2_hdi01")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ns05h"]
+atlas = ExtResource("2_hdi01")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sg88a"]
+atlas = ExtResource("3_x5mw4")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbbbo"]
+atlas = ExtResource("3_x5mw4")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii00g"]
+atlas = ExtResource("3_x5mw4")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_peva6"]
+atlas = ExtResource("3_x5mw4")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihcoi"]
+atlas = ExtResource("3_x5mw4")
+region = Rect2(512, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grrm5"]
+atlas = ExtResource("3_x5mw4")
+region = Rect2(640, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t0bf6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12hjx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6dwhd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4m0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgwqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdl2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2huh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tubn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ns05h")
+}],
+"loop": true,
+"name": &"CLOSED",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sg88a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbbbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii00g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_peva6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihcoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grrm5")
+}],
+"loop": false,
+"name": &"OPENED",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y5qim"]
+radius = 17.0
+
+[node name="Sheep_container" instance=ExtResource("1_iaveo")]
+sprite_frames = SubResource("SpriteFrames_t0bf6")
+animation = &"CLOSED"
+_meat_qnt = 2
+
+[node name="GatherZoneShape" parent="GatherZone" index="0"]
+position = Vector2(0, 13)
+shape = SubResource("CircleShape2D_y5qim")
+
+[node name="DropButton" parent="." index="3"]
+offset_left = -11.0
+offset_top = 33.0
+offset_right = 181.0
+offset_bottom = 225.0
+
+[node name="DropSound" parent="." index="5"]
+stream = ExtResource("5_somvl")

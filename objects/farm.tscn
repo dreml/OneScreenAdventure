@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0t7rqwtvm8m8"]
+[gd_scene load_steps=7 format=3 uid="uid://c0t7rqwtvm8m8"]
 
-[ext_resource type="Script" path="res://objects/farm.gd" id="1_8fcir"]
 [ext_resource type="PackedScene" uid="uid://cgxdgslj44ggc" path="res://objects/product_building.tscn" id="1_wpg3k"]
 [ext_resource type="Texture2D" uid="uid://cinel71my562d" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Destroyed.png" id="2_6pnjq"]
 [ext_resource type="PackedScene" uid="uid://cdf0ko4xjq3xi" path="res://objects/meat.tscn" id="3_lax5o"]
@@ -37,8 +36,7 @@ animations = [{
 [node name="Farm" instance=ExtResource("1_wpg3k")]
 sprite_frames = SubResource("SpriteFrames_fbwc8")
 animation = &"full_stock"
-script = ExtResource("1_8fcir")
-storage_max = 4
+storage_max = 6
 output = 1
 output_time = 3
 gather_res_time = 2

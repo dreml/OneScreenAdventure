@@ -1,0 +1,101 @@
+[gd_scene load_steps=16 format=3 uid="uid://bnswwernd0fj6"]
+
+[ext_resource type="PackedScene" uid="uid://da1nxprpvwnh" path="res://objects/resource_droppable.tscn" id="1_3pib6"]
+[ext_resource type="Texture2D" uid="uid://bpe768qrr841a" path="res://assets/sprites/Tiny Swords/Resources/Resources/G_Spawn.png" id="2_r6ya7"]
+[ext_resource type="AudioStream" uid="uid://3dolqk076vd" path="res://assets/audio/get_gold_sound.wav" id="3_omyid"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnfs5"]
+atlas = ExtResource("2_r6ya7")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3lhc"]
+atlas = ExtResource("2_r6ya7")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te1i4"]
+atlas = ExtResource("2_r6ya7")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7fk5"]
+atlas = ExtResource("2_r6ya7")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ev1hg"]
+atlas = ExtResource("2_r6ya7")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtjqx"]
+atlas = ExtResource("2_r6ya7")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhh02"]
+atlas = ExtResource("2_r6ya7")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu7st"]
+atlas = ExtResource("2_r6ya7")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eobai"]
+atlas = ExtResource("2_r6ya7")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uf073"]
+atlas = ExtResource("2_r6ya7")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u5645"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnfs5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3lhc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_te1i4")
+}],
+"loop": false,
+"name": &"BRING",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7fk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ev1hg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtjqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhh02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu7st")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eobai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uf073")
+}],
+"loop": false,
+"name": &"DROP",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vve2g"]
+radius = 19.0263
+
+[node name="GoldOreDrop" instance=ExtResource("1_3pib6")]
+sprite_frames = SubResource("SpriteFrames_u5645")
+animation = &"BRING"
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_vve2g")
+
+[node name="BringSound" parent="." index="1"]
+stream = ExtResource("3_omyid")

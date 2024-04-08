@@ -17,7 +17,7 @@ enum State {WORK, WAIT, DESTROYED} # возможные состояния зд�
 @export var res_type : Globals.ResourceType 
 
 var _storage_act = 0 # кол-во ресурса сейчас на складе
-var _state_act = State.WORK
+var _state_act = null
 var _gatherer: Node2D = null # кто занял зону сбора
 
 func _ready():
@@ -64,19 +64,20 @@ func resource_return():
 	state_change(State.WORK)
 	
 func resoure_bring(target):
-	target.get_resourse(res_type, _storage_act)
+	target.get_resource(res_type, _storage_act)
 	$CollectSound.play()
 	resource_return()
 	gather_timer.stop()
 
 func _on_gather_zone_body_entered(body):
-	if body.has_method('get_resourse') and _gatherer == null:
+	if body.has_method('get_resource') and _gatherer == null:
 		gather_timer.start()	
 		_gatherer = body
 
 func _on_gather_zone_body_exited(body):
-	gather_timer.stop()
-	_gatherer = null
+	if body == _gatherer:
+		gather_timer.stop()
+		_gatherer = null
 
 func _on_output_timer_timeout():
 	production()

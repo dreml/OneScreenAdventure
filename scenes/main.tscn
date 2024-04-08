@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cw5i2jwtg0fc"]
+[gd_scene load_steps=37 format=3 uid="uid://cw5i2jwtg0fc"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://iviro4gjq1x1" path="res://player/player.tscn" id="2"]
@@ -23,6 +23,13 @@
 [ext_resource type="PackedScene" uid="uid://bvrtlcy2mvm7u" path="res://objects/building.tscn" id="21_r3nht"]
 [ext_resource type="PackedScene" uid="uid://byb75qek45f7v" path="res://objects/sawmill.tscn" id="24_o0eek"]
 [ext_resource type="PackedScene" uid="uid://c0t7rqwtvm8m8" path="res://objects/farm.tscn" id="28_plbmx"]
+[ext_resource type="PackedScene" uid="uid://cdf0ko4xjq3xi" path="res://objects/meat.tscn" id="29_gx2jf"]
+[ext_resource type="PackedScene" uid="uid://ddlyj6mvb07tv" path="res://ui/meat_label.tscn" id="30_5cdgt"]
+[ext_resource type="PackedScene" uid="uid://c5dhqm272434t" path="res://objects/battle_tower.tscn" id="30_pd3g0"]
+[ext_resource type="PackedScene" uid="uid://liaq83i85tc6" path="res://ui/sound_off_button.tscn" id="31_dnxdd"]
+[ext_resource type="PackedScene" uid="uid://b2bhh6e0jj1lo" path="res://objects/sheep_container.tscn" id="31_t77yh"]
+[ext_resource type="PackedScene" uid="uid://dfly65lc2onrm" path="res://objects/house_ruin_container.tscn" id="32_ponan"]
+[ext_resource type="PackedScene" uid="uid://b28sblctotkpl" path="res://objects/meat_drop.tscn" id="34_40kpr"]
 [ext_resource type="PackedScene" uid="uid://djknjr0mpajet" path="res://ui/resource.tscn" id="30_1odgn"]
 [ext_resource type="PackedScene" path="res://objects/battle_tower.tscn" id="30_pd3g0"]
 [ext_resource type="PackedScene" path="res://ui/sound_off_button.tscn" id="31_dnxdd"]
@@ -131,14 +138,14 @@ position = Vector2(370, 1849)
 position = Vector2(734, 1633)
 
 [node name="Goblin" parent="." instance=ExtResource("12_vor8f")]
-position = Vector2(386, 1096)
+position = Vector2(108, 1222)
 
 [node name="Goblin3" parent="." instance=ExtResource("12_vor8f")]
 z_index = 1
-position = Vector2(265, 1108)
+position = Vector2(270, 1112)
 
 [node name="Goblin2" parent="." instance=ExtResource("12_vor8f")]
-position = Vector2(213, 1007)
+position = Vector2(970, 933)
 scale = Vector2(-1, 1)
 
 [node name="CastleBlue" type="Sprite2D" parent="."]
@@ -190,9 +197,6 @@ position = Vector2(131, 1077)
 
 [node name="sawmill2" parent="." instance=ExtResource("24_o0eek")]
 position = Vector2(683, 589)
-
-[node name="GoldMine" parent="." instance=ExtResource("21_jmlor")]
-position = Vector2(348, 305)
 
 [node name="Farm" parent="." instance=ExtResource("28_plbmx")]
 position = Vector2(723, 801)
@@ -255,5 +259,20 @@ stretch_mode = 5
 [node name="BattleTower" parent="." instance=ExtResource("30_pd3g0")]
 position = Vector2(312, 939)
 
+[node name="Sheep_container" parent="." instance=ExtResource("31_t77yh")]
+position = Vector2(657, 1509)
+
+[node name="Sheep_container2" parent="." instance=ExtResource("31_t77yh")]
+position = Vector2(810, 1007)
+
+[node name="HouseRuinContainer" parent="." instance=ExtResource("32_ponan")]
+position = Vector2(188, 1675)
+
 [node name="SoundOffButton" parent="." instance=ExtResource("31_dnxdd")]
 position = Vector2(1003, 101)
+
+[node name="MeatDrop" parent="." instance=ExtResource("34_40kpr")]
+position = Vector2(713, 1733)
+
+[node name="GoldMine" parent="." instance=ExtResource("21_jmlor")]
+position = Vector2(363, 308)

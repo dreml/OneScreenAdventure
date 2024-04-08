@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://ybrdxk7tk7f2"]
+
+[ext_resource type="Script" path="res://objects/resource_container.gd" id="1_uo2bj"]
+[ext_resource type="Texture2D" uid="uid://d3a7lbflkbo7w" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Red_9Slides_Pressed.png" id="3_w05cn"]
+[ext_resource type="Texture2D" uid="uid://bl7w47hc3r08g" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Red_9Slides.png" id="4_b5uv0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fc2v5"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"CLOSED",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"OPENED",
+"speed": 5.0
+}]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_6rqcq"]
+frames = 2
+frame_0/texture = ExtResource("4_b5uv0")
+frame_1/texture = ExtResource("3_w05cn")
+frame_1/duration = 1.0
+
+[node name="ResourceContainer" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_fc2v5")
+animation = &"OPENED"
+script = ExtResource("1_uo2bj")
+_meat_path = "res://objects/meat_drop.tscn"
+_wood_path = "res://objects/wood_drop.tscn"
+_gold_path = "res://objects/gold_ore_drop.tscn"
+
+[node name="GatherZone" type="Area2D" parent="."]
+
+[node name="GatherZoneShape" type="CollisionShape2D" parent="GatherZone"]
+
+[node name="Drop" type="Node2D" parent="."]
+
+[node name="DeleteTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="DropButton" type="TextureButton" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = 21.0
+offset_right = 172.0
+offset_bottom = 213.0
+scale = Vector2(0.116645, 0.113392)
+texture_normal = SubResource("AnimatedTexture_6rqcq")
+
+[node name="DropButtonVisible" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="DropSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="GatherTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="GatherZone" to="." method="_on_gather_zone_body_entered"]
+[connection signal="body_exited" from="GatherZone" to="." method="_on_gather_zone_body_exited"]
+[connection signal="timeout" from="DeleteTimer" to="." method="_on_delete_timer_timeout"]
+[connection signal="pressed" from="DropButton" to="." method="_on_drop_button_pressed"]
+[connection signal="timeout" from="DropButtonVisible" to="." method="_on_drop_button_visible_timeout"]
+[connection signal="timeout" from="GatherTimer" to="." method="_on_gather_timer_timeout"]
