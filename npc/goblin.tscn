@@ -4,6 +4,37 @@
 [ext_resource type="Script" path="res://npc/goblin.gd" id="2_m6xmn"]
 [ext_resource type="Texture2D" uid="uid://db7oio6u336er" path="res://assets/sprites/Tiny Swords/Factions/Goblins/Troops/Torch/Red/Torch_Red.png" id="3_4gcwu"]
 
+[sub_resource type="Animation" id="Animation_hhyqt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_lb602"]
+resource_name = "attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [14, 15, 16, 17, 18, 19]
+}
+
 [sub_resource type="Animation" id="Animation_4cdnb"]
 resource_name = "idle"
 length = 0.6
@@ -19,23 +50,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [0, 1, 2, 3, 4, 5]
-}
-
-[sub_resource type="Animation" id="Animation_lb602"]
-resource_name = "attack"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [14, 15, 16, 17, 18, 19]
 }
 
 [sub_resource type="Animation" id="Animation_l1bco"]
@@ -55,21 +69,6 @@ tracks/0/keys = {
 "values": [7, 8, 9, 10, 11, 12]
 }
 
-[sub_resource type="Animation" id="Animation_hhyqt"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hhu01"]
 _data = {
 "RESET": SubResource("Animation_hhyqt"),
@@ -79,9 +78,10 @@ _data = {
 }
 
 [node name="Goblin" groups=["goblins"] instance=ExtResource("1_mycac")]
+collision_layer = 2
 script = ExtResource("2_m6xmn")
 
-[node name="AnimationPlayer" parent="." index="3"]
+[node name="AnimationPlayer" parent="." index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_hhu01")
 }
@@ -92,3 +92,6 @@ position = Vector2(0, -31)
 texture = ExtResource("3_4gcwu")
 hframes = 7
 vframes = 5
+
+[node name="AttackCDTimer" type="Timer" parent="." index="5"]
+one_shot = true

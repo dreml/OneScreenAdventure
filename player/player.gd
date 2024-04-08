@@ -1,20 +1,32 @@
 class_name Player
 extends CharacterBody2D
 
-enum States { IDLE, FOLLOW, ATTACK }
+enum States { 
+	IDLE,
+	FOLLOW, 
+}
+
+signal dead
+signal health_changed(current_health: int)
 
 const MASS: float = 1.0
 const ARRIVE_DISTANCE: float = 5.0
 const AT_CONDITION_PATH: String = "parameters/StateMachine/conditions/%s"
 const AT_BLEND_POSITION_PATH: String = "parameters/StateMachine/%s/blend_position"
+const AT_ATTACK_BLEND_POSITION_PATH: String = "parameters/AttackBlendSpace/blend_position"
+const AT_ATTACK_PATH: String = "parameters/Attack/request"
 
 @export var speed: float = 200.0
 @export var nav_path: NodePath
 @export var pointer_path: NodePath
+@export var attack_cd: int = 1 
+@export var attack_damage: int = 1
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var nav: NavigationMap = get_node(nav_path)
 @onready var pointer: Node2D = get_node(pointer_path)
+@onready var attack_cd_timer: Timer = $AttackCDTimer
+@onready var health_component: HealthComponent = $HealthComponent
 
 var _state := States.IDLE
 
@@ -24,15 +36,23 @@ var _target_position: Vector2 = Vector2()
 var _facing_direction: Vector2 = Vector2()
 var _velocity: Vector2 = Vector2()
 var _target_building: Building
+var _attack_target: Node2D: 
+	set(new_target):
+		if new_target == null and _attack_target:
+			_attack_target.cancel_attack()
+		_attack_target = new_target
 
 var _animation_name_by_state = {
 	States.IDLE: "Idle",
 	States.FOLLOW: "Running",
-	States.ATTACK: "Attacking",
 }
 
 func _ready():
 	_change_state(States.IDLE)
+	attack_cd_timer.set_wait_time(attack_cd)
+	attack_cd_timer.timeout.connect(_play_attack_animation)
+	health_component.health_changed.connect(func(current_health: int): health_changed.emit(current_health))
+	health_component.dead.connect(func(): dead.emit())
 
 func _process(_delta) -> void:
 	_update_animation_direction()
@@ -44,17 +64,16 @@ func _process(_delta) -> void:
 
 	var _arrived_to_next_point: bool = _move_to(_target_point_world)
 	if _arrived_to_next_point:
-		_path.remove_at(0)
+		if len(_path) > 0:
+			_path.remove_at(0)
+
 		if len(_path) == 0:
 			_reach_target()
 			return
+		
 		_target_point_world = _path[0]
 	
-func _unhandled_input(event) -> void:
-	if Input.is_key_pressed(KEY_F):
-		_change_state(States.ATTACK)
-		return
-	
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("click"):
 		_start_following()
 
@@ -92,11 +111,19 @@ func _change_state(new_state) -> void:
 		_process_follow_state()
 	elif new_state == States.IDLE:
 		pointer.position = Vector2(-100, -100)
+		if _get_enemy_in_range():
+			_attack_next_target()
 
 	_state = new_state
 	_switch_animation()
 	
 func _process_follow_state():
+	if _attack_target:
+		_attack_target.dead.disconnect(_attack_target_dead)
+		_attack_target = null
+	attack_cd_timer.stop()
+	animation_tree[AT_ATTACK_PATH] = AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT
+
 	pointer.reset()
 
 	_path = nav.get_astar_path(position, _target_position)
@@ -120,12 +147,7 @@ func _switch_animation():
 
 func _update_animation_direction():
 	var animation_name = _animation_name_by_state[_state]
-	var blend_position = _facing_direction
-
-	if _state != States.ATTACK:
-		blend_position = blend_position.x
-
-	animation_tree[AT_BLEND_POSITION_PATH % animation_name] = blend_position
+	animation_tree[AT_BLEND_POSITION_PATH % animation_name] = _facing_direction.x
 
 func _reach_target():
 	_change_state(States.IDLE)
@@ -137,13 +159,84 @@ func _reach_target():
 
 	_target_building = null
 
-func attack():
-	print("Attacking")
-	_change_state(States.IDLE)
-	
 func get_resource(type, amount):
 	GameInstance.get_resource(type, amount)
 
 func get_resource_from_container(dict):
 	GameInstance.get_resource_from_container(dict)
+
+#region Атака
+func take_damage(damage_amount: int):
+	health_component.take_damage(damage_amount)
+
+func _on_detect_enemy_area_body_entered(body: Node2D):
+	if not _can_attack_target(body): 
+		return
+
+	_target_point_world = position
+	_path = []
+
+	_start_attack(body)
+
+func _on_detect_enemy_area_body_exited(body):
+	if not body.is_in_group("goblins"):
+		return
+
+	if body == _attack_target:
+		_attack_target.dead.disconnect(_attack_target_dead)
+		_attack_next_target()
+
+func _play_attack_animation():
+	var direction_to_enemy = position.direction_to(_attack_target.position).normalized()
+	_facing_direction = Vector2(direction_to_enemy.x, -direction_to_enemy.y)
+	animation_tree[AT_ATTACK_BLEND_POSITION_PATH] = _facing_direction
+	animation_tree[AT_ATTACK_PATH] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+
+
+func _make_attack():
+	if _attack_target and _attack_target.has_method("take_damage"):
+		_attack_target.take_damage(attack_damage)
+
+func _can_attack_target(target: Node2D) -> bool:
+	return not target.is_queued_for_deletion() and target.is_in_group("goblins") and target.has_method("attacked") 
+
+func _start_attack(target: Node2D):
+	if _attack_target and not _attack_target.is_queued_for_deletion():
+		target.attacked()
+		return
+
+	attack_cd_timer.start()
+	_attack_target = target
+	_attack_target.dead.connect(_attack_target_dead)
+	_attack_target.attacked()
+
+func _attack_target_dead():
+	attack_cd_timer.stop()
+	_attack_next_target()
+
+func _attack_next_target():
+	_stop_attack()
+	var next_enemy := _get_enemy_in_range()
+	if next_enemy:
+		_start_attack(next_enemy)
+	else:
+		_change_state(States.IDLE)
+
+func _get_enemy_in_range() -> Node2D:
+	var enemies: Array[Node2D] = $DetectEnemyArea.get_overlapping_bodies()
+	for enemy in enemies:
+		if not _can_attack_target(enemy):
+			continue
+		
+		return enemy
+
+	return null
+
+func _stop_attack():
+	if _attack_target and _attack_target.dead.is_connected(_attack_target_dead):
+		_attack_target.dead.disconnect(_attack_target_dead)
+
+	_attack_target = null
+	attack_cd_timer.stop()
+#endregion
 	

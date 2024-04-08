@@ -11,11 +11,11 @@ func _ready():
 #	attack_timer.start()
 	attack_timer.timeout.connect(move_goblins)
 	
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_T):
 		attack_timer.start()
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 func move_goblins():

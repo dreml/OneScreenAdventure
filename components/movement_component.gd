@@ -6,10 +6,9 @@ signal arrived
 const MASS: float = 10.0
 const ARRIVE_DISTANCE: float = 5.0
 
-@onready var nav: NavigationMap = get_tree().get_root().get_node('Main/NavigationMap')
-@onready var owner_actor: Node2D = get_parent()
-
 @export var speed: float = 200.0
+
+@onready var nav: NavigationMap = get_tree().get_root().get_node('Main/NavigationMap')
 
 var _path = []
 var _target_point_world: Vector2 = Vector2()
@@ -21,8 +20,7 @@ func _process(_delta) -> void:
 	if not can_move:
 		return
 		
-		
-	facing_direction = owner_actor.global_position.direction_to(_target_point_world).normalized()
+	facing_direction = owner.global_position.direction_to(_target_point_world).normalized()
 
 	var _arrived_to_next_point: bool = _move_to(_target_point_world)
 	if _arrived_to_next_point:
@@ -33,14 +31,19 @@ func _process(_delta) -> void:
 		_target_point_world = _path[0]
 
 func _move_to(world_position) -> bool:
-	var desired_velocity = (world_position - owner_actor.position).normalized() * speed
+	var desired_velocity = (world_position - owner.position).normalized() * speed
 	var steering = desired_velocity - _velocity
 	_velocity += steering / MASS
-	owner_actor.translate(_velocity * get_process_delta_time())
-	return owner_actor.position.distance_to(world_position) < ARRIVE_DISTANCE
+	owner.translate(_velocity * get_process_delta_time())
+	return owner.position.distance_to(world_position) < ARRIVE_DISTANCE
 
 func set_target_position(target_position: Vector2):
-	_path = nav.get_astar_path(owner_actor.position, target_position)
+	_path = nav.get_astar_path(owner.position, target_position)
 	_target_point_world = _path[1]
 	if not _path or len(_path) == 1:
 		arrived.emit()
+
+func stop():
+	_target_point_world = position
+	_path = []
+

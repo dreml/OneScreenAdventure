@@ -9,7 +9,7 @@ var gold_amount := 0
 var meat_amount := 0
 
 func _ready() -> void:
-	pass
+	player.dead.connect(func(): print('player is dead'))
 	
 func get_resource(type, amount):
 	match type:

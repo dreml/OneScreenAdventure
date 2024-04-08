@@ -22,7 +22,7 @@ func _ready() -> void:
 	
 	print('hi from pawn')
 
-func _process(delta):
+func _process(_delta):
 	if _command_in_action == null && GameInstance.game_director.has_orders():
 		_command_in_action = GameInstance.game_director.take_order()
 		_start_command()
@@ -32,19 +32,19 @@ func _start_command():
 		movement_component.set_target_position(
 			_command_in_action.target.get_entrance()
 		)
-		_switch_state(States.FOLLOW)
+		_change_state(States.FOLLOW)
 
 func _handle_arrival():
 	if _command_in_action != null && _command_in_action.action_type == Command.ActionType.Build:
 		_start_building()
 		
 func _start_building():
-	_switch_state(OwnStates.BUILD)
+	_change_state(OwnStates.BUILD)
 	sprite.flip_h = movement_component.facing_direction.x < 0
 	
 	await _command_in_action.target.constructed
 	_command_in_action = null
-	_switch_state(States.IDLE)
+	_change_state(States.IDLE)
 	
 func _build():
 	if "build" in _command_in_action.target:

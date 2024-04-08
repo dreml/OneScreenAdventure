@@ -37,4 +37,3 @@ func take_damage(amount: int):
 
 	health_changed.emit(_current_health)
 	print(owner.name + ' health: ' + str(_current_health ))
-
