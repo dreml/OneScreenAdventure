@@ -9,7 +9,7 @@ var _commands = []
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	gold_label.set_text(str(GameInstance.gold_amount))
 	wood_label.set_text(str(GameInstance.wood_amount))
 	meat_label.set_text(str(GameInstance.meat_amount))

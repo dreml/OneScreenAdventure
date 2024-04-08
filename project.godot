@@ -68,6 +68,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="Tower"
 2d_physics/layer_4="Arrow"
+2d_physics/layer_5="Production"
 
 [physics]
 

@@ -20,8 +20,7 @@ func _process(_delta) -> void:
 	if not can_move:
 		return
 		
-		
-	facing_direction = owner_actor.global_position.direction_to(_target_point_world).normalized()
+	facing_direction = owner.global_position.direction_to(_target_point_world).normalized()
 
 	var _arrived_to_next_point: bool = _move_to(_target_point_world)
 	if _arrived_to_next_point:

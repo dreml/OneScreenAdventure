@@ -57,6 +57,6 @@ func _on_attack_zone_body_exited(body):
 		else:
 			_target_list.erase(body)
 		
-func get_shoot_sound(arrow):
+func get_shoot_sound(_arrow):
 	var shoot = _arrow_act.instantiate()
 	_shoot_sound.stream = load(shoot.shoot_sound_path)

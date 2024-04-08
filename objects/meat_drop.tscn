@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://b28sblctotkpl"]
+[gd_scene load_steps=17 format=3 uid="uid://cl5liig7srwmt"]
 
-[ext_resource type="PackedScene" uid="uid://da1nxprpvwnh" path="res://objects/resource_droppable.tscn" id="1_jq7yp"]
+[ext_resource type="PackedScene" uid="uid://c1a8p0bykthrt" path="res://objects/resource_droppable.tscn" id="1_jq7yp"]
 [ext_resource type="Texture2D" uid="uid://cltliuoay74p8" path="res://assets/sprites/Tiny Swords/Resources/Resources/M_Spawn.png" id="2_5ficg"]
 [ext_resource type="AudioStream" uid="uid://beg5x5otewbt6" path="res://assets/audio/get_meat_sound.wav" id="4_ow2h7"]
 

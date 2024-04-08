@@ -27,7 +27,7 @@ func _ready() -> void:
 			dead.emit()
 	)
 
-func _change_state(new_state: States):
+func _change_state(new_state):
 	if _state == new_state:
 		return
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://6r2vkiqs6jtk"]
+[gd_scene load_steps=4 format=3 uid="uid://6r2vkiqs6jtk"]
 
 [ext_resource type="Script" path="res://components/movement_component.gd" id="2_cgfcy"]
 [ext_resource type="Script" path="res://components/health_component.gd" id="3_2rot0"]
@@ -14,13 +14,6 @@ script = ExtResource("2_cgfcy")
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("3_2rot0")
 max_health = 30
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, -23)
-sprite_frames = SubResource("7")
-animation = &"build"
-autoplay = "idle"
-frame_progress = 0.0313705
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

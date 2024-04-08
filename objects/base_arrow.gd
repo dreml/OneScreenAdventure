@@ -12,7 +12,7 @@ var _damage_multiplier = 1 # множитель урона
 func _ready():
 	look_at(_target_act.global_position)
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	take_aim(_target_act)
 	move_and_slide()
 

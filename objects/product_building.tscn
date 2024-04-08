@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgxdgslj44ggc"]
+[gd_scene load_steps=5 format=3 uid="uid://bwo2g8rne8oaf"]
 
 [ext_resource type="Script" path="res://objects/product_building.gd" id="1_g07kb"]
 
@@ -38,14 +38,14 @@ script = ExtResource("1_g07kb")
 [node name="Storage" type="Node2D" parent="."]
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-0.5, -13)
 shape = SubResource("RectangleShape2D_0eqrx")
 
 [node name="GatherZone" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
+collision_layer = 16
 
 [node name="GatherZoneShape" type="CollisionShape2D" parent="GatherZone"]
 position = Vector2(-2, 33)

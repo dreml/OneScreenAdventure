@@ -26,9 +26,6 @@ func _ready():
 	gather_timer.set_wait_time(gather_res_time)
 	state_change(State.WORK)
 
-func _process(delta):
-	pass
-
 func state_change(state):
 	if state == _state_act:
 		return
@@ -70,6 +67,7 @@ func resoure_bring(target):
 	gather_timer.stop()
 
 func _on_gather_zone_body_entered(body):
+	print(body)
 	if body.has_method('get_resource') and _gatherer == null:
 		gather_timer.start()	
 		_gatherer = body
