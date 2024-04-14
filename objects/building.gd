@@ -9,7 +9,6 @@ var _ANIMATIONS_BY_STATES = {
 	State.IDLE: "idle",
 	State.DESTROYED: "destroyed"
 }
-const _resource_spent_template = "-%s"
 
 @export var hp: float
 @export var gold_requires: int
@@ -17,8 +16,7 @@ const _resource_spent_template = "-%s"
 @export var global_rect_adjustment: Vector2
 
 @onready var health_component: HealthComponent = $HealthComponent
-@onready var gold_spent_label: Label = $GoldSpent/Label
-@onready var wood_spent_label: Label = $WoodSpent/Label
+@onready var resources_spent = $ResourcesSpent
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -29,8 +27,8 @@ func start_building() -> bool:
 		animation_player.play("construction_forbidden")
 		return false
 
-	gold_spent_label.set_text(_resource_spent_template % str(gold_requires))
-	wood_spent_label.set_text(_resource_spent_template % str(wood_requires))
+	resources_spent.gold = gold_requires
+	resources_spent.wood = wood_requires
 	
 	GameInstance.spend_resource(Globals.ResourceType.WOOD, wood_requires)
 	GameInstance.spend_resource(Globals.ResourceType.GOLD_ORE, gold_requires)

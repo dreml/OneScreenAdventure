@@ -1,0 +1,126 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7swydcs7p5nq"]
+
+[ext_resource type="Script" path="res://ui/resources_spent.gd" id="1_7b56x"]
+[ext_resource type="PackedScene" uid="uid://djknjr0mpajet" path="res://ui/resource.tscn" id="1_nkmsd"]
+[ext_resource type="Texture2D" uid="uid://51dxy87hapxj" path="res://ui/gold_texture_cropped.tres" id="2_axyr1"]
+[ext_resource type="Texture2D" uid="uid://ccayd7nfsqu3a" path="res://ui/wood_texture_cropped.tres" id="3_i8exo"]
+
+[sub_resource type="Animation" id="Animation_pfwa5"]
+resource_name = "popup"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gold:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gold:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(-40, 40), Vector2(-40, -30)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gold:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 4),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Wood:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.7, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Wood:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.7, 1.2),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(-40, 40), Vector2(-40, -30)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Wood:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.7, 1.2),
+"transitions": PackedFloat32Array(1, 4),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_52apj"]
+_data = {
+"popup": SubResource("Animation_pfwa5")
+}
+
+[node name="ResourcesSpent" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7b56x")
+
+[node name="Gold" parent="." instance=ExtResource("1_nkmsd")]
+modulate = Color(1, 1, 1, 0)
+offset_left = 1014.0
+offset_top = 40.0
+offset_right = 1120.0
+offset_bottom = 95.0
+
+[node name="TextureRect" type="TextureRect" parent="Gold"]
+layout_mode = 2
+texture = ExtResource("2_axyr1")
+stretch_mode = 5
+
+[node name="Wood" parent="." instance=ExtResource("1_nkmsd")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = 1007.0
+offset_top = 40.0
+offset_right = 1120.0
+offset_bottom = 95.0
+
+[node name="TextureRect" type="TextureRect" parent="Wood"]
+layout_mode = 2
+texture = ExtResource("3_i8exo")
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_52apj")
+}
