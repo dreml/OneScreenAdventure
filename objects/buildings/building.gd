@@ -4,14 +4,13 @@ extends StaticBody2D
 signal constructed
 
 enum State { CONSTRUCTION = 100, IDLE = 101, DESTROYED = 102 }
-const ANIMATION_NAME_TEMPLATE = "building/%s"
+const ANIMATION_NAME_TEMPLATE = "building_animations/%s"
 var _ANIMATIONS_BY_STATES = {
 	State.CONSTRUCTION: ANIMATION_NAME_TEMPLATE % "construction",
 	State.IDLE: ANIMATION_NAME_TEMPLATE % "idle",
 	State.DESTROYED: ANIMATION_NAME_TEMPLATE % "destroyed"
 }
 
-@export var hp: float
 @export var gold_requires: int
 @export var wood_requires: int
 @export var global_rect_adjustment: Vector2
@@ -24,8 +23,10 @@ var _ANIMATIONS_BY_STATES = {
 var _state = State.DESTROYED
 
 func start_building() -> bool:
-	if !_can_be_built():
+	if !_is_enough_resources() && !_is_constructed():
 		animation_player.play(ANIMATION_NAME_TEMPLATE % "construction_forbidden")
+
+	if !_can_be_built():
 		return false
 
 	resources_spent.gold = gold_requires

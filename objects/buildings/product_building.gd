@@ -13,7 +13,6 @@ enum ProducerState {WORK} # возможные состояния шахты
 @export var output_time = 0 # время цикла производства
 @export var gather_res_time = 0 # время сбора ресурса
 @export var res_sprite : PackedScene
-@export var res_y = 0
 @export var res_type : Globals.ResourceType 
 
 var _storage_act = 0 # кол-во ресурса сейчас на складе
@@ -48,9 +47,7 @@ func _stop_production():
 	output_timer.stop()
 
 func get_entrance():
-	var rect = gather_zone_shape.shape.get_rect()
-	
-	return global_position - rect.position + Vector2(0, rect.size.y / 2.0)
+	return gather_zone_shape.global_position
 
 func produce():
 	for o in output:
@@ -60,7 +57,7 @@ func produce():
 			break  
 		_storage_act += 1
 		var res_inst = res_sprite.instantiate()
-		res_inst.position = Vector2(_storage_act * 10, res_y)
+		res_inst.position = Vector2(_storage_act * 10, 0)
 		storage.add_child(res_inst)
 	if gather_timer_can_start():
 		gather_timer.start()

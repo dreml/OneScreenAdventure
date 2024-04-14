@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dd8c2ncqldrck"]
 
 [ext_resource type="Script" path="res://objects/buildings/building.gd" id="1_3t5oj"]
-[ext_resource type="Texture2D" uid="uid://cbsj1kmh6qu4f" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Construction.png" id="2_l252c"]
+[ext_resource type="Texture2D" uid="uid://cbsj1kmh6qu4f" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Construction.png" id="2_v25ll"]
 [ext_resource type="AnimationLibrary" uid="uid://1gkpvvn8dr73" path="res://libs/building_animations.res" id="3_xg76k"]
 [ext_resource type="Script" path="res://components/health_component.gd" id="7_0u2s5"]
 [ext_resource type="PackedScene" uid="uid://b7swydcs7p5nq" path="res://ui/resources_spent.tscn" id="9_txcy1"]
@@ -26,10 +26,10 @@ func get_entrance():
 "
 
 [node name="Tower" type="StaticBody2D" groups=["buildings"]]
-collision_mask = 2
+collision_layer = 36
+collision_mask = 3
 constant_linear_velocity = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("1_3t5oj")
-hp = 1.0
 gold_requires = 2
 wood_requires = 4
 global_rect_adjustment = Vector2(2.08165e-12, -10)
@@ -41,13 +41,13 @@ script = SubResource("GDScript_8yrhr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
-texture = ExtResource("2_l252c")
+texture = ExtResource("2_v25ll")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"building": ExtResource("3_xg76k")
+"building_animations": ExtResource("3_xg76k")
 }
-autoplay = "building/destroyed"
+autoplay = "building_animations/destroyed"
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("7_0u2s5")

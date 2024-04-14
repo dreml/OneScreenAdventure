@@ -1,45 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwo2g8rne8oaf"]
+[gd_scene load_steps=6 format=3 uid="uid://bwo2g8rne8oaf"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_nkpru"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"destroyed",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"full_stock",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"production",
-"speed": 5.0
-}]
+[ext_resource type="PackedScene" uid="uid://b7swydcs7p5nq" path="res://ui/resources_spent.tscn" id="1_4tnti"]
+[ext_resource type="Script" path="res://objects/buildings/product_building.gd" id="1_6kirk"]
+[ext_resource type="Script" path="res://components/health_component.gd" id="2_dtk0e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0eqrx"]
-size = Vector2(149, 91)
+size = Vector2(100, 76)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_itcia"]
 radius = 26.0768
 
-[node name="ProductionBuilding" type="AnimatedSprite2D"]
-sprite_frames = SubResource("SpriteFrames_nkpru")
-animation = &"production"
+[node name="ProductionBuilding" type="StaticBody2D" groups=["buildings"]]
+collision_layer = 48
+collision_mask = 3
+script = ExtResource("1_6kirk")
 
-[node name="OutputTimer" type="Timer" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -13)
+shape = SubResource("RectangleShape2D_0eqrx")
 
-[node name="GatherTimer" type="Timer" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Storage" type="Node2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, -13)
-shape = SubResource("RectangleShape2D_0eqrx")
+[node name="CollectSound" type="AudioStreamPlayer2D" parent="."]
+volume_db = 10.0
 
 [node name="GatherZone" type="Area2D" parent="."]
 collision_layer = 16
@@ -48,10 +35,20 @@ collision_layer = 16
 position = Vector2(-2, 33)
 shape = SubResource("CircleShape2D_itcia")
 
-[node name="CollectSound" type="AudioStreamPlayer2D" parent="."]
-volume_db = 10.0
+[node name="ResourcesSpent" parent="." instance=ExtResource("1_4tnti")]
 
-[connection signal="timeout" from="OutputTimer" to="." method="_on_output_timer_timeout"]
-[connection signal="timeout" from="GatherTimer" to="." method="_on_gather_timer_timeout"]
+[node name="GatherTimer" type="Timer" parent="."]
+
+[node name="OutputTimer" type="Timer" parent="."]
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("2_dtk0e")
+max_health = 15
+start_with_zero_health = true
+
 [connection signal="body_entered" from="GatherZone" to="." method="_on_gather_zone_body_entered"]
 [connection signal="body_exited" from="GatherZone" to="." method="_on_gather_zone_body_exited"]
+[connection signal="timeout" from="GatherTimer" to="." method="_on_gather_timer_timeout"]
+[connection signal="timeout" from="OutputTimer" to="." method="_on_output_timer_timeout"]
+[connection signal="dead" from="HealthComponent" to="." method="_on_destroyed"]
+[connection signal="full_health" from="HealthComponent" to="." method="_on_built"]

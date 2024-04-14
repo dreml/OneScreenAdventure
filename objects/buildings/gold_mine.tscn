@@ -1,18 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://f3hbf7mpfefr"]
+[gd_scene load_steps=17 format=3 uid="uid://c7rkpl1gtylvp"]
 
 [ext_resource type="Texture2D" uid="uid://4jgqtkb8o5fv" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Destroyed.png" id="1_325qu"]
-[ext_resource type="Script" path="res://objects/buildings/product_building.gd" id="1_j6vkb"]
-[ext_resource type="PackedScene" uid="uid://mdno3ej0qmg4" path="res://objects/gold_ore.tscn" id="2_1brsy"]
+[ext_resource type="PackedScene" uid="uid://bwo2g8rne8oaf" path="res://objects/buildings/product_building.tscn" id="1_l1nmd"]
+[ext_resource type="PackedScene" uid="uid://mdno3ej0qmg4" path="res://objects/resources/gold_ore.tscn" id="2_1brsy"]
 [ext_resource type="Texture2D" uid="uid://dj8rtxqgwh11v" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Active.png" id="2_h5che"]
 [ext_resource type="Texture2D" uid="uid://c43pcs2f1j525" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Inactive.png" id="3_mskst"]
-[ext_resource type="AudioStream" uid="uid://3dolqk076vd" path="res://assets/audio/get_gold_sound.wav" id="5_dmmt5"]
-[ext_resource type="PackedScene" uid="uid://b7swydcs7p5nq" path="res://ui/resources_spent.tscn" id="7_goo3k"]
-[ext_resource type="Script" path="res://components/health_component.gd" id="8_w32lm"]
+[ext_resource type="Texture2D" uid="uid://cbsj1kmh6qu4f" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Construction.png" id="5_c3esa"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0eqrx"]
-size = Vector2(157, 63)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_668xu"]
+size = Vector2(162, 67)
 
-[sub_resource type="Animation" id="Animation_ol42l"]
+[sub_resource type="Animation" id="Animation_m1lqy"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -24,10 +22,10 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_325qu")]
+"values": [ExtResource("3_mskst")]
 }
 
-[sub_resource type="Animation" id="Animation_2hcig"]
+[sub_resource type="Animation" id="Animation_b8ogm"]
 resource_name = "production"
 length = 2.0
 loop_mode = 1
@@ -42,13 +40,13 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("2_h5che"), ExtResource("3_mskst")]
+"values": [ExtResource("3_mskst"), ExtResource("2_h5che")]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_20gss"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6i44g"]
 _data = {
-"RESET": SubResource("Animation_ol42l"),
-"production": SubResource("Animation_2hcig")
+"RESET": SubResource("Animation_m1lqy"),
+"production": SubResource("Animation_b8ogm")
 }
 
 [sub_resource type="Animation" id="Animation_takw2"]
@@ -63,7 +61,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_mskst")]
+"values": [ExtResource("5_c3esa")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -157,7 +155,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": ["building/destroyed", -1, 1.0, false],
+"args": ["building_animations/destroyed", -1, 1.0, false],
 "method": &"play"
 }]
 }
@@ -175,18 +173,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("1_325qu")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("Sprite2D:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.588235)]
 }
 
 [sub_resource type="Animation" id="Animation_pj8ky"]
@@ -216,7 +202,7 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_x36rr"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4fsij"]
 _data = {
 "RESET": SubResource("Animation_takw2"),
 "construction": SubResource("Animation_yvqxx"),
@@ -225,63 +211,34 @@ _data = {
 "idle": SubResource("Animation_pj8ky")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_itcia"]
-radius = 26.0768
-
-[node name="GoldMine" type="StaticBody2D" groups=["buildings"]]
-collision_mask = 2
-script = ExtResource("1_j6vkb")
+[node name="GoldMine" instance=ExtResource("1_l1nmd")]
 storage_max = 5
 output = 1
 output_time = 2
 gather_res_time = 1
 res_sprite = ExtResource("2_1brsy")
-hp = 15.0
 gold_requires = 1
 wood_requires = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 7.5)
-shape = SubResource("RectangleShape2D_0eqrx")
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 11.5)
+shape = SubResource("RectangleShape2D_668xu")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_325qu")
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_mskst")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" parent="." index="2"]
 libraries = {
-"": SubResource("AnimationLibrary_20gss"),
-"building": SubResource("AnimationLibrary_x36rr")
+"": SubResource("AnimationLibrary_6i44g"),
+"building_animations": SubResource("AnimationLibrary_4fsij")
 }
-autoplay = "destroyed"
+autoplay = "building_animations/destroyed"
 
-[node name="Storage" type="Node2D" parent="."]
+[node name="Storage" parent="." index="3"]
+position = Vector2(2.08165e-12, 45)
 
-[node name="CollectSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_dmmt5")
-volume_db = 10.0
+[node name="GatherZoneShape" parent="GatherZone" index="0"]
+position = Vector2(2.08165e-12, 45)
 
-[node name="GatherZone" type="Area2D" parent="."]
-collision_layer = 16
-
-[node name="GatherZoneShape" type="CollisionShape2D" parent="GatherZone"]
-position = Vector2(-2, 38)
-shape = SubResource("CircleShape2D_itcia")
-
-[node name="ResourcesSpent" parent="." instance=ExtResource("7_goo3k")]
-pivot_offset = Vector2(2.08165e-12, -20)
-
-[node name="GatherTimer" type="Timer" parent="."]
-
-[node name="OutputTimer" type="Timer" parent="."]
-
-[node name="HealthComponent" type="Node2D" parent="."]
-script = ExtResource("8_w32lm")
-max_health = 15
-start_with_zero_health = true
-
-[connection signal="body_entered" from="GatherZone" to="." method="_on_gather_zone_body_entered"]
-[connection signal="body_exited" from="GatherZone" to="." method="_on_gather_zone_body_exited"]
-[connection signal="timeout" from="GatherTimer" to="." method="_on_gather_timer_timeout"]
-[connection signal="timeout" from="OutputTimer" to="." method="_on_output_timer_timeout"]
-[connection signal="dead" from="HealthComponent" to="." method="_on_destroyed"]
-[connection signal="full_health" from="HealthComponent" to="." method="_on_built"]
+[node name="HealthComponent" parent="." index="9"]
+position = Vector2(0, 45)
