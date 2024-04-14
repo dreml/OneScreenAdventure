@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bcgjq4pepyvaj"]
 
-[ext_resource type="Script" path="res://objects/resource_container.gd" id="1_uo2bj"]
+[ext_resource type="Script" path="res://objects/resources/containers/resource_container.gd" id="1_uo2bj"]
 [ext_resource type="Texture2D" uid="uid://d3a7lbflkbo7w" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Red_9Slides_Pressed.png" id="3_w05cn"]
 [ext_resource type="Texture2D" uid="uid://bl7w47hc3r08g" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Red_9Slides.png" id="4_b5uv0"]
 
@@ -27,9 +27,9 @@ frame_1/duration = 1.0
 sprite_frames = SubResource("SpriteFrames_fc2v5")
 animation = &"OPENED"
 script = ExtResource("1_uo2bj")
-_meat_path = "res://objects/meat_drop.tscn"
-_wood_path = "res://objects/wood_drop.tscn"
-_gold_path = "res://objects/gold_ore_drop.tscn"
+_meat_path = "res://objects/resources/drops/meat_drop.tscn"
+_wood_path = "res://objects/resources/drops/wood_drop.tscn"
+_gold_path = "res://objects/resources/drops/gold_ore_drop.tscn"
 
 [node name="GatherZone" type="Area2D" parent="."]
 collision_layer = 16

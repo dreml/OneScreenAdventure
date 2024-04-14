@@ -5,6 +5,6 @@ enum ActionType { Build }
 var action_type: ActionType
 var target: Node2D
 
-func _init(action_type: ActionType, target: Node2D):
-	self.action_type = action_type
-	self.target = target
+func _init(_action_type: ActionType, _target: Node2D):
+	self.action_type = _action_type
+	self.target = _target

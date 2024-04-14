@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dfly65lc2onrm"]
 
-[ext_resource type="PackedScene" uid="uid://ybrdxk7tk7f2" path="res://objects/resource_container.tscn" id="1_teqm8"]
+[ext_resource type="PackedScene" uid="uid://bcgjq4pepyvaj" path="res://objects/resources/containers/resource_container.tscn" id="1_teqm8"]
 [ext_resource type="Texture2D" uid="uid://cinel71my562d" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Destroyed.png" id="2_67nit"]
 [ext_resource type="AudioStream" uid="uid://ci658jtid625h" path="res://assets/audio/ruin_research.wav" id="4_ywli1"]
 
