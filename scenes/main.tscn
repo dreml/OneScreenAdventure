@@ -16,22 +16,22 @@
 [ext_resource type="Texture2D" uid="uid://ec7747wh31ts" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Blue.png" id="14_f4gqr"]
 [ext_resource type="Texture2D" uid="uid://pi4mxlj6ey67" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Blue.png" id="15_qeysm"]
 [ext_resource type="Texture2D" uid="uid://dqo6v2xe4rayy" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Construction.png" id="16_dojru"]
-[ext_resource type="PackedScene" uid="uid://dd8c2ncqldrck" path="res://objects/tower.tscn" id="17_c4rf8"]
+[ext_resource type="PackedScene" uid="uid://dd8c2ncqldrck" path="res://objects/buildings/tower.tscn" id="17_c4rf8"]
 [ext_resource type="Texture2D" uid="uid://gvo64w1bbyt8" path="res://assets/sprites/Tiny Swords/Factions/Goblins/Buildings/Wood_Tower/Wood_Tower_Red.png" id="18_we7oi"]
 [ext_resource type="PackedScene" uid="uid://c2o8l3t78tcns" path="res://objects/sheep.tscn" id="20_0ekwb"]
-[ext_resource type="PackedScene" uid="uid://f3hbf7mpfefr" path="res://objects/gold_mine.tscn" id="21_jmlor"]
-[ext_resource type="PackedScene" uid="uid://bvrtlcy2mvm7u" path="res://objects/building.tscn" id="21_r3nht"]
-[ext_resource type="PackedScene" uid="uid://byb75qek45f7v" path="res://objects/sawmill.tscn" id="24_o0eek"]
-[ext_resource type="PackedScene" uid="uid://c0t7rqwtvm8m8" path="res://objects/farm.tscn" id="28_plbmx"]
+[ext_resource type="PackedScene" uid="uid://f3hbf7mpfefr" path="res://objects/buildings/gold_mine.tscn" id="21_jmlor"]
+[ext_resource type="PackedScene" uid="uid://bvrtlcy2mvm7u" path="res://objects/buildings/building.tscn" id="21_r3nht"]
+[ext_resource type="PackedScene" uid="uid://byb75qek45f7v" path="res://objects/buildings/sawmill.tscn" id="24_o0eek"]
+[ext_resource type="PackedScene" uid="uid://c0t7rqwtvm8m8" path="res://objects/buildings/farm.tscn" id="28_plbmx"]
 [ext_resource type="PackedScene" path="res://ui/resource.tscn" id="30_1odgn"]
-[ext_resource type="PackedScene" uid="uid://dhd4n7dpc71s7" path="res://objects/battle_tower.tscn" id="30_pd3g0"]
+[ext_resource type="PackedScene" uid="uid://dhd4n7dpc71s7" path="res://objects/buildings/battle_tower.tscn" id="30_pd3g0"]
 [ext_resource type="PackedScene" uid="uid://liaq83i85tc6" path="res://ui/sound_off_button.tscn" id="31_dnxdd"]
 [ext_resource type="Texture2D" path="res://ui/meat_texture_cropped.tres" id="31_mitlt"]
-[ext_resource type="PackedScene" path="res://objects/sheep_container.tscn" id="31_t77yh"]
-[ext_resource type="PackedScene" path="res://objects/house_ruin_container.tscn" id="32_ponan"]
+[ext_resource type="PackedScene" uid="uid://b2bhh6e0jj1lo" path="res://objects/resources/containers/sheep_container.tscn" id="31_t77yh"]
+[ext_resource type="PackedScene" uid="uid://dfly65lc2onrm" path="res://objects/resources/containers/house_ruin_container.tscn" id="32_ponan"]
 [ext_resource type="Texture2D" path="res://ui/wood_texture_cropped.tres" id="32_x7dpc"]
 [ext_resource type="Texture2D" path="res://ui/gold_texture_cropped.tres" id="33_edhw5"]
-[ext_resource type="PackedScene" uid="uid://cl5liig7srwmt" path="res://objects/meat_drop.tscn" id="34_40kpr"]
+[ext_resource type="PackedScene" uid="uid://cl5liig7srwmt" path="res://objects/resources/drops/meat_drop.tscn" id="34_40kpr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a3vrb"]
 texture = ExtResource("2_mtkva")
@@ -255,20 +255,20 @@ stretch_mode = 5
 [node name="BattleTower" parent="." instance=ExtResource("30_pd3g0")]
 position = Vector2(312, 939)
 
-[node name="Sheep_container" parent="." instance=ExtResource("31_t77yh")]
-position = Vector2(657, 1509)
-
-[node name="Sheep_container2" parent="." instance=ExtResource("31_t77yh")]
-position = Vector2(810, 1007)
-
-[node name="HouseRuinContainer" parent="." instance=ExtResource("32_ponan")]
-position = Vector2(188, 1675)
-
 [node name="SoundOffButton" parent="." instance=ExtResource("31_dnxdd")]
 position = Vector2(1003, 101)
 
-[node name="MeatDrop" parent="." instance=ExtResource("34_40kpr")]
-position = Vector2(713, 1733)
-
 [node name="GoldMine" parent="." instance=ExtResource("21_jmlor")]
 position = Vector2(363, 308)
+
+[node name="MeatDrop" parent="." instance=ExtResource("34_40kpr")]
+position = Vector2(707, 1750)
+
+[node name="HouseRuinContainer" parent="." instance=ExtResource("32_ponan")]
+position = Vector2(192, 1680)
+
+[node name="Sheep_container" parent="." instance=ExtResource("31_t77yh")]
+position = Vector2(683, 1529)
+
+[node name="Sheep_container2" parent="." instance=ExtResource("31_t77yh")]
+position = Vector2(806, 1007)

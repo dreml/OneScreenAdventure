@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://dfuxx7lffgrtc"]
 
-[ext_resource type="PackedScene" uid="uid://bsblrdypbwc8" path="res://objects/base_arrow.tscn" id="1_e23fb"]
-[ext_resource type="Texture2D" uid="uid://bgrgcde1pdiie" path="res://assets/sprites/Tiny Swords/Factions/Knights/Troops/Archer/Arrow/Arrow.png" id="2_hffpr"]
+[ext_resource type="PackedScene" uid="uid://bsblrdypbwc8" path="res://objects/arrows/base_arrow.tscn" id="1_u2i4e"]
+[ext_resource type="Texture2D" uid="uid://bgrgcde1pdiie" path="res://assets/sprites/Tiny Swords/Factions/Knights/Troops/Archer/Arrow/Arrow.png" id="2_8ekle"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xk2fm"]
-atlas = ExtResource("2_hffpr")
+atlas = ExtResource("2_8ekle")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2igwj"]
@@ -21,7 +21,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4c1xv"]
 size = Vector2(60, 11)
 
-[node name="BareArrow" instance=ExtResource("1_e23fb")]
+[node name="BareArrow" instance=ExtResource("1_u2i4e")]
 damage = 10
 speed = 300
 shoot_sound_path = "res://assets/audio/shoot_bare_arrow.wav"

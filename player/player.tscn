@@ -356,7 +356,6 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_5uarv")
 blend_point_3/pos = Vector2(1.1, 0)
 min_space = Vector2(-1.1, -1)
 max_space = Vector2(1.1, 1)
-blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g2s6s"]
 animation = &"IdleLeft"
@@ -407,10 +406,11 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-163.285, 2.4825)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7dkse"]
+graph_offset = Vector2(-155.011, -22.5409)
 nodes/Attack/node = SubResource("AnimationNodeOneShot_751xt")
 nodes/Attack/position = Vector2(680, 160)
 nodes/AttackBlendSpace/node = SubResource("AnimationNodeBlendSpace2D_7hn7d")
-nodes/AttackBlendSpace/position = Vector2(450, 270)
+nodes/AttackBlendSpace/position = Vector2(400, 260)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_tn1xw")
 nodes/StateMachine/position = Vector2(360, 40)
 nodes/output/position = Vector2(930, 100)
@@ -422,6 +422,7 @@ size = Vector2(145, 138)
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1")
+attack_damage = 10
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("3_xlymk")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bsblrdypbwc8"]
 
-[ext_resource type="Script" path="res://objects/base_arrow.gd" id="1_1sn8h"]
+[ext_resource type="Script" path="res://objects/arrows/base_arrow.gd" id="1_nuq3u"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m11kx"]
 animations = [{
@@ -11,7 +11,7 @@ animations = [{
 }]
 
 [node name="BaseArrow" type="CharacterBody2D"]
-script = ExtResource("1_1sn8h")
+script = ExtResource("1_nuq3u")
 speed = 50
 
 [node name="ArrowBody2D" type="AnimatedSprite2D" parent="."]

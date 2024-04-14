@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://bnylfxthcyehm"]
 
-[ext_resource type="PackedScene" uid="uid://da1nxprpvwnh" path="res://objects/resource_droppable.tscn" id="1_h0ej1"]
+[ext_resource type="PackedScene" uid="uid://c1a8p0bykthrt" path="res://objects/resources/drops/resource_droppable.tscn" id="1_h0ej1"]
 [ext_resource type="Texture2D" uid="uid://b0i0oifdftbei" path="res://assets/sprites/Tiny Swords/Resources/Resources/W_Spawn.png" id="2_h0t6s"]
 [ext_resource type="AudioStream" uid="uid://d251yvg68vu3j" path="res://assets/audio/get_wood_sound.wav" id="4_0kvdr"]
 
