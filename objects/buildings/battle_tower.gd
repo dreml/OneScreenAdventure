@@ -6,20 +6,16 @@ enum State {ATTACK, WAIT, DESTROYED}
 @onready var reload_timer = $ReloadTimer # таймер перезарядки выстрела
 @onready var _shoot_sound = $ShootSound
 
-@export var _arrow_act: PackedScene = preload("res://objects/bare_arrow.tscn")
+@export var _arrow_act: PackedScene = preload("res://objects/arrows/bare_arrow.tscn")
 @export var _attack_speed : float = 1.5 # скорострельность
 @export var _damage_multiplier : float = 2.0 # множитель урона снаряда
 
 var _target_act = null # текущая цель
 var _target_list : Array # массив целей
-var _state_act = State.WAIT
 
 func _ready():
 	reload_timer.set_wait_time(_attack_speed)
 	get_shoot_sound(_arrow_act)
-	
-#func _process(delta):
-	#pass
 	
 func attack_zone_update(proc):
 	_attack_zone.scale *= (1+proc/100).round(2)

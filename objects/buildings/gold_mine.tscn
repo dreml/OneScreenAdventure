@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://f3hbf7mpfefr"]
 
 [ext_resource type="Texture2D" uid="uid://4jgqtkb8o5fv" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Destroyed.png" id="1_325qu"]
-[ext_resource type="Script" path="res://objects/product_building.gd" id="1_j6vkb"]
+[ext_resource type="Script" path="res://objects/buildings/product_building.gd" id="1_j6vkb"]
 [ext_resource type="PackedScene" uid="uid://mdno3ej0qmg4" path="res://objects/gold_ore.tscn" id="2_1brsy"]
 [ext_resource type="Texture2D" uid="uid://dj8rtxqgwh11v" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Active.png" id="2_h5che"]
 [ext_resource type="Texture2D" uid="uid://c43pcs2f1j525" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Inactive.png" id="3_mskst"]

@@ -4,8 +4,6 @@ extends Node2D
 @onready var wood_label: Label = $GUI/Resources/Wood/Label
 @onready var meat_label: Label = $GUI/Resources/Meat/Label
 
-var _commands = []
-
 func _ready():
 	pass
 

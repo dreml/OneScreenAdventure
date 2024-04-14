@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1a8p0bykthrt"]
 
-[ext_resource type="Script" path="res://objects/resource_droppable.gd" id="1_vwo54"]
+[ext_resource type="Script" path="res://objects/resources/drops/resource_droppable.gd" id="1_vwo54"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_odn4o"]
 animations = [{

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dd8c2ncqldrck"]
 
-[ext_resource type="Script" path="res://objects/building.gd" id="1_3t5oj"]
+[ext_resource type="Script" path="res://objects/buildings/building.gd" id="1_3t5oj"]
 [ext_resource type="Texture2D" uid="uid://cbsj1kmh6qu4f" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Construction.png" id="2_l252c"]
 [ext_resource type="AnimationLibrary" uid="uid://1gkpvvn8dr73" path="res://libs/building_animations.res" id="3_xg76k"]
 [ext_resource type="Script" path="res://components/health_component.gd" id="7_0u2s5"]
