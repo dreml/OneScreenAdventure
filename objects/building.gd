@@ -3,15 +3,13 @@ extends StaticBody2D
 
 signal constructed
 
-enum State { FOUNDATION, CONSTRUCTION, IDLE, DESTROYED }
+enum State { CONSTRUCTION, IDLE, DESTROYED }
 const _ANIMATIONS_BY_STATES = {
-	State.FOUNDATION: "foundation",
 	State.CONSTRUCTION: "construction",
 	State.IDLE: "idle",
 	State.DESTROYED: "destroyed"
 }
 const _resource_spent_template = "-%s"
-const _forbidden_color = Color("#ff6a43")
 
 @export var hp: float
 @export var gold_requires: int
@@ -24,15 +22,11 @@ const _forbidden_color = Color("#ff6a43")
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var _state = State.FOUNDATION
-var _default_modulation = self.modulate
-
-func _process(_delta):
-	if !_is_constructed():
-		self.modulate = _forbidden_color if !_is_enough_resources() else _default_modulation
+var _state = State.DESTROYED
 
 func start_building() -> bool:
 	if !_can_be_built():
+		animation_player.play("construction_forbidden")
 		return false
 
 	gold_spent_label.set_text(_resource_spent_template % str(gold_requires))
@@ -77,7 +71,7 @@ func _can_be_built():
 	return !_is_constructed() && _is_enough_resources()
 	
 func _is_constructed():
-	return _state != State.FOUNDATION && _state != State.DESTROYED
+	return _state != State.DESTROYED
 
 func _is_enough_resources():
 	var is_enough_wood = GameInstance.wood_amount >= wood_requires
