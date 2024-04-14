@@ -3,8 +3,8 @@ extends StaticBody2D
 
 signal constructed
 
-enum State { CONSTRUCTION, IDLE, DESTROYED }
-const _ANIMATIONS_BY_STATES = {
+enum State { CONSTRUCTION = 100, IDLE = 101, DESTROYED = 102 }
+var _ANIMATIONS_BY_STATES = {
 	State.CONSTRUCTION: "construction",
 	State.IDLE: "idle",
 	State.DESTROYED: "destroyed"
