@@ -1,56 +1,287 @@
-[gd_scene load_steps=8 format=3 uid="uid://f3hbf7mpfefr"]
+[gd_scene load_steps=20 format=3 uid="uid://f3hbf7mpfefr"]
 
 [ext_resource type="Texture2D" uid="uid://4jgqtkb8o5fv" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Destroyed.png" id="1_325qu"]
-[ext_resource type="PackedScene" uid="uid://bwo2g8rne8oaf" path="res://objects/product_building.tscn" id="1_wowso"]
+[ext_resource type="Script" path="res://objects/product_building.gd" id="1_j6vkb"]
+[ext_resource type="PackedScene" uid="uid://mdno3ej0qmg4" path="res://objects/gold_ore.tscn" id="2_1brsy"]
 [ext_resource type="Texture2D" uid="uid://dj8rtxqgwh11v" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Active.png" id="2_h5che"]
 [ext_resource type="Texture2D" uid="uid://c43pcs2f1j525" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Inactive.png" id="3_mskst"]
 [ext_resource type="AudioStream" uid="uid://3dolqk076vd" path="res://assets/audio/get_gold_sound.wav" id="5_dmmt5"]
-[ext_resource type="PackedScene" uid="uid://mdno3ej0qmg4" path="res://objects/gold_ore.tscn" id="6_b638p"]
+[ext_resource type="PackedScene" uid="uid://b7swydcs7p5nq" path="res://ui/resources_spent.tscn" id="7_goo3k"]
+[ext_resource type="Script" path="res://components/health_component.gd" id="8_w32lm"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_pfdc2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_325qu")
-}],
-"loop": true,
-"name": &"destroyed",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_mskst")
-}],
-"loop": true,
-"name": &"full_stock",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_h5che")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_mskst")
-}],
-"loop": true,
-"name": &"production",
-"speed": 1.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0eqrx"]
+size = Vector2(157, 63)
+
+[sub_resource type="Animation" id="Animation_ol42l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_325qu")]
+}
+
+[sub_resource type="Animation" id="Animation_2hcig"]
+resource_name = "production"
+length = 2.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("2_h5che"), ExtResource("3_mskst")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_20gss"]
+_data = {
+"RESET": SubResource("Animation_ol42l"),
+"production": SubResource("Animation_2hcig")
+}
+
+[sub_resource type="Animation" id="Animation_takw2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_mskst")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yvqxx"]
+resource_name = "construction"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_325qu")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ResourcesSpent")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"popup"
 }]
+}
 
-[node name="GoldMine" instance=ExtResource("1_wowso")]
-sprite_frames = SubResource("SpriteFrames_pfdc2")
-storage_max = 3
+[sub_resource type="Animation" id="Animation_xmhgh"]
+resource_name = "construction_forbidden"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_325qu")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(0.25, 1, 0.25, 1, 0.25),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.501961, 0.509804, 1), Color(1, 1, 1, 1), Color(1, 0.501961, 0.509804, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["building/destroyed", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_yw2ij"]
+resource_name = "destroyed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_325qu")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.588235)]
+}
+
+[sub_resource type="Animation" id="Animation_pj8ky"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_mskst")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x36rr"]
+_data = {
+"RESET": SubResource("Animation_takw2"),
+"construction": SubResource("Animation_yvqxx"),
+"construction_forbidden": SubResource("Animation_xmhgh"),
+"destroyed": SubResource("Animation_yw2ij"),
+"idle": SubResource("Animation_pj8ky")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_itcia"]
+radius = 26.0768
+
+[node name="GoldMine" type="StaticBody2D" groups=["buildings"]]
+collision_mask = 2
+script = ExtResource("1_j6vkb")
+storage_max = 5
 output = 1
-output_time = 5
-gather_res_time = 2
-res_sprite = ExtResource("6_b638p")
-res_y = 10
+output_time = 2
+gather_res_time = 1
+res_sprite = ExtResource("2_1brsy")
+hp = 15.0
+gold_requires = 1
+wood_requires = 2
 
-[node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(-2.5, -13.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 7.5)
+shape = SubResource("RectangleShape2D_0eqrx")
 
-[node name="GatherZoneShape" parent="GatherZone" index="0"]
-position = Vector2(-2, 38)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_325qu")
 
-[node name="CollectSound" parent="." index="5"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_20gss"),
+"building": SubResource("AnimationLibrary_x36rr")
+}
+autoplay = "destroyed"
+
+[node name="Storage" type="Node2D" parent="."]
+
+[node name="CollectSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_dmmt5")
+volume_db = 10.0
+
+[node name="GatherZone" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="GatherZoneShape" type="CollisionShape2D" parent="GatherZone"]
+position = Vector2(-2, 38)
+shape = SubResource("CircleShape2D_itcia")
+
+[node name="ResourcesSpent" parent="." instance=ExtResource("7_goo3k")]
+pivot_offset = Vector2(2.08165e-12, -20)
+
+[node name="GatherTimer" type="Timer" parent="."]
+
+[node name="OutputTimer" type="Timer" parent="."]
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("8_w32lm")
+max_health = 15
+start_with_zero_health = true
+
+[connection signal="body_entered" from="GatherZone" to="." method="_on_gather_zone_body_entered"]
+[connection signal="body_exited" from="GatherZone" to="." method="_on_gather_zone_body_exited"]
+[connection signal="timeout" from="GatherTimer" to="." method="_on_gather_timer_timeout"]
+[connection signal="timeout" from="OutputTimer" to="." method="_on_output_timer_timeout"]
+[connection signal="dead" from="HealthComponent" to="." method="_on_destroyed"]
+[connection signal="full_health" from="HealthComponent" to="." method="_on_built"]

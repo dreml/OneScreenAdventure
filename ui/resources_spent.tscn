@@ -30,7 +30,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(0.1, 0.1),
 "update": 0,
-"values": [Vector2(-40, 40), Vector2(-40, -30)]
+"values": [Vector2(-40, 20), Vector2(-40, -100)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -66,7 +66,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0.7, 1.2),
 "transitions": PackedFloat32Array(0.1, 0.1),
 "update": 0,
-"values": [Vector2(-40, 40), Vector2(-40, -30)]
+"values": [Vector2(-40, 20), Vector2(-40, -100)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -97,6 +97,7 @@ script = ExtResource("1_7b56x")
 
 [node name="Gold" parent="." instance=ExtResource("1_nkmsd")]
 modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = 1014.0
 offset_top = 40.0
 offset_right = 1120.0
@@ -110,6 +111,7 @@ stretch_mode = 5
 [node name="Wood" parent="." instance=ExtResource("1_nkmsd")]
 visible = false
 modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = 1007.0
 offset_top = 40.0
 offset_right = 1120.0

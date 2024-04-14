@@ -1,6 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwo2g8rne8oaf"]
-
-[ext_resource type="Script" path="res://objects/product_building.gd" id="1_g07kb"]
+[gd_scene load_steps=4 format=3 uid="uid://bwo2g8rne8oaf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nkpru"]
 animations = [{
@@ -29,7 +27,6 @@ radius = 26.0768
 [node name="ProductionBuilding" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_nkpru")
 animation = &"production"
-script = ExtResource("1_g07kb")
 
 [node name="OutputTimer" type="Timer" parent="."]
 
