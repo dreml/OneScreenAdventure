@@ -1,54 +1,242 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0t7rqwtvm8m8"]
+[gd_scene load_steps=17 format=3 uid="uid://c0t7rqwtvm8m8"]
 
 [ext_resource type="PackedScene" uid="uid://bwo2g8rne8oaf" path="res://objects/buildings/product_building.tscn" id="1_wpg3k"]
 [ext_resource type="Texture2D" uid="uid://cinel71my562d" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Destroyed.png" id="2_6pnjq"]
-[ext_resource type="PackedScene" uid="uid://cdf0ko4xjq3xi" path="res://objects/resources/meat.tscn" id="3_lax5o"]
-[ext_resource type="Texture2D" uid="uid://bkedrag1rmq7y" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Red.png" id="3_vp45t"]
+[ext_resource type="Texture2D" uid="uid://cbsj1kmh6qu4f" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Construction.png" id="2_ayx5q"]
+[ext_resource type="PackedScene" uid="uid://cdf0ko4xjq3xi" path="res://objects/resources/meat.tscn" id="2_tuela"]
+[ext_resource type="Texture2D" uid="uid://dqo6v2xe4rayy" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Construction.png" id="4_54r8v"]
 [ext_resource type="AudioStream" uid="uid://beg5x5otewbt6" path="res://assets/audio/get_meat_sound.wav" id="6_vmckg"]
+[ext_resource type="Texture2D" uid="uid://cishs0bdrpmc2" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Yellow.png" id="6_x3p5c"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_fbwc8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_6pnjq")
-}],
-"loop": true,
-"name": &"destroyed",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_vp45t")
-}],
-"loop": true,
-"name": &"full_stock",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_vp45t")
-}],
-"loop": true,
-"name": &"production",
-"speed": 5.0
+[sub_resource type="Animation" id="Animation_scxip"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_x3p5c")]
+}
+
+[sub_resource type="Animation" id="Animation_61lat"]
+resource_name = "production"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_x3p5c")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uckr5"]
+_data = {
+"RESET": SubResource("Animation_scxip"),
+"production": SubResource("Animation_61lat")
+}
+
+[sub_resource type="Animation" id="Animation_takw2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_ayx5q")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yvqxx"]
+resource_name = "construction"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_54r8v")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ResourcesSpent")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"popup"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_xmhgh"]
+resource_name = "construction_forbidden"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_6pnjq")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(0.25, 1, 0.25, 1, 0.25),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.501961, 0.509804, 1), Color(1, 1, 1, 1), Color(1, 0.501961, 0.509804, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["building_animations/destroyed", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_yw2ij"]
+resource_name = "destroyed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_6pnjq")]
+}
+
+[sub_resource type="Animation" id="Animation_pj8ky"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_x3p5c")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ixogx"]
+_data = {
+"RESET": SubResource("Animation_takw2"),
+"construction": SubResource("Animation_yvqxx"),
+"construction_forbidden": SubResource("Animation_xmhgh"),
+"destroyed": SubResource("Animation_yw2ij"),
+"idle": SubResource("Animation_pj8ky")
+}
 
 [node name="Farm" instance=ExtResource("1_wpg3k")]
-sprite_frames = SubResource("SpriteFrames_fbwc8")
-animation = &"full_stock"
-storage_max = 6
+storage_max = 5
 output = 1
-output_time = 3
-gather_res_time = 2
-res_sprite = ExtResource("3_lax5o")
-res_y = 50
+output_time = 2
+gather_res_time = 1
+res_sprite = ExtResource("2_tuela")
 res_type = 2
+gold_requires = 3
+wood_requires = 3
 
-[node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(-0.5, -4.5)
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 36)
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("6_x3p5c")
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_uckr5"),
+"building_animations": SubResource("AnimationLibrary_ixogx")
+}
+autoplay = "building_animations/destroyed"
+
+[node name="Storage" parent="." index="3"]
+position = Vector2(2.08165e-12, 73)
+
+[node name="CollectSound" parent="." index="4"]
+stream = ExtResource("6_vmckg")
 
 [node name="GatherZoneShape" parent="GatherZone" index="0"]
-position = Vector2(-1, 68)
+position = Vector2(2.08165e-12, 73)
 
-[node name="CollectSound" parent="." index="5"]
-stream = ExtResource("6_vmckg")
+[node name="HealthComponent" parent="." index="9"]
+position = Vector2(2.08165e-12, 2.08165e-12)

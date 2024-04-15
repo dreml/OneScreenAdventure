@@ -1,53 +1,243 @@
-[gd_scene load_steps=7 format=3 uid="uid://byb75qek45f7v"]
+[gd_scene load_steps=18 format=3 uid="uid://byb75qek45f7v"]
 
 [ext_resource type="PackedScene" uid="uid://bwo2g8rne8oaf" path="res://objects/buildings/product_building.tscn" id="1_5gdii"]
 [ext_resource type="Texture2D" uid="uid://cinel71my562d" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Destroyed.png" id="1_aqdm0"]
-[ext_resource type="Texture2D" uid="uid://pi4mxlj6ey67" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Blue.png" id="1_liohl"]
-[ext_resource type="PackedScene" uid="uid://cwliq8r65x2r7" path="res://objects/resources/wood.tscn" id="4_56tuf"]
+[ext_resource type="PackedScene" uid="uid://cwliq8r65x2r7" path="res://objects/resources/wood.tscn" id="2_mvdeg"]
+[ext_resource type="Texture2D" uid="uid://cbsj1kmh6qu4f" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Construction.png" id="2_pyi77"]
+[ext_resource type="Texture2D" uid="uid://dqo6v2xe4rayy" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Construction.png" id="3_1vxxo"]
+[ext_resource type="Texture2D" uid="uid://bkedrag1rmq7y" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Red.png" id="4_g2smu"]
 [ext_resource type="AudioStream" uid="uid://d251yvg68vu3j" path="res://assets/audio/get_wood_sound.wav" id="4_lv3bv"]
+[ext_resource type="Texture2D" uid="uid://cishs0bdrpmc2" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Yellow.png" id="5_jsxn5"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ioirx"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_aqdm0")
-}],
-"loop": true,
-"name": &"destroyed",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_liohl")
-}],
-"loop": true,
-"name": &"full_stock",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_liohl")
-}],
-"loop": true,
-"name": &"production",
-"speed": 5.0
+[sub_resource type="Animation" id="Animation_ulgnn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_jsxn5")]
+}
+
+[sub_resource type="Animation" id="Animation_gua30"]
+resource_name = "production"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_g2smu")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ygb7i"]
+_data = {
+"RESET": SubResource("Animation_ulgnn"),
+"production": SubResource("Animation_gua30")
+}
+
+[sub_resource type="Animation" id="Animation_takw2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_pyi77")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yvqxx"]
+resource_name = "construction"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_1vxxo")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ResourcesSpent")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"popup"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_xmhgh"]
+resource_name = "construction_forbidden"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_aqdm0")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(0.25, 1, 0.25, 1, 0.25),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.501961, 0.509804, 1), Color(1, 1, 1, 1), Color(1, 0.501961, 0.509804, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["building_animations/destroyed", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_yw2ij"]
+resource_name = "destroyed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_aqdm0")]
+}
+
+[sub_resource type="Animation" id="Animation_pj8ky"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_g2smu")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y18qb"]
+_data = {
+"RESET": SubResource("Animation_takw2"),
+"construction": SubResource("Animation_yvqxx"),
+"construction_forbidden": SubResource("Animation_xmhgh"),
+"destroyed": SubResource("Animation_yw2ij"),
+"idle": SubResource("Animation_pj8ky")
+}
 
 [node name="Sawmill" instance=ExtResource("1_5gdii")]
-sprite_frames = SubResource("SpriteFrames_ioirx")
 storage_max = 5
-output = 2
+output = 1
 output_time = 2
 gather_res_time = 1
-res_sprite = ExtResource("4_56tuf")
-res_y = 50
+res_sprite = ExtResource("2_mvdeg")
 res_type = 1
+gold_requires = 2
+wood_requires = 1
 
-[node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(0, -0.25)
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 33)
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("5_jsxn5")
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_ygb7i"),
+"building_animations": SubResource("AnimationLibrary_y18qb")
+}
+autoplay = "building_animations/destroyed"
+
+[node name="Storage" parent="." index="3"]
+position = Vector2(0, 75)
+
+[node name="CollectSound" parent="." index="4"]
+stream = ExtResource("4_lv3bv")
+
+[node name="GatherZone" parent="." index="5"]
+position = Vector2(0, 29.25)
 
 [node name="GatherZoneShape" parent="GatherZone" index="0"]
-position = Vector2(0, 67)
-
-[node name="CollectSound" parent="." index="5"]
-stream = ExtResource("4_lv3bv")
+position = Vector2(0, 46)

@@ -3,40 +3,34 @@ extends StaticBody2D
 
 signal constructed
 
-enum State { FOUNDATION, CONSTRUCTION, IDLE, DESTROYED }
-const _ANIMATIONS_BY_STATES = {
-	State.FOUNDATION: "foundation",
-	State.CONSTRUCTION: "construction",
-	State.IDLE: "idle",
-	State.DESTROYED: "destroyed"
+enum State { CONSTRUCTION = 100, IDLE = 101, DESTROYED = 102 }
+const ANIMATION_NAME_TEMPLATE = "building_animations/%s"
+var _ANIMATIONS_BY_STATES = {
+	State.CONSTRUCTION: ANIMATION_NAME_TEMPLATE % "construction",
+	State.IDLE: ANIMATION_NAME_TEMPLATE % "idle",
+	State.DESTROYED: ANIMATION_NAME_TEMPLATE % "destroyed"
 }
-const _resource_spent_template = "-%s"
-const _forbidden_color = Color("#ff6a43")
 
-@export var hp: float
 @export var gold_requires: int
 @export var wood_requires: int
 @export var global_rect_adjustment: Vector2
 
 @onready var health_component: HealthComponent = $HealthComponent
-@onready var gold_spent_label: Label = $GoldSpent/Label
-@onready var wood_spent_label: Label = $WoodSpent/Label
+@onready var resources_spent = $ResourcesSpent
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var _state = State.FOUNDATION
-var _default_modulation = self.modulate
-
-func _process(_delta):
-	if !_is_constructed():
-		self.modulate = _forbidden_color if !_is_enough_resources() else _default_modulation
+var _state = State.DESTROYED
 
 func start_building() -> bool:
+	if !_is_enough_resources() && !_is_constructed():
+		animation_player.play(ANIMATION_NAME_TEMPLATE % "construction_forbidden")
+
 	if !_can_be_built():
 		return false
 
-	gold_spent_label.set_text(_resource_spent_template % str(gold_requires))
-	wood_spent_label.set_text(_resource_spent_template % str(wood_requires))
+	resources_spent.gold = gold_requires
+	resources_spent.wood = wood_requires
 	
 	GameInstance.spend_resource(Globals.ResourceType.WOOD, wood_requires)
 	GameInstance.spend_resource(Globals.ResourceType.GOLD_ORE, gold_requires)
@@ -77,7 +71,7 @@ func _can_be_built():
 	return !_is_constructed() && _is_enough_resources()
 	
 func _is_constructed():
-	return _state != State.FOUNDATION && _state != State.DESTROYED
+	return _state != State.DESTROYED
 
 func _is_enough_resources():
 	var is_enough_wood = GameInstance.wood_amount >= wood_requires
