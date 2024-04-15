@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://cw5i2jwtg0fc"]
+[gd_scene load_steps=36 format=3 uid="uid://cw5i2jwtg0fc"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://iviro4gjq1x1" path="res://player/player.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://b086faxrj5bln" path="res://scenes/level.tscn" id="2_7m4ab"]
 [ext_resource type="Texture2D" uid="uid://drt3i0hosjd15" path="res://assets/sprites/Tiny Swords/Terrain/Water/Water.png" id="2_mtkva"]
+[ext_resource type="Script" path="res://scenes/level.gd" id="3_p1q5m"]
 [ext_resource type="PackedScene" uid="uid://p22balhrj22n" path="res://ui/pointer.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://cr2atqn4jb6g5" path="res://objects/tree.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://cpcesvssngjle" path="res://scenes/game_director.tscn" id="6_sdabn"]
@@ -24,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://c0t7rqwtvm8m8" path="res://objects/buildings/farm.tscn" id="28_plbmx"]
 [ext_resource type="PackedScene" uid="uid://djknjr0mpajet" path="res://ui/resource.tscn" id="30_1odgn"]
 [ext_resource type="PackedScene" uid="uid://dhd4n7dpc71s7" path="res://objects/buildings/battle_tower.tscn" id="30_pd3g0"]
-[ext_resource type="PackedScene" path="res://ui/sound_off_button.tscn" id="31_dnxdd"]
+[ext_resource type="PackedScene" uid="uid://liaq83i85tc6" path="res://ui/sound_off_button.tscn" id="31_dnxdd"]
 [ext_resource type="Texture2D" uid="uid://byftdtfaarfuq" path="res://ui/meat_texture_cropped.tres" id="31_mitlt"]
 [ext_resource type="PackedScene" uid="uid://b2bhh6e0jj1lo" path="res://objects/resources/containers/sheep_container.tscn" id="31_t77yh"]
 [ext_resource type="PackedScene" uid="uid://c7rkpl1gtylvp" path="res://objects/buildings/gold_mine.tscn" id="32_hhrrl"]
@@ -50,6 +51,9 @@ y_sort_enabled = true
 script = ExtResource("1")
 
 [node name="level" parent="." instance=ExtResource("2_7m4ab")]
+layer_4/enabled = false
+layer_10/enabled = false
+script = ExtResource("3_p1q5m")
 
 [node name="NavigationMap" parent="." instance=ExtResource("7_hur7d")]
 visible = false
@@ -123,9 +127,10 @@ position = Vector2(470, 1436)
 nav_path = NodePath("../NavigationMap")
 pointer_path = NodePath("../Pointer")
 
-[node name="HUD" parent="." node_paths=PackedStringArray("grid", "nav") instance=ExtResource("9_msq1i")]
+[node name="HUD" parent="." node_paths=PackedStringArray("grid", "nav", "level") instance=ExtResource("9_msq1i")]
 grid = NodePath("../DebugGrid")
 nav = NodePath("../NavigationMap")
+level = NodePath("../level")
 
 [node name="Pawn" parent="." instance=ExtResource("10_xq8q2")]
 position = Vector2(370, 1849)

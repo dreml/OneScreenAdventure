@@ -24,7 +24,7 @@ const AT_ATTACK_PATH: String = "parameters/Attack/request"
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var nav: NavigationMap = get_node(nav_path)
-@onready var pointer: Node2D = get_node(pointer_path)
+@onready var pointer: Pointer = get_node(pointer_path)
 @onready var attack_cd_timer: Timer = $AttackCDTimer
 @onready var health_component: HealthComponent = $HealthComponent
 
@@ -110,7 +110,7 @@ func _change_state(new_state) -> void:
 	if new_state == States.FOLLOW:
 		_process_follow_state()
 	elif new_state == States.IDLE:
-		pointer.position = Vector2(-100, -100)
+		pointer.reset()
 		if _get_enemy_in_range():
 			_attack_next_target()
 
@@ -133,12 +133,9 @@ func _process_follow_state():
 	_target_point_world = _path[1]
 
 	if is_instance_valid(_target_building):
-		var rect = _target_building.get_rect_global()
-		pointer.position = rect.position
-
-		pointer.wrap_around(rect)
+		pointer.wrap_around(_target_building)
 	else:
-		pointer.position = _path.back()
+		pointer.set_position(_path.back())
 
 func _switch_animation():
 	for state in States:
