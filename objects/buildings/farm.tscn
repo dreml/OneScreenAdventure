@@ -126,7 +126,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_54r8v")]
+"values": [ExtResource("2_6pnjq")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -213,6 +213,8 @@ output_time = 2
 gather_res_time = 1
 res_sprite = ExtResource("2_tuela")
 res_type = 2
+gold_requires = 3
+wood_requires = 3
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(0, 36)

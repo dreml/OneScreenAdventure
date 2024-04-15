@@ -95,7 +95,8 @@ func _on_gather_zone_body_exited(body):
 		_gatherer = null
 	
 func _on_gather_timer_timeout():
-	resoure_bring(_gatherer)
+	if _storage_act > 0:
+		resoure_bring(_gatherer)
 
 func gather_timer_can_start():
 	return _gatherer != null and gather_timer.is_stopped() and _storage_act > 0
