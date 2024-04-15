@@ -1,10 +1,21 @@
+class_name Pointer
 extends Node2D
 
-func wrap_around(shape: Rect2):
-	_set_boundaries(shape.size / 2.0)
+var _default_position := Vector2(-100, -100)
+
+func wrap_around(shape: Node2D):
+	var shift := Vector2.ZERO
+	var new_position = shape.position
+	if shape.has_method('get_rect_global'):
+		shift = shape.get_rect_global().size / 2.0
+		new_position = shape.get_rect_global().position
+
+	_set_boundaries(shift)
+	position = new_position
 
 func reset():
 	_set_boundaries(Vector2.ZERO)
+	position = _default_position
 
 func _set_boundaries(shift: Vector2):
 	$TopLeft.position.x = -1.0 * shift.x
