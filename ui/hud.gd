@@ -15,3 +15,9 @@ func _on_build_bridge_button_pressed():
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_B):
 		_on_build_bridge_button_pressed()
+
+func show_build_popup():
+	$BuildPopup.show();
+
+func _on_build_confirm():
+	$BuildPopup.hide();
