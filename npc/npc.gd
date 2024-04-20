@@ -11,7 +11,6 @@ var ANIMATIONS_BY_STATES: Dictionary = {
 	States.FOLLOW: 'run',
 }
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var character_animation: CharacterAnimationComponent = $CharacterAnimationComponent
 
 func _ready() -> void:

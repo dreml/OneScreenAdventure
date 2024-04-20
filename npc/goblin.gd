@@ -1,7 +1,7 @@
 class_name Goblin
 extends Npc
 
-enum OwnStates {PREPARE_ATTACK}
+enum OwnStates { PREPARE_ATTACK }
 
 @export var attack_cd: int = 1 
 @export var attack_damage: int = 1

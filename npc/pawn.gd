@@ -1,6 +1,6 @@
 extends Npc
 
-enum OwnStates {BUILD}
+enum OwnStates { BUILD }
 
 @export var productivity: int = 0
 

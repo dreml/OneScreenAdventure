@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cdf0ko4xjq3xi" path="res://objects/resources/meat.tscn" id="2_tuela"]
 [ext_resource type="Texture2D" uid="uid://dqo6v2xe4rayy" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Construction.png" id="4_54r8v"]
 [ext_resource type="AudioStream" uid="uid://beg5x5otewbt6" path="res://assets/audio/get_meat_sound.wav" id="6_vmckg"]
-[ext_resource type="Texture2D" uid="uid://cishs0bdrpmc2" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Yellow.png" id="6_x3p5c"]
+[ext_resource type="Texture2D" uid="uid://bkedrag1rmq7y" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Red.png" id="7_u4wjy"]
 
 [sub_resource type="Animation" id="Animation_scxip"]
 length = 0.001
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_x3p5c")]
+"values": [ExtResource("7_u4wjy")]
 }
 
 [sub_resource type="Animation" id="Animation_61lat"]
@@ -35,7 +35,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_x3p5c")]
+"values": [ExtResource("7_u4wjy")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uckr5"]
@@ -182,7 +182,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_x3p5c")]
+"values": [ExtResource("7_u4wjy")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -220,7 +220,7 @@ wood_requires = 3
 position = Vector2(0, 36)
 
 [node name="Sprite2D" parent="." index="1"]
-texture = ExtResource("6_x3p5c")
+texture = ExtResource("7_u4wjy")
 
 [node name="AnimationPlayer" parent="." index="2"]
 libraries = {

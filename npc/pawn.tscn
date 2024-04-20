@@ -273,6 +273,8 @@ blend_point_0/node = SubResource("AnimationNodeAnimation_5jxjb")
 blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_xqcf6")
 blend_point_1/pos = 1.0
+snap = 1.0
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_knap2"]
 animation = &"idle-left"
@@ -285,6 +287,7 @@ blend_point_0/node = SubResource("AnimationNodeAnimation_knap2")
 blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_0enca")
 blend_point_1/pos = 1.0
+snap = 1.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lfwoo"]
 animation = &"run-left"
@@ -297,6 +300,8 @@ blend_point_0/node = SubResource("AnimationNodeAnimation_lfwoo")
 blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_rc6v4")
 blend_point_1/pos = 1.0
+snap = 1.0
+blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7epta"]
 advance_mode = 2
@@ -310,9 +315,8 @@ advance_mode = 2
 advance_condition = &"build"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_77k24"]
-switch_mode = 2
 advance_mode = 2
-advance_condition = &"build"
+advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2d10x"]
 states/End/position = Vector2(753, 99.875)
@@ -323,10 +327,10 @@ states/idle/position = Vector2(400.5, 99.8125)
 states/run/node = SubResource("AnimationNodeBlendSpace1D_hhqqu")
 states/run/position = Vector2(577.25, 4.5)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_7epta"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_c220i"), "run", "build", SubResource("AnimationNodeStateMachineTransition_oqaw4"), "build", "idle", SubResource("AnimationNodeStateMachineTransition_77k24")]
-graph_offset = Vector2(87.4199, -71.835)
+graph_offset = Vector2(-2.26517, -65.7)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6wovx"]
-graph_offset = Vector2(-226.56, 4.8)
+graph_offset = Vector2(-291.84, 32.64)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_2d10x")
 nodes/StateMachine/position = Vector2(-20, 110)
 node_connections = [&"output", 0, &"StateMachine"]
@@ -355,7 +359,8 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeBlendTree_6wovx")
 parameters/StateMachine/conditions/build = false
+parameters/StateMachine/conditions/idle = false
 parameters/StateMachine/conditions/run = false
-parameters/StateMachine/build/blend_position = 0
+parameters/StateMachine/build/blend_position = 0.5383
 parameters/StateMachine/idle/blend_position = 0.0
-parameters/StateMachine/run/blend_position = 0
+parameters/StateMachine/run/blend_position = -0.335782

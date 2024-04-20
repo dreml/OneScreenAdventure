@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c7rkpl1gtylvp"]
+[gd_scene load_steps=18 format=3 uid="uid://c7rkpl1gtylvp"]
 
 [ext_resource type="Texture2D" uid="uid://4jgqtkb8o5fv" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Destroyed.png" id="1_325qu"]
 [ext_resource type="PackedScene" uid="uid://bwo2g8rne8oaf" path="res://objects/buildings/product_building.tscn" id="1_l1nmd"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dj8rtxqgwh11v" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Active.png" id="2_h5che"]
 [ext_resource type="Texture2D" uid="uid://c43pcs2f1j525" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Inactive.png" id="3_mskst"]
 [ext_resource type="Texture2D" uid="uid://cbsj1kmh6qu4f" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Construction.png" id="5_c3esa"]
+[ext_resource type="AudioStream" uid="uid://3dolqk076vd" path="res://assets/audio/get_gold_sound.wav" id="7_2pl83"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_668xu"]
 size = Vector2(162, 67)
@@ -236,6 +237,9 @@ autoplay = "building_animations/destroyed"
 
 [node name="Storage" parent="." index="3"]
 position = Vector2(2.08165e-12, 45)
+
+[node name="CollectSound" parent="." index="4"]
+stream = ExtResource("7_2pl83")
 
 [node name="GatherZoneShape" parent="GatherZone" index="0"]
 position = Vector2(2.08165e-12, 45)

@@ -404,7 +404,7 @@ states/Running/node = SubResource("AnimationNodeBlendSpace1D_6u2c3")
 states/Running/position = Vector2(535.795, 82.0807)
 states/Start/position = Vector2(143.5, 81.4921)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_tnhf1"), "Idle", "Running", SubResource("AnimationNodeStateMachineTransition_0554v"), "Running", "Idle", SubResource("AnimationNodeStateMachineTransition_iohgl")]
-graph_offset = Vector2(-223.285, -145.518)
+graph_offset = Vector2(-151.81, -69.273)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7dkse"]
 graph_offset = Vector2(-155.011, -22.5409)
@@ -447,7 +447,7 @@ parameters/AttackBlendSpace/blend_position = Vector2(-0.999329, -0.00876093)
 parameters/StateMachine/conditions/Idle = false
 parameters/StateMachine/conditions/Running = false
 parameters/StateMachine/Idle/blend_position = 2.08165e-12
-parameters/StateMachine/Running/blend_position = 0.190782
+parameters/StateMachine/Running/blend_position = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
