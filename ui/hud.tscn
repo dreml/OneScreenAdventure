@@ -37,21 +37,31 @@ Grid"
 
 [node name="BuildPopup" type="PopupPanel" parent="."]
 transparent_bg = true
-size = Vector2i(196, 254)
+position = Vector2i(-400, 0)
+size = Vector2i(392, 548)
 visible = true
+content_scale_factor = 2.0
 theme = ExtResource("3_y5ri4")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4q7k1")
 
 [node name="Control" type="Control" parent="BuildPopup"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 196.0
-offset_bottom = 254.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -98.0
+offset_top = -274.0
+offset_right = 294.0
+offset_bottom = 274.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="BuildPopup/Control"]
 layout_mode = 0
 offset_right = 196.0
-offset_bottom = 254.0
+offset_bottom = 274.0
 theme_type_variation = &"VerticalBanner"
 
 [node name="GridContainer" type="GridContainer" parent="BuildPopup/Control/PanelContainer"]
@@ -65,18 +75,41 @@ size_flags_horizontal = 2
 theme_type_variation = &"Carved"
 
 [node name="Sprite2D" type="Sprite2D" parent="BuildPopup/Control/PanelContainer/GridContainer/WoodCount"]
-position = Vector2(32, 8)
+position = Vector2(30, 11)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("3_y2kj7")
 
-[node name="MeanCount" type="Panel" parent="BuildPopup/Control/PanelContainer/GridContainer"]
+[node name="WoodRequired" type="RichTextLabel" parent="BuildPopup/Control/PanelContainer/GridContainer/WoodCount"]
+layout_mode = 0
+offset_top = 38.0
+offset_right = 57.0
+offset_bottom = 78.0
+theme = ExtResource("3_y5ri4")
+text = "10"
+scroll_active = false
+autowrap_mode = 0
+text_direction = 2
+
+[node name="MeatCount" type="Panel" parent="BuildPopup/Control/PanelContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 2
 theme_type_variation = &"Carved"
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildPopup/Control/PanelContainer/GridContainer/MeanCount"]
-position = Vector2(28, 16)
+[node name="Sprite2D" type="Sprite2D" parent="BuildPopup/Control/PanelContainer/GridContainer/MeatCount"]
+position = Vector2(26, 17)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("4_jw7rm")
+
+[node name="MeatRequired" type="RichTextLabel" parent="BuildPopup/Control/PanelContainer/GridContainer/MeatCount"]
+offset_top = 38.0
+offset_right = 57.0
+offset_bottom = 78.0
+theme = ExtResource("3_y5ri4")
+text = "10"
+scroll_active = false
+autowrap_mode = 0
+text_direction = 2
 
 [node name="GoldCount" type="Panel" parent="BuildPopup/Control/PanelContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
@@ -85,8 +118,19 @@ size_flags_horizontal = 2
 theme_type_variation = &"Carved"
 
 [node name="Sprite2D" type="Sprite2D" parent="BuildPopup/Control/PanelContainer/GridContainer/GoldCount"]
-position = Vector2(26, 22)
+position = Vector2(23, 20)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_2ydmx")
+
+[node name="GoldRequired" type="RichTextLabel" parent="BuildPopup/Control/PanelContainer/GridContainer/GoldCount"]
+offset_top = 38.0
+offset_right = 57.0
+offset_bottom = 78.0
+theme = ExtResource("3_y5ri4")
+text = "10"
+scroll_active = false
+autowrap_mode = 0
+text_direction = 2
 
 [node name="Additional" type="Panel" parent="BuildPopup/Control/PanelContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)

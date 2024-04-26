@@ -171,6 +171,7 @@ RedButton/styles/normal = SubResource("StyleBoxTexture_scrf5")
 RedButton/styles/pressed = SubResource("StyleBoxTexture_xdour")
 RedRibbon/base_type = &"PanelContainer"
 RedRibbon/styles/panel = SubResource("StyleBoxTexture_shiqp")
+RichTextLabel/colors/default_color = Color(0.211765, 0.423529, 0.203922, 1)
 VerticalBanner/base_type = &"PanelContainer"
 VerticalBanner/styles/panel = SubResource("StyleBoxTexture_t4y1u")
 YellowRibbon/base_type = &"PanelContainer"
