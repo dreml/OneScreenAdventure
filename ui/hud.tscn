@@ -37,21 +37,21 @@ Grid"
 
 [node name="BuildPopup" type="PopupPanel" parent="."]
 transparent_bg = true
-size = Vector2i(256, 320)
-transparent = true
+size = Vector2i(196, 254)
+visible = true
 theme = ExtResource("3_y5ri4")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4q7k1")
 
 [node name="Control" type="Control" parent="BuildPopup"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 256.0
-offset_bottom = 320.0
+offset_right = 196.0
+offset_bottom = 254.0
 
 [node name="PanelContainer" type="PanelContainer" parent="BuildPopup/Control"]
 layout_mode = 0
-offset_right = 260.07
-offset_bottom = 340.0
+offset_right = 196.0
+offset_bottom = 254.0
 theme_type_variation = &"VerticalBanner"
 
 [node name="GridContainer" type="GridContainer" parent="BuildPopup/Control/PanelContainer"]
