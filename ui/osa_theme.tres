@@ -1,5 +1,6 @@
-[gd_resource type="Theme" load_steps=25 format=3 uid="uid://d24e25bfjbwcu"]
+[gd_resource type="Theme" load_steps=27 format=3 uid="uid://d24e25bfjbwcu"]
 
+[ext_resource type="Texture2D" uid="uid://buact274toefq" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Blue_3Slides.png" id="1_28fhi"]
 [ext_resource type="Texture2D" uid="uid://c3qfcf4utvm5y" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Blue_9Slides.png" id="2_oabkr"]
 [ext_resource type="Texture2D" uid="uid://mb2wsnd8bdd4" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Blue_9Slides_Pressed.png" id="3_p10t7"]
 [ext_resource type="Texture2D" uid="uid://bl7w47hc3r08g" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Red_9Slides.png" id="4_61xs3"]
@@ -39,6 +40,12 @@ texture_margin_right = 23.2745
 texture_margin_bottom = 32.549
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4h4dc"]
+texture = ExtResource("1_28fhi")
+texture_margin_left = 64.0
+texture_margin_right = 64.0
+axis_stretch_horizontal = 1
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0qlic"]
 texture = ExtResource("4_u8fem")
@@ -102,12 +109,13 @@ axis_stretch_horizontal = 2
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t4y1u"]
 texture = ExtResource("7_15rjm")
-texture_margin_left = 61.9151
-texture_margin_top = 65.0708
-texture_margin_right = 64.0697
-texture_margin_bottom = 63.7649
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 2
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(34, 32, 124, 132)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g0ojc"]
 texture = ExtResource("7_lhiih")
@@ -129,6 +137,19 @@ BlueButton/styles/focus = SubResource("StyleBoxEmpty_wj71l")
 BlueButton/styles/hover = SubResource("StyleBoxTexture_ydh2l")
 BlueButton/styles/normal = SubResource("StyleBoxTexture_rlpf5")
 BlueButton/styles/pressed = SubResource("StyleBoxTexture_rluur")
+BlueButtonThin/base_type = &"Button"
+BlueButtonThin/colors/font_color = Color(0, 0, 0, 1)
+BlueButtonThin/colors/font_disabled_color = Color(0, 0, 0, 1)
+BlueButtonThin/colors/font_focus_color = Color(0, 0, 0, 1)
+BlueButtonThin/colors/font_hover_color = Color(0, 0, 0, 1)
+BlueButtonThin/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+BlueButtonThin/colors/font_pressed_color = Color(0, 0, 0, 1)
+BlueButtonThin/colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+BlueButtonThin/colors/icon_pressed_color = Color(0, 0, 0, 1)
+BlueButtonThin/styles/focus = SubResource("StyleBoxEmpty_wj71l")
+BlueButtonThin/styles/hover = SubResource("StyleBoxTexture_4h4dc")
+BlueButtonThin/styles/normal = SubResource("StyleBoxTexture_rlpf5")
+BlueButtonThin/styles/pressed = SubResource("StyleBoxTexture_rluur")
 BlueRibbon/base_type = &"PanelContainer"
 BlueRibbon/styles/panel = SubResource("StyleBoxTexture_0qlic")
 Carved/base_type = &"Panel"
@@ -150,6 +171,7 @@ RedButton/styles/normal = SubResource("StyleBoxTexture_scrf5")
 RedButton/styles/pressed = SubResource("StyleBoxTexture_xdour")
 RedRibbon/base_type = &"PanelContainer"
 RedRibbon/styles/panel = SubResource("StyleBoxTexture_shiqp")
+RichTextLabel/colors/default_color = Color(0.211765, 0.423529, 0.203922, 1)
 VerticalBanner/base_type = &"PanelContainer"
 VerticalBanner/styles/panel = SubResource("StyleBoxTexture_t4y1u")
 YellowRibbon/base_type = &"PanelContainer"
