@@ -114,7 +114,7 @@ _data = {
 script = ExtResource("2_awla0")
 productivity = 1
 
-[node name="AnimationPlayer" parent="." index="3"]
+[node name="AnimationPlayer" parent="." index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_wtdst")
 }

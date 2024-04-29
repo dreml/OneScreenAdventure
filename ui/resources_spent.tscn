@@ -1,13 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7swydcs7p5nq"]
+[gd_scene load_steps=10 format=3 uid="uid://b7swydcs7p5nq"]
 
 [ext_resource type="Script" path="res://ui/resources_spent.gd" id="1_7b56x"]
 [ext_resource type="PackedScene" uid="uid://djknjr0mpajet" path="res://ui/resource.tscn" id="1_nkmsd"]
 [ext_resource type="Texture2D" uid="uid://51dxy87hapxj" path="res://ui/gold_texture_cropped.tres" id="2_axyr1"]
-[ext_resource type="Texture2D" uid="uid://ccayd7nfsqu3a" path="res://ui/wood_texture_cropped.tres" id="3_i8exo"]
+[ext_resource type="Texture2D" uid="uid://bhoe74csios52" path="res://assets/sprites/Tiny Swords/Resources/Resources/W_Idle_(NoShadow).png" id="4_t1v4t"]
+[ext_resource type="Texture2D" uid="uid://g4626mwuuoa7" path="res://assets/sprites/Tiny Swords/Resources/Resources/M_Idle_(NoShadow).png" id="5_cpypn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvl70"]
+atlas = ExtResource("4_t1v4t")
+region = Rect2(36, 55, 55, 58)
 
 [sub_resource type="Animation" id="Animation_pfwa5"]
 resource_name = "popup"
-length = 1.5
+length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -80,11 +85,51 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Meat:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.4, 2.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Meat:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.4, 1.9),
+"transitions": PackedFloat32Array(0.101532, 0.105112),
+"update": 0,
+"values": [Vector2(-40, 20), Vector2(-40, -100)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Meat:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.4, 1.9),
+"transitions": PackedFloat32Array(1, 4),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_52apj"]
 _data = {
 "popup": SubResource("Animation_pfwa5")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubxmq"]
+atlas = ExtResource("5_cpypn")
+region = Rect2(38.5452, 47.6365, 61.8182, 51.8182)
 
 [node name="ResourcesSpent" type="Control"]
 layout_mode = 3
@@ -99,9 +144,9 @@ script = ExtResource("1_7b56x")
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 1014.0
-offset_top = 40.0
+offset_top = 20.0
 offset_right = 1120.0
-offset_bottom = 95.0
+offset_bottom = 75.0
 
 [node name="TextureRect" type="TextureRect" parent="Gold"]
 layout_mode = 2
@@ -109,20 +154,32 @@ texture = ExtResource("2_axyr1")
 stretch_mode = 5
 
 [node name="Wood" parent="." instance=ExtResource("1_nkmsd")]
-visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 1007.0
-offset_top = 40.0
+offset_left = 1002.0
+offset_top = 20.0
 offset_right = 1120.0
-offset_bottom = 95.0
+offset_bottom = 78.0
 
 [node name="TextureRect" type="TextureRect" parent="Wood"]
 layout_mode = 2
-texture = ExtResource("3_i8exo")
+texture = SubResource("AtlasTexture_lvl70")
 stretch_mode = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_52apj")
 }
+
+[node name="Meat" parent="." instance=ExtResource("1_nkmsd")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_left = 929.0
+offset_top = 20.0
+offset_right = 1120.0
+offset_bottom = 148.0
+
+[node name="TextureRect" type="TextureRect" parent="Meat"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ubxmq")
+stretch_mode = 5

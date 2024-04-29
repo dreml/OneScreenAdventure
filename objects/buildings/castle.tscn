@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://b7hs0g4dwus78"]
+
+[ext_resource type="Script" path="res://objects/buildings/castle.gd" id="1_m2pw7"]
+[ext_resource type="Texture2D" uid="uid://pi4mxlj6ey67" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Blue.png" id="2_tyydn"]
+[ext_resource type="Texture2D" uid="uid://b0digku0gsyvm" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Castle/Pre_Castle_Blue_0.png" id="3_aswfp"]
+[ext_resource type="Texture2D" uid="uid://cfoa4cqwonb8j" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Castle/Pre_Castle_Blue_1.png" id="4_clhe4"]
+[ext_resource type="Texture2D" uid="uid://cjr0mif800f01" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Castle/Castle_Blue.png" id="4_nd6m3"]
+[ext_resource type="Texture2D" uid="uid://bbd8o7xswghg3" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Castle/Pre_Castle_Blue_2.png" id="5_no6im"]
+[ext_resource type="Texture2D" uid="uid://cfm1gbh0phpy3" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Castle/Pre_Castle_Blue_3.png" id="6_x77xl"]
+[ext_resource type="PackedScene" uid="uid://b7swydcs7p5nq" path="res://ui/resources_spent.tscn" id="8_du8c1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_syyli"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tyydn")
+}],
+"loop": true,
+"name": &"level_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_aswfp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_clhe4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_no6im")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_x77xl")
+}],
+"loop": true,
+"name": &"level_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_nd6m3")
+}],
+"loop": true,
+"name": &"level_2",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3nc7y"]
+size = Vector2(89, 103)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8e1cy"]
+radius = 155.052
+
+[node name="Castle" type="Node2D"]
+script = ExtResource("1_m2pw7")
+meat_need_to_1 = 1
+wood_need_to_1 = 1
+gold_need_to_1 = 1
+meat_need_to_2 = 2
+wood_need_to_2 = 2
+update_time = 5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_syyli")
+animation = &"level_0"
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="BuildActivateShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
+visible = false
+position = Vector2(-1.5, 15.5)
+shape = SubResource("RectangleShape2D_3nc7y")
+
+[node name="PlayerInArea" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/PlayerInArea"]
+shape = SubResource("CircleShape2D_8e1cy")
+
+[node name="UpdateTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Pawns" type="Node2D" parent="."]
+
+[node name="ResourcesSpent" parent="." instance=ExtResource("8_du8c1")]
+
+[connection signal="input_event" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="body_entered" from="AnimatedSprite2D/PlayerInArea" to="." method="_on_player_in_area_body_entered"]
+[connection signal="body_exited" from="AnimatedSprite2D/PlayerInArea" to="." method="_on_player_in_area_body_exited"]
+[connection signal="timeout" from="UpdateTimer" to="." method="_on_update_timer_timeout"]

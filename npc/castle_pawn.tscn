@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://1ernf0ro02k8"]
+
+[ext_resource type="Texture2D" uid="uid://eapnw8dmbrr8" path="res://assets/sprites/Tiny Swords/Factions/Knights/Troops/Pawn/Blue/Pawn_Blue.png" id="1_7bct8"]
+[ext_resource type="Script" path="res://npc/castle_pawn.gd" id="2_oudw4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4iqf"]
+atlas = ExtResource("1_7bct8")
+region = Rect2(0, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jng1u"]
+atlas = ExtResource("1_7bct8")
+region = Rect2(192, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ja74s"]
+atlas = ExtResource("1_7bct8")
+region = Rect2(384, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0s438"]
+atlas = ExtResource("1_7bct8")
+region = Rect2(576, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qogu8"]
+atlas = ExtResource("1_7bct8")
+region = Rect2(768, 384, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7akns"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4iqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jng1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ja74s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0s438")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qogu8")
+}],
+"loop": true,
+"name": &"work",
+"speed": 10.0
+}]
+
+[node name="CastlePawn" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_7akns")
+animation = &"work"
+script = ExtResource("2_oudw4")
