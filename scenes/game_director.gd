@@ -1,27 +1,41 @@
 class_name GameDirector
 extends Node2D
 
-@export var goblins: Array[Goblin]
+@export var sawmill: ProductBuilding
+@export var farm: ProductBuilding
+@export var gold_mine: ProductBuilding
 
-@onready var attack_timer: Timer = $AttackTimer
+@export var camp1: Camp
+@export var camp2: Camp
+
+@onready var camp1_attack_timer: Timer = $Camp1AttackTimer
+@onready var camp2_attack_timer: Timer = $Camp2AttackTimer
 
 var pawns_orders: Array[Command] = []
 
+var camp1_goblin_death_count := 0
+var camp2_goblin_death_count := 0
+
+var camp1_target: Building
+var camp2_target: Building
+
 func _ready():
-#	attack_timer.start()
-	attack_timer.timeout.connect(move_goblins)
+	GameInstance.sawmill_built.connect(handle_sawmill_built)
+	GameInstance.farm_built.connect(handle_farm_built)
+	
+	camp1_target = sawmill
+	camp1_attack_timer.timeout.connect(func(): camp1.steal_resource(camp1_target))
+	camp1.goblin_delivered_resources.connect(func(): camp1_attack_timer.start())
+	camp1.goblin_dead.connect(handle_camp1_goblin_death)
+
+	camp2_target = farm
+	camp2_attack_timer.timeout.connect(func(): camp2.steal_resource(camp2_target))
+	camp2.goblin_dead.connect(handle_camp2_goblin_death)
 	
 func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_key_pressed(KEY_T):
-		attack_timer.start()
-
-func _process(_delta):
 	pass
 
-func move_goblins():
-	for goblin in goblins:
-		goblin.move_to(Vector2(600, 1500))
-
+#region pawns
 func create_order(order: Command):
 	pawns_orders.append(order)
 	
@@ -33,3 +47,20 @@ func take_order() -> Command:
 
 func has_orders() -> bool:
 	return pawns_orders.size() > 0
+#endregion
+
+#region goblins
+func handle_camp1_goblin_death():
+	camp1_goblin_death_count += 1
+	camp1_attack_timer.start()
+
+func handle_camp2_goblin_death():
+	camp2_goblin_death_count += 1
+	camp2_attack_timer.start()
+
+func handle_sawmill_built():
+	camp1_attack_timer.start()
+
+func handle_farm_built():
+	camp2_attack_timer.start()
+#endregion

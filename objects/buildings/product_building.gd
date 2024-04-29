@@ -79,6 +79,11 @@ func resoure_bring(target):
 func _on_built():
 	super._on_built()
 	_set_state(ProducerState.WORK)
+	GameInstance.building_built(self)
+
+func _on_destroyed():
+	super._on_destroyed()
+	GameInstance.building_destroyed(self)
 
 func _on_output_timer_timeout():
 	produce()

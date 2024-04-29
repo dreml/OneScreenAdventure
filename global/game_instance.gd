@@ -1,5 +1,14 @@
 extends Node
 
+signal goblin_dead
+
+signal sawmill_built
+signal sawmill_destroyed
+signal farm_built
+signal farm_destroyed
+signal gold_mine_built
+signal gold_mine_destroyed
+
 @onready var player: Player = get_tree().get_root().get_node('Main/Player')
 @onready var game_director: GameDirector = get_tree().get_root().get_node('Main/GameDirector')
 @onready var main: Node2D = get_tree().get_root().get_node('Main')
@@ -37,3 +46,21 @@ func spend_resource(type, amount):
 
 func show_build_popup(pos: Vector2i, requires: Array[int]):
 	hud.show_build_popup(pos, requires);
+
+func building_built(building: ProductBuilding):
+	match building.res_type:
+		Globals.ResourceType.GOLD_ORE:
+			gold_mine_built.emit()
+		Globals.ResourceType.WOOD:
+			sawmill_built.emit()
+		Globals.ResourceType.MEAT:
+			farm_built.emit()
+
+func building_destroyed(building: ProductBuilding):
+	match building.res_type:
+		Globals.ResourceType.GOLD_ORE:
+			gold_mine_destroyed.emit()
+		Globals.ResourceType.WOOD:
+			sawmill_destroyed.emit()
+		Globals.ResourceType.MEAT:
+			farm_destroyed.emit()

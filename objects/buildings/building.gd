@@ -24,7 +24,6 @@ var _ANIMATIONS_BY_STATES = {
 var _state = State.DESTROYED
 
 func start_building() -> bool:
-
 	GameInstance.show_build_popup(self.get_position(), [wood_requires, meat_requires, gold_requires]);
 
 	if !_is_enough_resources() && !_is_constructed():

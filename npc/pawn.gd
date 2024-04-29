@@ -19,8 +19,6 @@ func _ready() -> void:
 	])
 	
 	movement_component.arrived.connect(_handle_arrival)
-	
-	print('hi from pawn')
 
 func _process(_delta):
 	if _command_in_action == null && GameInstance.game_director.has_orders():
@@ -43,8 +41,7 @@ func _start_building():
 	sprite.flip_h = movement_component.facing_direction.x < 0
 	
 	await _command_in_action.target.constructed
-	_command_in_action = null
-	_change_state(States.IDLE)
+	queue_free()
 	
 func _build():
 	if "build" in _command_in_action.target:

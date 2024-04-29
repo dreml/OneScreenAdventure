@@ -16,30 +16,19 @@ script = ExtResource("1_80ed7")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -187.0
-offset_right = -88.4951
-offset_bottom = 97.417
+offset_left = -104.0
+offset_top = 6.0
+offset_right = -5.49512
+offset_bottom = 103.417
 grow_horizontal = 0
 theme_type_variation = &"BlueButton"
 text = "Build
 Bridge"
 
-[node name="ToggleDebugGridButton" type="Button" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -98.5049
-offset_bottom = 97.417
-grow_horizontal = 0
-theme_type_variation = &"BlueButton"
-text = "Toggle
-Grid"
-
 [node name="BuildPopup" type="PopupPanel" parent="."]
 transparent_bg = true
-position = Vector2i(-400, 0)
+position = Vector2i(-500, 0)
 size = Vector2i(392, 548)
-visible = true
 content_scale_factor = 2.0
 theme = ExtResource("3_y5ri4")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4q7k1")
@@ -51,10 +40,8 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -98.0
-offset_top = -274.0
-offset_right = 294.0
-offset_bottom = 274.0
+offset_right = 392.0
+offset_bottom = 548.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -102,6 +89,7 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("4_jw7rm")
 
 [node name="MeatRequired" type="RichTextLabel" parent="BuildPopup/Control/PanelContainer/GridContainer/MeatCount"]
+layout_mode = 0
 offset_top = 38.0
 offset_right = 57.0
 offset_bottom = 78.0
@@ -123,6 +111,7 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_2ydmx")
 
 [node name="GoldRequired" type="RichTextLabel" parent="BuildPopup/Control/PanelContainer/GridContainer/GoldCount"]
+layout_mode = 0
 offset_top = 38.0
 offset_right = 57.0
 offset_bottom = 78.0
@@ -151,6 +140,4 @@ texture = ExtResource("6_b81pj")
 
 [connection signal="child_entered_tree" from="BuildBridgeButton" to="." method="_on_button_child_entered_tree"]
 [connection signal="pressed" from="BuildBridgeButton" to="." method="_on_build_bridge_button_pressed"]
-[connection signal="child_entered_tree" from="ToggleDebugGridButton" to="." method="_on_button_child_entered_tree"]
-[connection signal="pressed" from="ToggleDebugGridButton" to="." method="_on_toggle_debug_grid_button_pressed"]
 [connection signal="pressed" from="BuildPopup/Control/PanelContainer/Button" to="." method="_on_build_confirm"]
