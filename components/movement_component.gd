@@ -3,7 +3,7 @@ extends Component
 
 signal arrived
 
-const MASS: float = 10.0
+const MASS: float = 1.0
 const ARRIVE_DISTANCE: float = 5.0
 
 @export var speed: float = 200.0
