@@ -214,8 +214,10 @@ output_time = 2
 gather_res_time = 1
 res_sprite = ExtResource("2_mvdeg")
 res_type = 1
-gold_requires = 2
+gold_requires = 1
+meat_requires = null
 wood_requires = 1
+global_rect_adjustment = null
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(0, 33)
@@ -241,3 +243,6 @@ position = Vector2(0, 29.25)
 
 [node name="GatherZoneShape" parent="GatherZone" index="0"]
 position = Vector2(0, 46)
+
+[node name="HealthComponent" parent="." index="9"]
+max_health = 5

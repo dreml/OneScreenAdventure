@@ -1,24 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbiurkko5a7hc"]
+[gd_scene load_steps=5 format=3 uid="uid://cbiurkko5a7hc"]
 
 [ext_resource type="Script" path="res://objects/camps/camp.gd" id="1_38eco"]
 [ext_resource type="PackedScene" uid="uid://bvrtlcy2mvm7u" path="res://objects/buildings/building.tscn" id="2_0x8yy"]
 [ext_resource type="PackedScene" uid="uid://dh7death4yl7a" path="res://npc/goblin.tscn" id="2_s4euo"]
-[ext_resource type="Texture2D" uid="uid://bkedrag1rmq7y" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Red.png" id="3_x1d1f"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b6ywx"]
-atlas = ExtResource("3_x1d1f")
-region = Rect2(0, 0, 128, 192)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_opx6j"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b6ywx")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="PackedScene" uid="uid://chhrmehg1yg0r" path="res://objects/camps/portal.tscn" id="4_eso7q"]
 
 [node name="Camp" type="Node2D"]
 script = ExtResource("1_38eco")
@@ -26,20 +11,11 @@ goblin_prototype = ExtResource("2_s4euo")
 
 [node name="Building" parent="." instance=ExtResource("2_0x8yy")]
 
-[node name="Portal" type="AnimatedSprite2D" parent="."]
-position = Vector2(-91, 115)
-scale = Vector2(0.273438, 0.59375)
-sprite_frames = SubResource("SpriteFrames_opx6j")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = -163.0
-offset_top = 151.0
-offset_right = 11.9998
-offset_bottom = 207.0
-rotation = -0.952395
-theme_override_colors/default_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 40
-text = "PORTAL"
+[node name="Portal" parent="." instance=ExtResource("4_eso7q")]
+position = Vector2(-136, 138)
+scale = Vector2(0.269076, 0.269076)
+frame_progress = 0.304391
+flip_h = true
 
 [node name="RallyPoint" type="Node2D" parent="."]
 position = Vector2(17, 133)

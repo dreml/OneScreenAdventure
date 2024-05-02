@@ -9,6 +9,7 @@ enum States { IDLE = 100, FOLLOW = 101, ATTACK = 102 }
 var ANIMATIONS_BY_STATES: Dictionary = {
 	States.IDLE: 'idle',
 	States.FOLLOW: 'run',
+	States.ATTACK: 'idle',
 }
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer

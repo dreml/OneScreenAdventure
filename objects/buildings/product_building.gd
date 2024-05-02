@@ -19,6 +19,8 @@ var _storage_act = 0 # кол-во ресурса сейчас на складе
 var _gatherer: Node2D = null # кто занял зону сбора
 
 func _ready():
+	super._ready()
+	
 	_ANIMATIONS_BY_STATES = Helpers.merge([
 		_ANIMATIONS_BY_STATES,
 		{

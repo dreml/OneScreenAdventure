@@ -33,7 +33,9 @@ func _ready():
 	camp2.goblin_dead.connect(handle_camp2_goblin_death)
 	
 func _unhandled_input(_event: InputEvent) -> void:
-	pass
+	if Input.is_key_pressed(KEY_T):
+		camp1_attack_timer.stop()
+		camp1.attack_building(camp1_target)
 
 #region pawns
 func create_order(order: Command):

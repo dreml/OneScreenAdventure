@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://chhrmehg1yg0r"]
+
+[ext_resource type="Texture2D" uid="uid://bnqd8v5iedm6y" path="res://assets/sprites/portal-spritesheet.png" id="1_cyrf7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwwxq"]
+atlas = ExtResource("1_cyrf7")
+region = Rect2(0, 0, 498, 498)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blfwh"]
+atlas = ExtResource("1_cyrf7")
+region = Rect2(498, 0, 498, 498)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ymuj"]
+atlas = ExtResource("1_cyrf7")
+region = Rect2(996, 0, 498, 498)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i40vh"]
+atlas = ExtResource("1_cyrf7")
+region = Rect2(1494, 0, 498, 498)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dh2l"]
+atlas = ExtResource("1_cyrf7")
+region = Rect2(2490, 0, 498, 498)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xecp"]
+atlas = ExtResource("1_cyrf7")
+region = Rect2(2988, 0, 498, 498)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lxvm"]
+atlas = ExtResource("1_cyrf7")
+region = Rect2(3486, 0, 498, 498)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqh6m"]
+atlas = ExtResource("1_cyrf7")
+region = Rect2(3984, 0, 498, 498)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t10qm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwwxq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blfwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ymuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i40vh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dh2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xecp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lxvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqh6m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Portal" type="AnimatedSprite2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+sprite_frames = SubResource("SpriteFrames_t10qm")
+autoplay = "default"
+frame_progress = 0.824129
