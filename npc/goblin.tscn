@@ -58,17 +58,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
-}
 
 [sub_resource type="Animation" id="Animation_lb602"]
 resource_name = "attack-right"
@@ -336,10 +325,10 @@ states/prepare-attack/position = Vector2(652.563, 14.4475)
 states/run/node = SubResource("AnimationNodeBlendSpace1D_j7v0g")
 states/run/position = Vector2(651.988, -186.688)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_wqg8u"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_024n1"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_eymyw"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_jj8a3"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_oclau"), "idle", "prepare-attack", SubResource("AnimationNodeStateMachineTransition_bmdo4"), "run", "prepare-attack", SubResource("AnimationNodeStateMachineTransition_eojbe"), "prepare-attack", "attack", SubResource("AnimationNodeStateMachineTransition_uoht1"), "prepare-attack", "run", SubResource("AnimationNodeStateMachineTransition_smaw3"), "prepare-attack", "idle", SubResource("AnimationNodeStateMachineTransition_7uo83"), "attack", "prepare-attack", SubResource("AnimationNodeStateMachineTransition_g5uf7")]
-graph_offset = Vector2(60.5549, -239.423)
+graph_offset = Vector2(308.055, -76.3729)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_e7guu"]
-graph_offset = Vector2(-339.544, 40.5077)
+graph_offset = Vector2(-325.314, 165.731)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_h6sqj")
 nodes/StateMachine/position = Vector2(-90, 110)
 nodes/output/position = Vector2(100, 120)

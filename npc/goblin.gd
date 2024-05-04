@@ -3,6 +3,8 @@ extends Npc
 
 enum OwnStates { PREPARE_ATTACK }
 
+const ATTACK_STATES = [OwnStates.PREPARE_ATTACK, States.ATTACK]
+
 @export var attack_cd: int = 1 
 @export var attack_damage: int = 1
 
@@ -29,7 +31,7 @@ func _ready():
 func _change_state(new_state):
 	super._change_state(new_state)
 
-	if get_prev_state() == States.ATTACK:
+	if ATTACK_STATES.has(get_prev_state()):
 		attack_cd_timer.stop()
 
 	if get_state() == OwnStates.PREPARE_ATTACK:
@@ -50,6 +52,9 @@ func cancel_attack():
 func _make_attack():
 	_change_state(States.ATTACK)
 	await character_animation_component.animation_finished
+
+	if get_state() != States.ATTACK:
+		return
 
 	GameInstance.player.take_damage(attack_damage)
 	_change_state(OwnStates.PREPARE_ATTACK)
