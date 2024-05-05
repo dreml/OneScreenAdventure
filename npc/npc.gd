@@ -1,5 +1,5 @@
 class_name Npc
-extends CharacterBody2D
+extends Character
 
 signal dead
 
@@ -11,16 +11,16 @@ var ANIMATIONS_BY_STATES: Dictionary = {
 	States.FOLLOW: 'run',
 }
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var movement_component: MovementComponent = $MovementComponent
-@onready var health_component: HealthComponent = $HealthComponent
-
-var _state := States.IDLE
-
-# TODO сделать поворот спрайта в движении
+@onready var character_animation: CharacterAnimationComponent = $CharacterAnimationComponent
 
 func _ready() -> void:
-	movement_component.arrived.connect(func(): _change_state(States.IDLE))
+	state = States.IDLE
+	
+	character_animation.set_animations(ANIMATIONS_BY_STATES)
+	character_animation.switch_animation()
+	
+	movement_component.arrived.connect(_change_state.bind(States.IDLE))
+	movement_component.facing_direction_changed.connect(character_animation.update_animation_direction)
 	health_component.dead.connect(
 		func():
 			queue_free()
@@ -28,14 +28,12 @@ func _ready() -> void:
 	)
 
 func _change_state(new_state):
-	if _state == new_state:
+	if state == new_state:
 		return
 	
-	_state = new_state
-	movement_component.can_move = _state == States.FOLLOW
-	
-	if ANIMATIONS_BY_STATES.has(_state):
-		animation_player.play(ANIMATIONS_BY_STATES[_state])
+	state = new_state
+
+	movement_component.can_move = state == States.FOLLOW
 
 func take_damage(damage_amount: int):
 	health_component.take_damage(damage_amount)
