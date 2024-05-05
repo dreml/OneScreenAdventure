@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://durirmvxvuw8e"]
+[gd_scene load_steps=27 format=3 uid="uid://durirmvxvuw8e"]
 
 [ext_resource type="PackedScene" uid="uid://6r2vkiqs6jtk" path="res://npc/npc.tscn" id="1_rv43q"]
 [ext_resource type="Script" path="res://npc/pawn.gd" id="2_awla0"]
@@ -15,7 +15,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [12]
 }
 tracks/1/type = "value"
@@ -27,25 +27,8 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_ph5ws"]
-resource_name = "attack"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [12, 13, 14, 15, 16, 17]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_3svr7"]
@@ -87,7 +70,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 
@@ -130,7 +113,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 
@@ -159,7 +142,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 
@@ -188,7 +171,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 
@@ -217,7 +200,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 
@@ -246,14 +229,13 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wtdst"]
 _data = {
 "RESET": SubResource("Animation_kgfh4"),
-"attack": SubResource("Animation_ph5ws"),
 "build-left": SubResource("Animation_3svr7"),
 "build-right": SubResource("Animation_5yu40"),
 "idle-left": SubResource("Animation_ufik0"),
@@ -330,7 +312,6 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-2.26517, -65.7)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6wovx"]
-graph_offset = Vector2(-291.84, 32.64)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_2d10x")
 nodes/StateMachine/position = Vector2(-20, 110)
 node_connections = [&"output", 0, &"StateMachine"]

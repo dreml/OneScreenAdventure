@@ -9,24 +9,22 @@ var animations_by_states = {}
 
 func _ready():
 	parent = owner
-
-func _process(delta):
-	_update_animation_direction()
+	update_animation_direction()
 
 func set_animations(dict: Dictionary):
 	animations_by_states = dict
 
 func switch_animation():
-	if !animations_by_states.has(parent.get_state()):
+	if !animations_by_states.has(parent.state):
 		return
 
 	var state_machine = get(AT_STATE_MACHINE)
 	state_machine.travel(_get_animation_name_by_state())
 
-func _update_animation_direction():
-	var animation_name = _get_animation_name_by_state()
-
-	self[AT_BLEND_POSITION_PATH % animation_name] = parent.movement_component.facing_direction.x
+func update_animation_direction():
+	for key in animations_by_states:
+		var animation_name = animations_by_states[key]
+		self[AT_BLEND_POSITION_PATH % animation_name] = parent.movement_component.facing_direction.x
 
 func _get_animation_name_by_state():
-	return animations_by_states[parent.get_state()]
+	return animations_by_states[parent.state]

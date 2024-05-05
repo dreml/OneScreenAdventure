@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dh7death4yl7a"]
+[gd_scene load_steps=30 format=3 uid="uid://dh7death4yl7a"]
 
 [ext_resource type="PackedScene" uid="uid://6r2vkiqs6jtk" path="res://npc/npc.tscn" id="1_mycac"]
 [ext_resource type="Script" path="res://npc/goblin.gd" id="2_m6xmn"]
@@ -27,7 +27,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 
@@ -55,7 +55,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 
@@ -83,7 +83,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 
@@ -112,7 +112,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 
@@ -141,7 +141,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 
@@ -170,7 +170,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 
@@ -199,7 +199,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 
@@ -225,6 +225,7 @@ blend_point_0/node = SubResource("AnimationNodeAnimation_qnj4u")
 blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_a0gv3")
 blend_point_1/pos = 1.0
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6vo3m"]
 animation = &"idle-left"
@@ -237,18 +238,7 @@ blend_point_0/node = SubResource("AnimationNodeAnimation_6vo3m")
 blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_qdpes")
 blend_point_1/pos = 1.0
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_blkwp"]
-animation = &"idle-left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xgk3l"]
-animation = &"idle-right"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_7o4xp"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_blkwp")
-blend_point_0/pos = -1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_xgk3l")
-blend_point_1/pos = 1.0
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_28hqy"]
 animation = &"run-left"
@@ -266,9 +256,11 @@ blend_point_1/node = SubResource("AnimationNodeAnimation_ia77d")
 blend_point_1/pos = 1.1
 blend_point_2/node = SubResource("AnimationNodeAnimation_rjv4r")
 blend_point_2/pos = 1.0
+blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wqg8u"]
 advance_mode = 2
+advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_024n1"]
 advance_mode = 2
@@ -288,47 +280,24 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bmdo4"]
-advance_mode = 2
-advance_condition = &"prepare-attack"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eojbe"]
-advance_mode = 2
-advance_condition = &"prepare-attack"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uoht1"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kibhy"]
 advance_mode = 2
 advance_condition = &"attack"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_smaw3"]
-advance_mode = 2
-advance_condition = &"run"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7uo83"]
-advance_mode = 2
-advance_condition = &"idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g5uf7"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"prepare-attack"
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_h6sqj"]
-states/End/position = Vector2(1099.5, -86.4492)
+states/End/position = Vector2(873.5, -30.4492)
 states/Start/position = Vector2(180.5, 88.6562)
 states/attack/node = SubResource("AnimationNodeBlendSpace1D_hnk4j")
-states/attack/position = Vector2(932.738, 90.9841)
+states/attack/position = Vector2(723.238, 93.9841)
 states/idle/node = SubResource("AnimationNodeBlendSpace1D_hxfnu")
 states/idle/position = Vector2(364.238, 88.4453)
-states/prepare-attack/node = SubResource("AnimationNodeBlendSpace1D_7o4xp")
-states/prepare-attack/position = Vector2(652.563, 14.4475)
 states/run/node = SubResource("AnimationNodeBlendSpace1D_j7v0g")
-states/run/position = Vector2(651.988, -186.688)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_wqg8u"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_024n1"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_eymyw"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_jj8a3"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_oclau"), "idle", "prepare-attack", SubResource("AnimationNodeStateMachineTransition_bmdo4"), "run", "prepare-attack", SubResource("AnimationNodeStateMachineTransition_eojbe"), "prepare-attack", "attack", SubResource("AnimationNodeStateMachineTransition_uoht1"), "prepare-attack", "run", SubResource("AnimationNodeStateMachineTransition_smaw3"), "prepare-attack", "idle", SubResource("AnimationNodeStateMachineTransition_7uo83"), "attack", "prepare-attack", SubResource("AnimationNodeStateMachineTransition_g5uf7")]
-graph_offset = Vector2(308.055, -76.3729)
+states/run/position = Vector2(561.488, -64.688)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_wqg8u"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_024n1"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_eymyw"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_jj8a3"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_oclau"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_kibhy")]
+graph_offset = Vector2(-11.8356, -160.268)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_e7guu"]
-graph_offset = Vector2(-325.314, 165.731)
+graph_offset = Vector2(-174.72, 25.92)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_h6sqj")
 nodes/StateMachine/position = Vector2(-90, 110)
 nodes/output/position = Vector2(100, 120)
@@ -362,9 +331,7 @@ libraries = {
 tree_root = SubResource("AnimationNodeBlendTree_e7guu")
 parameters/StateMachine/conditions/attack = false
 parameters/StateMachine/conditions/idle = false
-parameters/StateMachine/conditions/prepare-attack = false
 parameters/StateMachine/conditions/run = false
 parameters/StateMachine/attack/blend_position = 0
-parameters/StateMachine/idle/blend_position = 0
-parameters/StateMachine/prepare-attack/blend_position = 0
-parameters/StateMachine/run/blend_position = 0
+parameters/StateMachine/idle/blend_position = 2.08165e-12
+parameters/StateMachine/run/blend_position = 0.0

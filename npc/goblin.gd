@@ -19,7 +19,7 @@ func _ready():
 		ANIMATIONS_BY_STATES,
 		{
 			States.ATTACK: "attack",
-			OwnStates.PREPARE_ATTACK: "prepare-attack"
+			OwnStates.PREPARE_ATTACK: "idle"
 		}
 	])
 	
@@ -31,12 +31,12 @@ func _ready():
 func _change_state(new_state):
 	super._change_state(new_state)
 
-	if ATTACK_STATES.has(get_prev_state()):
+	if ATTACK_STATES.has(prev_state):
 		attack_cd_timer.stop()
 
-	if get_state() == OwnStates.PREPARE_ATTACK:
+	if state == OwnStates.PREPARE_ATTACK:
 		attack_cd_timer.start()
-		if get_prev_state() == States.FOLLOW:
+		if prev_state == States.FOLLOW:
 			movement_component.stop()
 
 func move_to(location: Vector2):
@@ -44,6 +44,7 @@ func move_to(location: Vector2):
 	_change_state(States.FOLLOW)
 
 func attacked():
+	movement_component.facing_direction = GameInstance.player.position
 	_change_state(OwnStates.PREPARE_ATTACK)
 
 func cancel_attack():
@@ -53,7 +54,7 @@ func _make_attack():
 	_change_state(States.ATTACK)
 	await character_animation_component.animation_finished
 
-	if get_state() != States.ATTACK:
+	if state != States.ATTACK:
 		return
 
 	GameInstance.player.take_damage(attack_damage)

@@ -14,11 +14,13 @@ var ANIMATIONS_BY_STATES: Dictionary = {
 @onready var character_animation: CharacterAnimationComponent = $CharacterAnimationComponent
 
 func _ready() -> void:
-	set_state(States.IDLE)
+	state = States.IDLE
 	
 	character_animation.set_animations(ANIMATIONS_BY_STATES)
+	character_animation.switch_animation()
 	
 	movement_component.arrived.connect(_change_state.bind(States.IDLE))
+	movement_component.facing_direction_changed.connect(character_animation.update_animation_direction)
 	health_component.dead.connect(
 		func():
 			queue_free()
@@ -26,12 +28,12 @@ func _ready() -> void:
 	)
 
 func _change_state(new_state):
-	if get_state() == new_state:
+	if state == new_state:
 		return
 	
-	set_state(new_state)
+	state = new_state
 
-	movement_component.can_move = get_state() == States.FOLLOW
+	movement_component.can_move = state == States.FOLLOW
 
 func take_damage(damage_amount: int):
 	health_component.take_damage(damage_amount)
