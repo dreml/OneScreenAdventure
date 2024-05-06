@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://cbcj1sulss7dv" path="res://ui/hud.tscn" id="9_msq1i"]
 [ext_resource type="PackedScene" uid="uid://durirmvxvuw8e" path="res://npc/pawn.tscn" id="10_xq8q2"]
 [ext_resource type="PackedScene" uid="uid://dh7death4yl7a" path="res://npc/goblin.tscn" id="12_vor8f"]
-[ext_resource type="Texture2D" uid="uid://cjr0mif800f01" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Castle/Castle_Blue.png" id="13_f42j2"]
 [ext_resource type="Texture2D" uid="uid://ec7747wh31ts" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Blue.png" id="14_f4gqr"]
 [ext_resource type="Texture2D" uid="uid://pi4mxlj6ey67" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Blue.png" id="15_qeysm"]
 [ext_resource type="Texture2D" uid="uid://dqo6v2xe4rayy" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/House/House_Construction.png" id="16_dojru"]
@@ -32,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://dfly65lc2onrm" path="res://objects/resources/containers/house_ruin_container.tscn" id="32_ponan"]
 [ext_resource type="Texture2D" uid="uid://ccayd7nfsqu3a" path="res://ui/wood_texture_cropped.tres" id="32_x7dpc"]
 [ext_resource type="Texture2D" uid="uid://51dxy87hapxj" path="res://ui/gold_texture_cropped.tres" id="33_edhw5"]
+[ext_resource type="PackedScene" uid="uid://b7hs0g4dwus78" path="res://objects/buildings/castle.tscn" id="33_j7t5k"]
 [ext_resource type="PackedScene" uid="uid://cl5liig7srwmt" path="res://objects/resources/drops/meat_drop.tscn" id="34_40kpr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a3vrb"]
@@ -136,7 +136,7 @@ level = NodePath("../level")
 position = Vector2(370, 1849)
 
 [node name="Pawn2" parent="." instance=ExtResource("10_xq8q2")]
-position = Vector2(734, 1633)
+position = Vector2(793, 1533)
 
 [node name="Goblin" parent="." instance=ExtResource("12_vor8f")]
 position = Vector2(108, 1222)
@@ -148,10 +148,6 @@ position = Vector2(270, 1112)
 [node name="Goblin2" parent="." instance=ExtResource("12_vor8f")]
 position = Vector2(970, 933)
 scale = Vector2(-1, 1)
-
-[node name="CastleBlue" type="Sprite2D" parent="."]
-position = Vector2(468, 1682)
-texture = ExtResource("13_f42j2")
 
 [node name="TowerBlue" type="Sprite2D" parent="."]
 position = Vector2(556, 1232)
@@ -264,7 +260,7 @@ position = Vector2(312, 939)
 position = Vector2(1003, 101)
 
 [node name="MeatDrop" parent="." instance=ExtResource("34_40kpr")]
-position = Vector2(707, 1750)
+position = Vector2(857, 1650)
 
 [node name="HouseRuinContainer" parent="." instance=ExtResource("32_ponan")]
 position = Vector2(192, 1680)
@@ -277,3 +273,6 @@ position = Vector2(806, 1007)
 
 [node name="GoldMine" parent="." instance=ExtResource("32_hhrrl")]
 position = Vector2(369, 302)
+
+[node name="Castle" parent="." instance=ExtResource("33_j7t5k")]
+position = Vector2(673, 1675)

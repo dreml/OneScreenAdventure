@@ -10,9 +10,14 @@ const _resource_spent_template = "-%s"
 	set(new_value):
 		wood_spent_label.set_text(_resource_spent_template % str(new_value))
 		wood = new_value
+@export var meat := 0:
+	set(new_value):
+		meat_spent_label.set_text(_resource_spent_template % str(new_value))
+		meat = new_value
 
 @onready var gold_spent_label: Label = $Gold/Label
 @onready var wood_spent_label: Label = $Wood/Label
+@onready var meat_spent_label: Label = $Meat/Label
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func popup():
