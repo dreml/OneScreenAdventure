@@ -31,6 +31,7 @@ func _ready():
 	camp2_target = farm
 	camp2_attack_timer.timeout.connect(func(): camp2.steal_resource(camp2_target))
 	camp2.goblin_dead.connect(handle_camp2_goblin_death)
+	camp2.goblin_delivered_resources.connect(func(): camp2_attack_timer.start())
 	
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_T):

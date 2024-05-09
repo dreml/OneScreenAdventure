@@ -2,6 +2,7 @@ class_name Goblin
 extends Npc
 
 enum TargetActions {
+	NO_ACTION,
 	ATTACK_BUILDING,
 	STEAL_RESOURCE,
 	RETURN_TO_PORTAL
@@ -14,7 +15,7 @@ enum TargetActions {
 
 @onready var attack_cd_timer: Timer = $AttackCDTimer
 
-var _target_action: TargetActions
+var _target_action: TargetActions = TargetActions.NO_ACTION
 var _target: Node2D
 var _attack_target: Node2D
 
@@ -49,6 +50,9 @@ func _change_target_action(_ta: TargetActions, _tp: Node2D):
 	_process_target_action()
 
 func _process_target_action():
+	if _target_action == TargetActions.NO_ACTION:
+		return
+
 	match _target_action:
 		TargetActions.RETURN_TO_PORTAL:
 			move_to(_target.global_position)
