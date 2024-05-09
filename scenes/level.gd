@@ -1,6 +1,5 @@
 extends TileMap
 
-
 func build_bridge():
 	for layer_id in range(self.get_layers_count()):
 		var layer_name = self.get_layer_name(layer_id)
