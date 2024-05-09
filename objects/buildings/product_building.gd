@@ -19,6 +19,8 @@ var _storage_act = 0 # кол-во ресурса сейчас на складе
 var _gatherer: Node2D = null # кто занял зону сбора
 
 func _ready():
+	super._ready()
+	
 	_ANIMATIONS_BY_STATES = Helpers.merge([
 		_ANIMATIONS_BY_STATES,
 		{
@@ -79,6 +81,11 @@ func resoure_bring(target):
 func _on_built():
 	super._on_built()
 	_set_state(ProducerState.WORK)
+	GameInstance.building_built(self)
+
+func _on_destroyed():
+	super._on_destroyed()
+	GameInstance.building_destroyed(self)
 
 func _on_output_timer_timeout():
 	produce()

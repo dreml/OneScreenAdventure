@@ -4,7 +4,7 @@ extends Component
 signal arrived
 signal facing_direction_changed
 
-const MASS: float = 10.0
+const MASS: float = 1.0
 const ARRIVE_DISTANCE: float = 5.0
 
 @export var speed: float = 200.0
@@ -35,17 +35,19 @@ func _process(_delta) -> void:
 		_target_point_world = _path[0]
 
 func _move_to(world_position) -> bool:
-	var desired_velocity = (world_position - owner.position).normalized() * speed
+	var desired_velocity = (world_position - owner.global_position).normalized() * speed
 	var steering = desired_velocity - _velocity
 	_velocity += steering / MASS
 	owner.translate(_velocity * get_process_delta_time())
-	return owner.position.distance_to(world_position) < ARRIVE_DISTANCE
+	return owner.global_position.distance_to(world_position) < ARRIVE_DISTANCE
 
 func set_target_position(target_position: Vector2):
-	_path = nav.get_astar_path(owner.position, target_position)
-	_target_point_world = _path[1]
+	_path = nav.get_astar_path(owner.global_position, target_position)
 	if not _path or len(_path) == 1:
 		arrived.emit()
+		return
+
+	_target_point_world = _path[1]
 
 func stop():
 	_target_point_world = position

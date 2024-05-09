@@ -30,6 +30,7 @@ volume_db = 10.0
 
 [node name="GatherZone" type="Area2D" parent="."]
 collision_layer = 16
+collision_mask = 3
 
 [node name="GatherZoneShape" type="CollisionShape2D" parent="GatherZone"]
 position = Vector2(-2, 33)

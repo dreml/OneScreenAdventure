@@ -19,8 +19,6 @@ func _ready() -> void:
 	super._ready()
 	
 	movement_component.arrived.connect(_handle_arrival)
-	
-	print('hi from pawn')
 
 func _process(_delta):
 	if _command_in_action == null && GameInstance.game_director.has_orders():
@@ -42,9 +40,7 @@ func _start_building():
 	_change_state(OwnStates.BUILD)
 	
 	await _command_in_action.target.constructed
-	_command_in_action = null
-
-	_change_state(States.IDLE)
+	queue_free()
 	
 func _build():
 	if "build" in _command_in_action.target:

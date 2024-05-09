@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://b7swydcs7p5nq"]
 
 [ext_resource type="Script" path="res://ui/resources_spent.gd" id="1_7b56x"]
-[ext_resource type="PackedScene" uid="uid://djknjr0mpajet" path="res://ui/resource.tscn" id="1_nkmsd"]
-[ext_resource type="Texture2D" uid="uid://51dxy87hapxj" path="res://ui/gold_texture_cropped.tres" id="2_axyr1"]
-[ext_resource type="Texture2D" uid="uid://ccayd7nfsqu3a" path="res://ui/wood_texture_cropped.tres" id="3_i8exo"]
+[ext_resource type="PackedScene" path="res://ui/resource.tscn" id="1_nkmsd"]
+[ext_resource type="Texture2D" path="res://ui/gold_texture_cropped.tres" id="2_axyr1"]
+[ext_resource type="Texture2D" path="res://ui/wood_texture_cropped.tres" id="3_i8exo"]
 
 [sub_resource type="Animation" id="Animation_pfwa5"]
 resource_name = "popup"

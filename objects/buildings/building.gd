@@ -2,6 +2,7 @@ class_name Building
 extends StaticBody2D
 
 signal constructed
+signal dead
 
 enum State { CONSTRUCTION = 100, IDLE = 101, DESTROYED = 102 }
 const ANIMATION_NAME_TEMPLATE = "building_animations/%s"
@@ -23,8 +24,10 @@ var _ANIMATIONS_BY_STATES = {
 
 var _state = State.DESTROYED
 
-func start_building() -> bool:
+func _ready():
+	health_component.dead.connect(func(): dead.emit())
 
+func start_building() -> bool:
 	GameInstance.show_build_popup(self.get_position(), [wood_requires, meat_requires, gold_requires]);
 
 	if !_is_enough_resources() && !_is_constructed():
@@ -46,7 +49,7 @@ func start_building() -> bool:
 func build(hp_to_add: int) -> void:
 	health_component.add_health(hp_to_add)
 
-func destroy(damage: int) -> void:
+func take_damage(damage: int) -> void:
 	health_component.take_damage(damage)
 
 func get_rect_global() -> Rect2:
