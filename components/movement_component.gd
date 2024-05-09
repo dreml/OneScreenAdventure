@@ -2,6 +2,7 @@ class_name MovementComponent
 extends Component
 
 signal arrived
+signal facing_direction_changed
 
 const MASS: float = 1.0
 const ARRIVE_DISTANCE: float = 5.0
@@ -13,14 +14,17 @@ const ARRIVE_DISTANCE: float = 5.0
 var _path = []
 var _target_point_world: Vector2 = Vector2()
 var _velocity: Vector2 = Vector2()
-var facing_direction := Vector2()
+var facing_direction := Vector2(1.0, 0.0):
+	set(new_value):
+		facing_direction = new_value
+		facing_direction_changed.emit()
 var can_move := false
 
 func _process(_delta) -> void:
 	if not can_move:
 		return
 		
-	facing_direction = owner.global_position.direction_to(_target_point_world).normalized()
+	facing_direction = owner.global_position.direction_to(_target_point_world)
 
 	var _arrived_to_next_point: bool = _move_to(_target_point_world)
 	if _arrived_to_next_point:

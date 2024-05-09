@@ -9,14 +9,14 @@ enum OwnStates { BUILD }
 var _command_in_action: Command
 
 func _ready() -> void:
-	super._ready()
-
 	ANIMATIONS_BY_STATES = Helpers.merge([
 		ANIMATIONS_BY_STATES,
 		{
 			OwnStates.BUILD: "build"
 		}
 	])
+	
+	super._ready()
 	
 	movement_component.arrived.connect(_handle_arrival)
 
@@ -38,7 +38,6 @@ func _handle_arrival():
 		
 func _start_building():
 	_change_state(OwnStates.BUILD)
-	sprite.flip_h = movement_component.facing_direction.x < 0
 	
 	await _command_in_action.target.constructed
 	queue_free()
