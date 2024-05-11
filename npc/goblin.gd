@@ -17,11 +17,16 @@ const ATTACK_STATES = [OwnStates.PREPARE_ATTACK, States.ATTACK]
 @export var time_between_actions: int = 2
 @export var home_camp: Camp
 
+@export_file var wood_drop: String
+@export_file var meat_drop: String
+@export_file var gold_drop: String
+
 @onready var attack_cd_timer: Timer = $AttackCDTimer
 
 var _target_action: TargetActions = TargetActions.NO_ACTION
 var _target: Node2D
 var _attack_target: Node2D
+var _gathered_resources = []
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_A) and name == 'Goblin':
@@ -41,11 +46,9 @@ func _ready():
 	attack_cd_timer.set_wait_time(attack_cd)
 	attack_cd_timer.timeout.connect(_make_attack)
 
-	health_component.dead.connect(func(): home_camp.goblin_dead.emit())
+	health_component.dead.connect(_handle_dead)
 
 func _change_state(new_state):
-	var prev_state = state
-	
 	super._change_state(new_state)
 
 	if ATTACK_STATES.has(prev_state):
@@ -77,6 +80,44 @@ func move_to(location: Vector2):
 	movement_component.set_target_position(location)
 	_change_state(States.FOLLOW)
 
+func _handle_dead():
+	home_camp.goblin_dead.emit()
+	_drop_resources()
+
+func _drop_resources():
+	if _gathered_resources.is_empty():
+		return
+ 
+	var k := 0
+	for resource in _gathered_resources:
+		k += 1
+		var drop = resource.instantiate() as ResourceDroppable
+		drop.play("DROP")
+		drop.global_position = position + Vector2(randi() % 5 + (k * randi() % 20), randi() % 5 + randi() % 20)
+		GameInstance.main.call_deferred("add_child", drop)
+
+func get_resource(_type, _amount):
+	var drop_path
+	match _type:
+		Globals.ResourceType.WOOD:
+			drop_path = wood_drop
+		Globals.ResourceType.MEAT:
+			drop_path = meat_drop
+		Globals.ResourceType.GOLD_ORE:
+			drop_path = gold_drop
+
+	var resource = load(drop_path)
+	for n in _amount:
+		_gathered_resources.append(resource)	
+
+	if _target_action == TargetActions.ATTACK_BUILDING:
+		return
+
+	_change_target_action(TargetActions.RETURN_TO_PORTAL, home_camp.portal)
+	await movement_component.arrived
+	home_camp.handle_goblin_delivered_resources(self)
+
+#region Attack
 func attacked():
 	_attack_target = GameInstance.player
 	movement_component.facing_direction = GameInstance.player.position
@@ -107,16 +148,6 @@ func steal_resource(target_building: ProductBuilding):
 func attack_building(target_building: Building):
 	_change_target_action(TargetActions.ATTACK_BUILDING, target_building)
 
-func get_resource(_type, _amount):
-	# TODO: вести учет украденных ресурсов
-
-	if _target_action == TargetActions.ATTACK_BUILDING:
-		return
-
-	_change_target_action(TargetActions.RETURN_TO_PORTAL, home_camp.portal)
-	await movement_component.arrived
-	home_camp.handle_goblin_delivered_resources(self)
-
 func _start_attack_building():
 	_attack_target = _target
 	_attack_target.dead.connect(_handle_attack_target_dead)
@@ -132,3 +163,4 @@ func _handle_attack_target_dead():
 	_change_target_action(TargetActions.RETURN_TO_PORTAL, home_camp.portal)
 	await movement_component.arrived
 	home_camp.handle_goblin_return_to_portal(self)
+#endregion

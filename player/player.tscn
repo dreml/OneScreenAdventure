@@ -417,8 +417,8 @@ nodes/StateMachine/position = Vector2(360, 40)
 nodes/output/position = Vector2(930, 100)
 node_connections = [&"Attack", 0, &"StateMachine", &"Attack", 1, &"AttackBlendSpace", &"output", 0, &"Attack"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydhpo"]
-size = Vector2(145, 138)
+[sub_resource type="CircleShape2D" id="CircleShape2D_dvsyb"]
+radius = 75.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 2
@@ -464,8 +464,8 @@ vframes = 8
 collision_mask = 2
 
 [node name="DetectEnemyAreaShape" type="CollisionShape2D" parent="DetectEnemyArea"]
-position = Vector2(1.5, -23)
-shape = SubResource("RectangleShape2D_ydhpo")
+position = Vector2(0, -23)
+shape = SubResource("CircleShape2D_dvsyb")
 
 [node name="AttackCDTimer" type="Timer" parent="."]
 
