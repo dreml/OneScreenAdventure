@@ -1,6 +1,9 @@
 extends CanvasLayer
 
 @onready var build_popup = $BuildPopup
+@onready var wood_required = $BuildPopup/Control/PanelContainer/GridContainer/WoodCount/WoodRequired
+@onready var meat_required = $BuildPopup/Control/PanelContainer/GridContainer/MeatCount/MeatRequired
+@onready var gold_required = $BuildPopup/Control/PanelContainer/GridContainer/GoldCount/GoldRequired
 
 @export var grid: Node2D
 @export var nav: NavigationMap
@@ -25,9 +28,9 @@ func show_build_popup(building: Building):
 	var pos = building.get_position()
 	var popupSize = build_popup.get_size()
 	build_popup.set_position(Vector2i(pos.x - popupSize.x / 2, pos.y - popupSize.y - 20))
-	get_node("BuildPopup/Control/PanelContainer/GridContainer/WoodCount/WoodRequired").text = str(building.wood_requires);
-	get_node("BuildPopup/Control/PanelContainer/GridContainer/MeatCount/MeatRequired").text = str(building.meat_requires);
-	get_node("BuildPopup/Control/PanelContainer/GridContainer/GoldCount/GoldRequired").text = str(building.gold_requires);
+	wood_required.text = str(building.wood_requires);
+	meat_required.text = str(building.meat_requires);
+	gold_required.text = str(building.gold_requires);
 	current_building = building;
 	build_popup.show();
 
