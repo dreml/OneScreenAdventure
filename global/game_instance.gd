@@ -14,7 +14,7 @@ signal gold_mine_destroyed
 @onready var main: Node2D = get_tree().get_root().get_node('Main')
 @onready var hud: CanvasLayer = get_tree().get_root().get_node('Main/HUD');
 
-var wood_amount := 0
+var wood_amount := 10
 var gold_amount := 0
 var meat_amount := 0
 
@@ -44,8 +44,8 @@ func spend_resource(type, amount):
 		Globals.ResourceType.MEAT:
 			meat_amount -= amount
 
-func show_build_popup(pos: Vector2i, requires: Array[int]):
-	hud.show_build_popup(pos, requires);
+func show_build_popup(building: Building):
+	hud.show_build_popup(building);
 
 func building_built(building: ProductBuilding):
 	match building.res_type:

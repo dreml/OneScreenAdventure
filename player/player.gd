@@ -149,10 +149,8 @@ func _update_animation_direction():
 func _reach_target():
 	_change_state(States.IDLE)
 
-	if _target_building != null && _target_building.start_building():
-		GameInstance.game_director.create_order(
-			Command.new(Command.ActionType.Build, _target_building)
-		)
+	if _target_building != null && _target_building.can_be_built():
+		GameInstance.show_build_popup(_target_building)
 
 	_target_building = null
 

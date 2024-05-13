@@ -28,12 +28,10 @@ func _ready():
 	health_component.dead.connect(func(): dead.emit())
 
 func start_building() -> bool:
-	GameInstance.show_build_popup(self.get_position(), [wood_requires, meat_requires, gold_requires]);
-
 	if !_is_enough_resources() && !_is_constructed():
 		animation_player.play(ANIMATION_NAME_TEMPLATE % "construction_forbidden")
 
-	if !_can_be_built():
+	if !can_be_built():
 		return false
 
 	resources_spent.gold = gold_requires
@@ -74,7 +72,7 @@ func _on_built():
 func _on_destroyed():
 	_set_state(State.DESTROYED)
 
-func _can_be_built():
+func can_be_built():
 	return !_is_constructed() && _is_enough_resources()
 
 func _is_constructed():
