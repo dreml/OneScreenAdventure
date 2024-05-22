@@ -149,7 +149,7 @@ func _update_animation_direction():
 func _reach_target():
 	_change_state(States.IDLE)
 
-	if _target_building != null && _target_building.can_be_built():
+	if _target_building != null && !_target_building.is_constructed():
 		GameInstance.show_build_popup(_target_building)
 
 	_target_building = null
