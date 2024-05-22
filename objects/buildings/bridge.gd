@@ -1,7 +1,6 @@
 extends Building
 class_name Bridge
 
-@onready var collision = $CollisionShape2D
 @onready var entrance_point = $entrance_point
 
 func _on_built():
