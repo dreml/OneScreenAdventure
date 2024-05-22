@@ -35,7 +35,7 @@ func start_building() -> bool:
 		return false
 
 	resources_spent.gold = gold_requires
-	# resources_spent.meat = meat_requires
+	resources_spent.meat = meat_requires
 	resources_spent.wood = wood_requires
 
 	GameInstance.spend_resource(Globals.ResourceType.WOOD, wood_requires)
