@@ -38,3 +38,6 @@ func _change_state(new_state):
 
 func take_damage(damage_amount: int):
 	health_component.take_damage(damage_amount)
+	
+func is_idle():
+	return state == States.IDLE
