@@ -25,7 +25,6 @@ const _resource_spent_template = "-%s"
 var playlist = [];
 
 func popup():
-	print('popup called')
 	if gold > 0:
 		playlist.push_back(gold_anim)
 	if meat > 0:
@@ -34,9 +33,11 @@ func popup():
 		playlist.push_back(wood_anim)
 	_on_play_next("popup")
 
+# Без параметра не будет работать animation_finished.connect
 func _on_play_next(anim_name: String):
 	var anim = playlist.pop_front()
 	
 	if anim != null:
 		anim.play(anim_name)
+		# Подписываться надо на animation_finished именно после запуска анимации, иначе событие не сработает
 		anim.animation_finished.connect(_on_play_next)
