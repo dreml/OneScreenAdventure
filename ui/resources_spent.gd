@@ -36,8 +36,8 @@ func popup():
 # Без параметра не будет работать animation_finished.connect
 func _on_play_next(anim_name: String):
 	var anim = playlist.pop_front()
-	
+
 	if anim != null:
 		anim.play(anim_name)
 		# Подписываться надо на animation_finished именно после запуска анимации, иначе событие не сработает
-		anim.animation_finished.connect(_on_play_next)
+		anim.animation_finished.connect(_on_play_next, Object.CONNECT_ONE_SHOT)
