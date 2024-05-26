@@ -5,6 +5,9 @@ extends Node2D
 @export var farm: ProductBuilding
 @export var gold_mine: ProductBuilding
 
+@export var pawn_scene: PackedScene
+@export var pawn_spawn_point: Node2D
+
 @export var camp1: Camp
 @export var camp2: Camp
 
@@ -40,6 +43,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 #region pawns
 func create_order(order: Command):
+	if !get_tree().get_nodes_in_group("pawns").any(func(p): return p.is_idle()):
+		var pawn = pawn_scene.instantiate()
+		pawn.position = pawn_spawn_point.position
+		add_child(pawn)
 	pawns_orders.append(order)
 	
 func take_order() -> Command:

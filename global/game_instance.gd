@@ -13,10 +13,12 @@ signal gold_mine_destroyed
 @onready var game_director: GameDirector = get_tree().get_root().get_node('Main/GameDirector')
 @onready var main: Node2D = get_tree().get_root().get_node('Main')
 @onready var hud: CanvasLayer = get_tree().get_root().get_node('Main/HUD');
+@onready var level = get_tree().get_root().get_node('Main/level');
+@onready var navigation_map = get_tree().get_root().get_node('Main/NavigationMap');
 
-var wood_amount := 0
-var gold_amount := 0
-var meat_amount := 0
+var wood_amount := 10
+var gold_amount := 10
+var meat_amount := 10
 
 func _ready() -> void:
 	player.dead.connect(func(): print('player is dead'))
@@ -44,8 +46,8 @@ func spend_resource(type, amount):
 		Globals.ResourceType.MEAT:
 			meat_amount -= amount
 
-func show_build_popup(pos: Vector2i, requires: Array[int]):
-	hud.show_build_popup(pos, requires);
+func show_build_popup(building: Building):
+	hud.show_build_popup(building);
 
 func building_built(building: ProductBuilding):
 	match building.res_type:
@@ -64,3 +66,7 @@ func building_destroyed(building: ProductBuilding):
 			sawmill_destroyed.emit()
 		Globals.ResourceType.MEAT:
 			farm_destroyed.emit()
+
+func build_bridge():
+	navigation_map.build_bridge()
+	level.build_bridge()

@@ -55,6 +55,10 @@ max_health = 10
 start_with_zero_health = true
 
 [node name="ResourcesSpent" parent="." instance=ExtResource("9_txcy1")]
+offset_left = -60.0
+offset_top = -60.0
+offset_right = -60.0
+offset_bottom = -60.0
 
 [connection signal="dead" from="HealthComponent" to="." method="_on_destroyed"]
 [connection signal="full_health" from="HealthComponent" to="." method="_on_built"]

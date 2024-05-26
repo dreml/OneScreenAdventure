@@ -10,7 +10,7 @@ var path_end_position: Vector2i = Vector2i(): set = _set_path_end_position
 var _point_path = []
 var cell_size: int = 32
 
-func buid_bridge():
+func build_bridge():
 	astar_grid.set_point_solid(Vector2i(13, 30), false)
 	astar_grid.set_point_solid(Vector2i(14, 30), false)
 	astar_grid.set_point_solid(Vector2i(15, 30), false)

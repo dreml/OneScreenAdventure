@@ -214,9 +214,7 @@ gather_res_time = 1
 res_sprite = ExtResource("2_mvdeg")
 res_type = 1
 gold_requires = 1
-meat_requires = null
 wood_requires = 1
-global_rect_adjustment = null
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(0, 33)

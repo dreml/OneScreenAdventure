@@ -28,18 +28,18 @@ func _ready():
 	health_component.dead.connect(func(): dead.emit())
 
 func start_building() -> bool:
-	GameInstance.show_build_popup(self.get_position(), [wood_requires, meat_requires, gold_requires]);
-
-	if !_is_enough_resources() && !_is_constructed():
+	if !_is_enough_resources() && !is_constructed():
 		animation_player.play(ANIMATION_NAME_TEMPLATE % "construction_forbidden")
 
-	if !_can_be_built():
+	if !can_be_built():
 		return false
 
 	resources_spent.gold = gold_requires
+	resources_spent.meat = meat_requires
 	resources_spent.wood = wood_requires
 
 	GameInstance.spend_resource(Globals.ResourceType.WOOD, wood_requires)
+	GameInstance.spend_resource(Globals.ResourceType.MEAT, meat_requires)
 	GameInstance.spend_resource(Globals.ResourceType.GOLD_ORE, gold_requires)
 
 	_set_state(State.CONSTRUCTION)
@@ -74,14 +74,15 @@ func _on_built():
 func _on_destroyed():
 	_set_state(State.DESTROYED)
 
-func _can_be_built():
-	return !_is_constructed() && _is_enough_resources()
+func can_be_built():
+	return !is_constructed() && _is_enough_resources()
 
-func _is_constructed():
+func is_constructed():
 	return _state != State.DESTROYED
 
 func _is_enough_resources():
 	var is_enough_wood = GameInstance.wood_amount >= wood_requires
+	var is_enough_meat = GameInstance.meat_amount >= meat_requires
 	var is_enough_gold = GameInstance.gold_amount >= gold_requires
 
-	return is_enough_gold && is_enough_wood
+	return is_enough_gold && is_enough_meat && is_enough_wood
