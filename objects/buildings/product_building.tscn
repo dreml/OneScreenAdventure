@@ -37,6 +37,10 @@ position = Vector2(-2, 33)
 shape = SubResource("CircleShape2D_itcia")
 
 [node name="ResourcesSpent" parent="." instance=ExtResource("1_4tnti")]
+offset_left = -60.0
+offset_top = -75.0
+offset_right = -60.0
+offset_bottom = -75.0
 
 [node name="GatherTimer" type="Timer" parent="."]
 
