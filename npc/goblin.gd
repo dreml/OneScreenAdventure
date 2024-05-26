@@ -93,6 +93,10 @@ func _drop_resources():
 		k += 1
 		var drop = resource.instantiate() as ResourceDroppable
 		drop.play("DROP")
+                # Сдвиг ресурсов:
+                # 1й: (0...23, 0...23)
+                # 2й: (0...42, 0...23)
+                # 3й: (0...61, 0...23)
 		drop.global_position = position + Vector2(randi() % 5 + (k * randi() % 20), randi() % 5 + randi() % 20)
 		GameInstance.main.call_deferred("add_child", drop)
 
