@@ -80,10 +80,16 @@ position = Vector2(-100, -100)
 y_sort_enabled = true
 
 [node name="Tree" parent="Trees-part1" instance=ExtResource("6")]
-position = Vector2(200, 1517)
+position = Vector2(135, 1531)
+
+[node name="Tree11" parent="Trees-part1" instance=ExtResource("6")]
+position = Vector2(199, 1503)
+
+[node name="Tree12" parent="Trees-part1" instance=ExtResource("6")]
+position = Vector2(216, 1562)
 
 [node name="Tree2" parent="Trees-part1" instance=ExtResource("6")]
-position = Vector2(455, 1469)
+position = Vector2(363, 1488)
 
 [node name="Tree3" parent="Trees-part1" instance=ExtResource("6")]
 position = Vector2(515, 1201)
@@ -101,13 +107,19 @@ position = Vector2(914, 1360)
 position = Vector2(448, 1125)
 
 [node name="Tree8" parent="Trees-part1" instance=ExtResource("6")]
-position = Vector2(498, 1674)
+position = Vector2(522, 1711)
 
 [node name="Tree9" parent="Trees-part1" instance=ExtResource("6")]
 position = Vector2(348, 1258)
 
 [node name="Tree10" parent="Trees-part1" instance=ExtResource("6")]
-position = Vector2(302, 1437)
+position = Vector2(267, 1490)
+
+[node name="Tree13" parent="Trees-part1" instance=ExtResource("6")]
+position = Vector2(316, 1453)
+
+[node name="Tree14" parent="Trees-part1" instance=ExtResource("6")]
+position = Vector2(316, 1453)
 
 [node name="Trees-part2" type="Node2D" parent="."]
 
@@ -146,16 +158,25 @@ position = Vector2(855, 1578)
 z_index = 1
 position = Vector2(199, 946)
 home_camp = NodePath("../Camp1")
+wood_drop = ""
+meat_drop = ""
+gold_drop = ""
 
 [node name="Goblin3" parent="." node_paths=PackedStringArray("home_camp") instance=ExtResource("12_vor8f")]
 z_index = 1
 position = Vector2(359, 955)
 home_camp = NodePath("../Camp1")
+wood_drop = ""
+meat_drop = ""
+gold_drop = ""
 
 [node name="Goblin2" parent="." node_paths=PackedStringArray("home_camp") instance=ExtResource("12_vor8f")]
 position = Vector2(970, 933)
 scale = Vector2(-1, 1)
 home_camp = NodePath("../Camp2")
+wood_drop = ""
+meat_drop = ""
+gold_drop = ""
 
 [node name="CastleBlue" type="Sprite2D" parent="."]
 position = Vector2(707, 1304)

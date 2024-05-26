@@ -93,6 +93,7 @@ radius = 19.6977
 [node name="WoodDrop" instance=ExtResource("1_h0ej1")]
 sprite_frames = SubResource("SpriteFrames_iyitq")
 animation = &"BRING"
+res_type = 1
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_qjnhu")
