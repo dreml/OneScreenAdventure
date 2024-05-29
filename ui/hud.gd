@@ -10,6 +10,8 @@ extends CanvasLayer
 @export var nav: NavigationMap
 @export var level: TileMap
 
+const POPUP_GAP := 20;
+
 var current_building: Building = null;
 
 func _on_toggle_debug_grid_button_pressed():
@@ -17,9 +19,16 @@ func _on_toggle_debug_grid_button_pressed():
 
 func show_build_popup(building: Building):
 	# У Window, которым является BuildPopup нет возможности задать какой-либо AnchorPoint, поэтому приходится считать тут
-	var pos = building.get_position()
-	var popupSize = build_popup.get_size()
-	build_popup.set_position(Vector2i(pos.x - popupSize.x / 2, pos.y - popupSize.y - 20))
+	# так же отдельно клэмпим позицию чтобы попап оставался всегда в пределах экрана
+	var pos := building.get_position()
+	var popupSize: Vector2 = build_popup.get_size()
+	var viewportSize := get_viewport().get_visible_rect().size;
+
+	var desirePosition := Vector2i(pos.x - popupSize.x / 2, pos.y - popupSize.y - POPUP_GAP);
+	var clampedPosition := desirePosition.clamp(Vector2(POPUP_GAP, POPUP_GAP), viewportSize - Vector2(POPUP_GAP, POPUP_GAP) - popupSize);
+
+	build_popup.set_position(clampedPosition);
+	
 	wood_required.text = str(building.wood_requires);
 	meat_required.text = str(building.meat_requires);
 	gold_required.text = str(building.gold_requires);
