@@ -1,8 +1,10 @@
-[gd_resource type="Theme" load_steps=27 format=3 uid="uid://d24e25bfjbwcu"]
+[gd_resource type="Theme" load_steps=31 format=3 uid="uid://d24e25bfjbwcu"]
 
 [ext_resource type="Texture2D" uid="uid://buact274toefq" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Blue_3Slides.png" id="1_28fhi"]
+[ext_resource type="Texture2D" uid="uid://fhran8raba0i" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Disable_9Slides.png" id="1_ijpmb"]
 [ext_resource type="Texture2D" uid="uid://c3qfcf4utvm5y" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Blue_9Slides.png" id="2_oabkr"]
 [ext_resource type="Texture2D" uid="uid://mb2wsnd8bdd4" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Blue_9Slides_Pressed.png" id="3_p10t7"]
+[ext_resource type="Texture2D" uid="uid://dql4x38vxdnkg" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Disable_3Slides.png" id="4_5oduj"]
 [ext_resource type="Texture2D" uid="uid://bl7w47hc3r08g" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Red_9Slides.png" id="4_61xs3"]
 [ext_resource type="Texture2D" uid="uid://c2pjbgu45x6j2" path="res://assets/sprites/Tiny Swords/UI/Banners/Banner_Horizontal.png" id="4_kml87"]
 [ext_resource type="Texture2D" uid="uid://bbk3ltrddn5d0" path="res://assets/sprites/Tiny Swords/UI/Banners/Carved_9Slides.png" id="4_q6pqk"]
@@ -12,9 +14,22 @@
 [ext_resource type="Texture2D" uid="uid://rv6tdjfjwpfa" path="res://assets/sprites/Tiny Swords/UI/Banners/Banner_Vertical.png" id="7_15rjm"]
 [ext_resource type="Texture2D" uid="uid://bmcxtej7l04fi" path="res://assets/sprites/Tiny Swords/UI/Ribbons/Ribbon_Yellow_3Slides.png" id="7_lhiih"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wgfpr"]
+content_margin_top = 8.0
+content_margin_bottom = 4.0
+texture = ExtResource("1_ijpmb")
+texture_margin_left = 24.2304
+texture_margin_top = 18.8677
+texture_margin_right = 23.2745
+texture_margin_bottom = 32.549
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wj71l"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ydh2l"]
+content_margin_top = 6.0
+content_margin_bottom = 10.0
 texture = ExtResource("2_oabkr")
 texture_margin_left = 24.2304
 texture_margin_top = 18.8677
@@ -24,6 +39,8 @@ axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rlpf5"]
+content_margin_top = 6.0
+content_margin_bottom = 10.0
 texture = ExtResource("2_oabkr")
 texture_margin_left = 24.2304
 texture_margin_top = 18.8677
@@ -33,6 +50,8 @@ axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rluur"]
+content_margin_top = 8.0
+content_margin_bottom = 4.0
 texture = ExtResource("3_p10t7")
 texture_margin_left = 24.2304
 texture_margin_top = 18.8677
@@ -40,6 +59,12 @@ texture_margin_right = 23.2745
 texture_margin_bottom = 32.549
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qj0jv"]
+texture = ExtResource("4_5oduj")
+texture_margin_left = 64.0
+texture_margin_right = 64.0
+axis_stretch_horizontal = 1
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4h4dc"]
 texture = ExtResource("1_28fhi")
@@ -133,6 +158,7 @@ BlueButton/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 BlueButton/colors/font_pressed_color = Color(0, 0, 0, 1)
 BlueButton/colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
 BlueButton/colors/icon_pressed_color = Color(0, 0, 0, 1)
+BlueButton/styles/disabled = SubResource("StyleBoxTexture_wgfpr")
 BlueButton/styles/focus = SubResource("StyleBoxEmpty_wj71l")
 BlueButton/styles/hover = SubResource("StyleBoxTexture_ydh2l")
 BlueButton/styles/normal = SubResource("StyleBoxTexture_rlpf5")
@@ -146,6 +172,7 @@ BlueButtonThin/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 BlueButtonThin/colors/font_pressed_color = Color(0, 0, 0, 1)
 BlueButtonThin/colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
 BlueButtonThin/colors/icon_pressed_color = Color(0, 0, 0, 1)
+BlueButtonThin/styles/disabled = SubResource("StyleBoxTexture_qj0jv")
 BlueButtonThin/styles/focus = SubResource("StyleBoxEmpty_wj71l")
 BlueButtonThin/styles/hover = SubResource("StyleBoxTexture_4h4dc")
 BlueButtonThin/styles/normal = SubResource("StyleBoxTexture_rlpf5")
