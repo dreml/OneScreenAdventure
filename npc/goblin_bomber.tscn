@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxssyl6udbcj2"]
+
+[ext_resource type="PackedScene" uid="uid://dh7death4yl7a" path="res://npc/goblin.tscn" id="1_f3dqe"]
+[ext_resource type="Texture2D" uid="uid://cvlfa8p3ensn1" path="res://assets/sprites/Tiny Swords/Factions/Goblins/Troops/TNT/Red/TNT_Red.png" id="2_acurb"]
+[ext_resource type="Script" path="res://npc/goblin_bomber.gd" id="2_yd1fn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_71ck6"]
+radius = 200.0
+
+[node name="GoblinBomber" instance=ExtResource("1_f3dqe")]
+script = ExtResource("2_yd1fn")
+dynamite = "res://objects/dynamite.tscn"
+wood_drop = ""
+meat_drop = ""
+gold_drop = ""
+
+[node name="Sprite2D" parent="." index="4"]
+texture = ExtResource("2_acurb")
+vframes = 3
+
+[node name="AttackRange" type="Area2D" parent="." index="8"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange" index="0"]
+shape = SubResource("CircleShape2D_71ck6")

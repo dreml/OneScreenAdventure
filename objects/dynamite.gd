@@ -1,0 +1,2 @@
+class_name Dynamite
+extends AnimatedSprite2D
