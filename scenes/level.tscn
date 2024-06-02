@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b086faxrj5bln"]
+[gd_scene load_steps=19 format=3 uid="uid://b086faxrj5bln"]
 
 [ext_resource type="Texture2D" uid="uid://8thupskq0ovu" path="res://assets/sprites/Tiny Swords/Deco/01.png" id="7_qx1lf"]
 [ext_resource type="Texture2D" uid="uid://dc26wm80g1wp" path="res://assets/sprites/Tiny Swords/Deco/03.png" id="8_yl3kd"]
@@ -173,6 +173,26 @@ sources/3 = SubResource("TileSetAtlasSource_3")
 sources/4 = SubResource("TileSetAtlasSource_4")
 sources/5 = SubResource("TileSetAtlasSource_5")
 
+[sub_resource type="Animation" id="Animation_fhnmn"]
+resource_name = "show_bridge"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:layer_4/modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mwhoc"]
+_data = {
+"show_bridge": SubResource("Animation_fhnmn")
+}
+
 [node name="level" type="TileMap"]
 z_index = -100
 tile_set = SubResource("TileSet_0")
@@ -186,6 +206,7 @@ layer_2/tile_data = PackedInt32Array(458766, 65540, 2, 655361, 65540, 2, 720898,
 layer_3/name = "2-foam-3"
 layer_3/tile_data = PackedInt32Array(1835017, 131076, 1)
 layer_4/name = "3-bridge-shadow"
+layer_4/modulate = Color(1, 1, 1, 0)
 layer_4/tile_data = PackedInt32Array(1048583, 131072, 3, 1048584, 131072, 3, 1048585, 131072, 3, 1048586, 131072, 3)
 layer_5/name = "5-sand"
 layer_5/tile_data = PackedInt32Array(458755, 393219, 1, 458756, 196610, 7, 524289, 327683, 0, 524290, 393219, 1, 524291, 393219, 1, 524292, 393219, 1, 589825, 327683, 2, 589826, 393219, 1, 589827, 393219, 1, 589828, 393219, 1, 655362, 327683, 2, 655363, 393219, 1, 655364, 393219, 1, 720899, 327683, 2, 720900, 393219, 2, 1769487, 458755, 2, 1769486, 393219, 2, 1703951, 458755, 1)
@@ -236,3 +257,8 @@ texture = ExtResource("7_qx1lf")
 z_index = -10
 position = Vector2(388, 1378)
 texture = ExtResource("7_qx1lf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mwhoc")
+}
