@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dd8c2ncqldrck"]
+[gd_scene load_steps=9 format=3 uid="uid://dd8c2ncqldrck"]
 
-[ext_resource type="Script" path="res://objects/buildings/building.gd" id="1_3t5oj"]
+[ext_resource type="Script" path="res://objects/buildings/tower.gd" id="1_5c0kh"]
 [ext_resource type="Texture2D" uid="uid://cbsj1kmh6qu4f" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Construction.png" id="2_v25ll"]
 [ext_resource type="AnimationLibrary" uid="uid://1gkpvvn8dr73" path="res://libs/building_animations.res" id="3_xg76k"]
 [ext_resource type="Script" path="res://components/health_component.gd" id="7_0u2s5"]
@@ -25,14 +25,14 @@ func get_entrance():
 	return self.global_position + Vector2(0, rect.size.y * 2)
 "
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7t7my"]
+radius = 197.0
+
 [node name="Tower" type="StaticBody2D" groups=["buildings"]]
 collision_layer = 36
 collision_mask = 3
 constant_linear_velocity = Vector2(2.08165e-12, 2.08165e-12)
-script = ExtResource("1_3t5oj")
-gold_requires = 2
-wood_requires = 4
-global_rect_adjustment = Vector2(2.08165e-12, -10)
+script = ExtResource("1_5c0kh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 69.5)
@@ -60,5 +60,21 @@ offset_top = -60.0
 offset_right = -60.0
 offset_bottom = -60.0
 
+[node name="AttackZone" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+collision_priority = 10.0
+priority = 10
+
+[node name="AttackZoneShape" type="CollisionShape2D" parent="AttackZone"]
+shape = SubResource("CircleShape2D_7t7my")
+
+[node name="ReloadTimer" type="Timer" parent="."]
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+
 [connection signal="dead" from="HealthComponent" to="." method="_on_destroyed"]
 [connection signal="full_health" from="HealthComponent" to="." method="_on_built"]
+[connection signal="body_entered" from="AttackZone" to="." method="_on_attack_zone_body_entered"]
+[connection signal="body_exited" from="AttackZone" to="." method="_on_attack_zone_body_exited"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
