@@ -1,3 +1,4 @@
+class_name BattleTower
 extends AnimatedSprite2D
 
 enum State {ATTACK, WAIT, DESTROYED}

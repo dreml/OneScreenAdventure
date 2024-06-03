@@ -18,6 +18,13 @@ func _make_attack():
 	pass
 
 func _start_attack_building():
-	_change_state(OwnStates.PREPARE_ATTACK)
+	_attack_target = _target
+	_attack_target.dead.connect(_handle_attack_target_dead)
+
+	move_to(_target.get_entrance())
+	await movement_component.arrived
+	_change_state(States.ATTACK)
+
+	# _change_state(OwnStates.PREPARE_ATTACK)
 	# возможно, нужно создать точку у башни, в которую будут прибегать гоблины
-	pass
+	# pass

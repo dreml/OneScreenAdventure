@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbiurkko5a7hc"]
+[gd_scene load_steps=6 format=3 uid="uid://cbiurkko5a7hc"]
 
 [ext_resource type="Script" path="res://objects/camps/camp.gd" id="1_38eco"]
 [ext_resource type="PackedScene" uid="uid://bvrtlcy2mvm7u" path="res://objects/buildings/building.tscn" id="2_0x8yy"]
 [ext_resource type="PackedScene" uid="uid://dh7death4yl7a" path="res://npc/goblin.tscn" id="2_s4euo"]
+[ext_resource type="PackedScene" uid="uid://cxssyl6udbcj2" path="res://npc/goblin_bomber.tscn" id="3_cxj0v"]
 [ext_resource type="PackedScene" uid="uid://chhrmehg1yg0r" path="res://objects/camps/portal.tscn" id="4_eso7q"]
 
 [node name="Camp" type="Node2D"]
 script = ExtResource("1_38eco")
 goblin_prototype = ExtResource("2_s4euo")
+goblin_bomber_prototype = ExtResource("3_cxj0v")
 
 [node name="Building" parent="." instance=ExtResource("2_0x8yy")]
 
