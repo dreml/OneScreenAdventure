@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhd4n7dpc71s7"]
+[gd_scene load_steps=5 format=3 uid="uid://ddskf3onovujh"]
 
 [ext_resource type="Texture2D" uid="uid://ec7747wh31ts" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Blue.png" id="1_17hn3"]
-[ext_resource type="Script" path="res://objects/buildings/battle_tower.gd" id="2_7gbbx"]
+[ext_resource type="Script" path="res://objects/buildings/tower.gd" id="2_3l24l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hfnny"]
 animations = [{
@@ -20,7 +20,7 @@ radius = 197.0
 [node name="BattleTower" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_hfnny")
 animation = &"based"
-script = ExtResource("2_7gbbx")
+script = ExtResource("2_3l24l")
 
 [node name="AttackZone" type="Area2D" parent="."]
 position = Vector2(-1, 0)

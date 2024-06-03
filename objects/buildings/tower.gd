@@ -1,6 +1,5 @@
-extends AnimatedSprite2D
-
-enum State {ATTACK, WAIT, DESTROYED}
+class_name Tower
+extends Building
 
 @onready var _attack_zone = $AttackZone/AttackZoneShape # зона атаки башни
 @onready var reload_timer = $ReloadTimer # таймер перезарядки выстрела
@@ -21,7 +20,7 @@ func attack_zone_update(proc):
 	_attack_zone.scale *= (1+proc/100).round(2)
 	
 func attacking(target):
-	if target == null:
+	if !is_constructed or target == null:
 		return
 		
 	var shoot = _arrow_act.instantiate()
@@ -35,6 +34,9 @@ func _on_reload_timer_timeout():
 	attacking(_target_act)
 
 func _on_attack_zone_body_entered(body):
+	if !is_constructed():
+		return
+
 	if body.is_in_group("goblins"):
 		_target_list.append(body)
 		if _target_act == null:
