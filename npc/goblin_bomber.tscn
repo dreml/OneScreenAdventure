@@ -9,7 +9,6 @@ radius = 200.0
 
 [node name="GoblinBomber" instance=ExtResource("1_f3dqe")]
 script = ExtResource("2_yd1fn")
-dynamite = "res://objects/dynamite.tscn"
 wood_drop = ""
 meat_drop = ""
 gold_drop = ""
@@ -18,7 +17,13 @@ gold_drop = ""
 texture = ExtResource("2_acurb")
 vframes = 3
 
+[node name="CharacterAnimationComponent" parent="." index="7"]
+parameters/StateMachine/attack/blend_position = -0.128841
+
 [node name="AttackRange" type="Area2D" parent="." index="8"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange" index="0"]
 shape = SubResource("CircleShape2D_71ck6")
+
+[node name="ThrowingPoint" type="Node2D" parent="." index="9"]
+position = Vector2(46, -34)

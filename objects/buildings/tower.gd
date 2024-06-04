@@ -4,6 +4,7 @@ extends Building
 @onready var _attack_zone = $AttackZone/AttackZoneShape # зона атаки башни
 @onready var reload_timer = $ReloadTimer # таймер перезарядки выстрела
 @onready var _shoot_sound = $ShootSound
+@onready var bomber_rally_point = $BomberRallyPoint
 
 @export var _arrow_act: PackedScene = preload("res://objects/arrows/bare_arrow.tscn")
 @export var _attack_speed : float = 1.5 # скорострельность
@@ -13,6 +14,8 @@ var _target_act = null # текущая цель
 var _target_list : Array # массив целей
 
 func _ready():
+	super()
+	
 	reload_timer.set_wait_time(_attack_speed)
 	get_shoot_sound(_arrow_act)
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c7rkpl1gtylvp"]
+[gd_scene load_steps=17 format=3 uid="uid://c7rkpl1gtylvp"]
 
 [ext_resource type="Texture2D" uid="uid://4jgqtkb8o5fv" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Destroyed.png" id="1_325qu"]
 [ext_resource type="PackedScene" uid="uid://bwo2g8rne8oaf" path="res://objects/buildings/product_building.tscn" id="1_l1nmd"]
@@ -7,9 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://c43pcs2f1j525" path="res://assets/sprites/Tiny Swords/Resources/Gold Mine/GoldMine_Inactive.png" id="3_mskst"]
 [ext_resource type="Texture2D" uid="uid://cbsj1kmh6qu4f" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Construction.png" id="5_c3esa"]
 [ext_resource type="AudioStream" uid="uid://3dolqk076vd" path="res://assets/audio/get_gold_sound.wav" id="7_2pl83"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_668xu"]
-size = Vector2(162, 67)
 
 [sub_resource type="Animation" id="Animation_m1lqy"]
 length = 0.001
@@ -221,9 +218,8 @@ res_sprite = ExtResource("2_1brsy")
 gold_requires = 1
 wood_requires = 2
 
-[node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(0, 11.5)
-shape = SubResource("RectangleShape2D_668xu")
+[node name="Foundation" parent="." index="0"]
+position = Vector2(0, -6.5)
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("3_mskst")

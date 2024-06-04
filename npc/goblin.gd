@@ -149,7 +149,7 @@ func _make_attack():
 func steal_resource(target_building: ProductBuilding):
 	_change_target_action(TargetActions.STEAL_RESOURCE, target_building)
 
-func attack_building(target_building: Node2D):
+func attack_building(target_building: Building):
 	_change_target_action(TargetActions.ATTACK_BUILDING, target_building)
 
 func _start_attack_building():

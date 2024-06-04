@@ -23,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://cb64qapllcktb" path="res://objects/buildings/bridge.tscn" id="30_ngpdy"]
 [ext_resource type="PackedScene" uid="uid://liaq83i85tc6" path="res://ui/sound_off_button.tscn" id="31_dnxdd"]
 [ext_resource type="Texture2D" uid="uid://byftdtfaarfuq" path="res://ui/meat_texture_cropped.tres" id="31_mitlt"]
-[ext_resource type="PackedScene" uid="uid://cxssyl6udbcj2" path="res://npc/goblin_bomber.tscn" id="31_shp15"]
 [ext_resource type="PackedScene" uid="uid://b2bhh6e0jj1lo" path="res://objects/resources/containers/sheep_container.tscn" id="31_t77yh"]
 [ext_resource type="PackedScene" uid="uid://cbiurkko5a7hc" path="res://objects/camps/camp.tscn" id="31_w0akl"]
 [ext_resource type="PackedScene" uid="uid://c7rkpl1gtylvp" path="res://objects/buildings/gold_mine.tscn" id="32_hhrrl"]
@@ -64,8 +63,8 @@ map_size = Vector2i(34, 60)
 sawmill = NodePath("../Sawmill")
 farm = NodePath("../Farm")
 gold_mine = NodePath("../GoldMine")
-tower1 = NodePath("../BattleTower")
-tower2 = NodePath("../BattleTower2")
+tower1 = NodePath("../Tower")
+tower2 = NodePath("../Tower2")
 pawn_scene = ExtResource("10_xq8q2")
 pawn_spawn_point = NodePath("../PawnSpawnPoint")
 camp1 = NodePath("../Camp1")
@@ -138,10 +137,10 @@ position = Vector2(570, 683)
 position = Vector2(785, 676)
 
 [node name="Tree14" parent="Trees-part2" instance=ExtResource("6")]
-position = Vector2(615, 486)
+position = Vector2(603, 400)
 
 [node name="Player" parent="." instance=ExtResource("2")]
-position = Vector2(648, 1545)
+position = Vector2(675, 1587)
 nav_path = NodePath("../NavigationMap")
 pointer_path = NodePath("../Pointer")
 
@@ -300,15 +299,15 @@ position = Vector2(416, 992)
 [node name="PawnSpawnPoint" type="Node2D" parent="."]
 position = Vector2(707, 1437)
 
-[node name="GoblinBomber" parent="." node_paths=PackedStringArray("target_tower") instance=ExtResource("31_shp15")]
-position = Vector2(741, 598)
-target_tower = NodePath("../Farm")
-
 [node name="Tower" parent="." instance=ExtResource("17_c4rf8")]
 position = Vector2(164, 1366)
 
 [node name="Tower2" parent="." instance=ExtResource("17_c4rf8")]
 position = Vector2(412, 569)
 
+[node name="BomberRallyPoint" parent="Tower2" index="8"]
+position = Vector2(206, -6)
+
 [editable path="Camp1"]
 [editable path="Camp2"]
+[editable path="Tower2"]

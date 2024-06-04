@@ -4,8 +4,8 @@ extends Node2D
 @export var sawmill: ProductBuilding
 @export var farm: ProductBuilding
 @export var gold_mine: ProductBuilding
-@export var tower1: BattleTower
-@export var tower2: BattleTower
+@export var tower1: Tower
+@export var tower2: Tower
 
 @export var pawn_scene: PackedScene
 @export var pawn_spawn_point: Node2D

@@ -216,8 +216,8 @@ res_type = 2
 gold_requires = 3
 wood_requires = 3
 
-[node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(0, 36)
+[node name="Foundation" parent="." index="0"]
+position = Vector2(-1, 20)
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("7_u4wjy")

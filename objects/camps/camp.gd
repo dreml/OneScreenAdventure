@@ -9,7 +9,7 @@ enum GoblinType {
 	BOMBER
 }
 
-@export var goblin_prototype: PackedScene
+@export var goblin_fighter_prototype: PackedScene
 @export var goblin_bomber_prototype: PackedScene
 
 @onready var portal: Node2D = $Portal
@@ -17,7 +17,7 @@ enum GoblinType {
 @onready var prepare_attack_timer: Timer = $PrepareAttackTimer
 
 @onready var GOBLIN_PROTOTYPE_BY_TYPE: Dictionary = {
-	GoblinType.FIGHTER: goblin_prototype,
+	GoblinType.FIGHTER: goblin_fighter_prototype,
 	GoblinType.BOMBER: goblin_bomber_prototype,
 } 
 
@@ -33,7 +33,7 @@ func attack_building(target_building: Building):
 	prepare_attack_timer.timeout.connect(func(): goblin.attack_building(target_building), Object.CONNECT_ONE_SHOT)
 	prepare_attack_timer.start()
 
-func attack_tower(target_tower: BattleTower):
+func attack_tower(target_tower: Tower):
 	var goblin = _spawn_goblin(GoblinType.BOMBER) as GoblinBomber
 	prepare_attack_timer.timeout.connect(func(): goblin.attack_building(target_tower), Object.CONNECT_ONE_SHOT)
 	prepare_attack_timer.start()
