@@ -1,0 +1,209 @@
+[gd_scene load_steps=25 format=3 uid="uid://dctcek7fejbpw"]
+
+[ext_resource type="Texture2D" uid="uid://bg4rsmvsaybwk" path="res://assets/sprites/Tiny Swords/Factions/Goblins/Troops/TNT/Dynamite/Dynamite.png" id="1_b1ghw"]
+[ext_resource type="Script" path="res://objects/dynamite.gd" id="1_bpm5d"]
+[ext_resource type="Texture2D" uid="uid://b22csq7wulvcr" path="res://assets/sprites/Tiny Swords/Effects/Explosion/Explosions.png" id="2_xgqka"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q72k4"]
+atlas = ExtResource("1_b1ghw")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3i62"]
+atlas = ExtResource("1_b1ghw")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m8g5"]
+atlas = ExtResource("1_b1ghw")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq18u"]
+atlas = ExtResource("1_b1ghw")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhxkg"]
+atlas = ExtResource("1_b1ghw")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1me8"]
+atlas = ExtResource("1_b1ghw")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w71lb"]
+atlas = ExtResource("2_xgqka")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e76km"]
+atlas = ExtResource("2_xgqka")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s03uo"]
+atlas = ExtResource("2_xgqka")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dfmt"]
+atlas = ExtResource("2_xgqka")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yeat"]
+atlas = ExtResource("2_xgqka")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qd3ld"]
+atlas = ExtResource("2_xgqka")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lw7d"]
+atlas = ExtResource("2_xgqka")
+region = Rect2(1152, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pltf"]
+atlas = ExtResource("2_xgqka")
+region = Rect2(1344, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avc05"]
+atlas = ExtResource("2_xgqka")
+region = Rect2(1536, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_grv7a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q72k4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j3i62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m8g5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq18u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhxkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1me8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w71lb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e76km")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s03uo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dfmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yeat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qd3ld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lw7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pltf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avc05")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_igxp2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.14159]
+}
+
+[sub_resource type="Animation" id="Animation_8a7ay"]
+resource_name = "fly"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.26573]
+}
+
+[sub_resource type="Animation" id="Animation_j63uk"]
+resource_name = "fly-left"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.26573]
+}
+
+[sub_resource type="Animation" id="Animation_s7erc"]
+resource_name = "explosion"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"explosion"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yneni"]
+_data = {
+"RESET": SubResource("Animation_igxp2"),
+"explosion": SubResource("Animation_s7erc"),
+"fly-left": SubResource("Animation_j63uk"),
+"fly-right": SubResource("Animation_8a7ay")
+}
+
+[node name="Dynamite" type="AnimatedSprite2D"]
+rotation = 3.14159
+sprite_frames = SubResource("SpriteFrames_grv7a")
+animation = &"explosion"
+autoplay = "default"
+frame = 8
+frame_progress = 1.0
+script = ExtResource("1_bpm5d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yneni")
+}

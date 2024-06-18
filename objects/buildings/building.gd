@@ -19,7 +19,7 @@ var _ANIMATIONS_BY_STATES = {
 
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var resources_spent = $ResourcesSpent
-@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var foundation: CollisionShape2D = $Foundation
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var _state = State.DESTROYED
@@ -53,8 +53,8 @@ func take_damage(damage: int) -> void:
 	health_component.take_damage(damage)
 
 func get_rect_global() -> Rect2:
-	var result = collision_shape.shape.get_rect()
-	result.position = global_position + collision_shape.position + global_rect_adjustment
+	var result = foundation.shape.get_rect()
+	result.position = global_position + foundation.position + global_rect_adjustment
 
 	return result
 

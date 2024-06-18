@@ -34,7 +34,7 @@ collision_mask = 3
 constant_linear_velocity = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("1_5c0kh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Foundation" type="CollisionShape2D" parent="."]
 position = Vector2(0, 69.5)
 shape = SubResource("RectangleShape2D_3fijf")
 script = SubResource("GDScript_8yrhr")
@@ -72,6 +72,9 @@ shape = SubResource("CircleShape2D_7t7my")
 [node name="ReloadTimer" type="Timer" parent="."]
 
 [node name="ShootSound" type="AudioStreamPlayer" parent="."]
+
+[node name="BomberRallyPoint" type="Node2D" parent="."]
+position = Vector2(214, -2)
 
 [connection signal="dead" from="HealthComponent" to="." method="_on_destroyed"]
 [connection signal="full_health" from="HealthComponent" to="." method="_on_built"]

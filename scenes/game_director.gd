@@ -4,6 +4,8 @@ extends Node2D
 @export var sawmill: ProductBuilding
 @export var farm: ProductBuilding
 @export var gold_mine: ProductBuilding
+@export var tower1: Tower
+@export var tower2: Tower
 
 @export var pawn_scene: PackedScene
 @export var pawn_spawn_point: Node2D
@@ -11,8 +13,12 @@ extends Node2D
 @export var camp1: Camp
 @export var camp2: Camp
 
+@export var goblin_deaths_to_bomber := 10
+
 @onready var camp1_attack_timer: Timer = $Camp1AttackTimer
+@onready var camp1_bomber_spawn_timer: Timer = $Camp1BomberSpawnTimer
 @onready var camp2_attack_timer: Timer = $Camp2AttackTimer
+@onready var camp2_bomber_spawn_timer: Timer = $Camp2BomberSpawnTimer
 
 var pawns_orders: Array[Command] = []
 
@@ -28,11 +34,13 @@ func _ready():
 	
 	camp1_target = sawmill
 	camp1_attack_timer.timeout.connect(func(): camp1.steal_resource(camp1_target))
+	camp1_bomber_spawn_timer.timeout.connect(func(): camp1.attack_tower(tower1))
 	camp1.goblin_delivered_resources.connect(func(): camp1_attack_timer.start())
 	camp1.goblin_dead.connect(handle_camp1_goblin_death)
 
 	camp2_target = farm
 	camp2_attack_timer.timeout.connect(func(): camp2.steal_resource(camp2_target))
+	camp2_bomber_spawn_timer.timeout.connect(func(): camp2.attack_tower(tower2))
 	camp2.goblin_dead.connect(handle_camp2_goblin_death)
 	camp2.goblin_delivered_resources.connect(func(): camp2_attack_timer.start())
 	
@@ -40,6 +48,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_T):
 		camp1_attack_timer.stop()
 		camp1.attack_building(camp1_target)
+	elif Input.is_key_pressed(KEY_V):
+		camp2_attack_timer.stop()
+		camp2.attack_tower(tower2)
+
 
 #region pawns
 func create_order(order: Command):
@@ -62,11 +74,19 @@ func has_orders() -> bool:
 #region goblins
 func handle_camp1_goblin_death():
 	camp1_goblin_death_count += 1
-	camp1_attack_timer.start()
+	if camp1_goblin_death_count == goblin_deaths_to_bomber:
+		camp1_bomber_spawn_timer.start()
+		camp1_goblin_death_count = 0
+	else:
+		camp1_attack_timer.start()
 
 func handle_camp2_goblin_death():
 	camp2_goblin_death_count += 1
-	camp2_attack_timer.start()
+	if camp2_goblin_death_count == goblin_deaths_to_bomber:
+		camp2_bomber_spawn_timer.start()
+		camp2_goblin_death_count = 0
+	else:
+		camp2_attack_timer.start()
 
 func handle_sawmill_built():
 	camp1_attack_timer.start()
