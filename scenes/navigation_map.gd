@@ -46,6 +46,22 @@ func calculate_obstacles() -> void:
 			for y in range(collision_start.y, collision_end.y + 1):
 				astar_grid.set_point_solid(Vector2i(x, y), true)
 
+	for building in get_tree().get_nodes_in_group('buildings'):
+		if building is Bridge:
+			continue
+
+		var collision: CollisionShape2D = building.get_node('Foundation')
+		assert(collision, 'No collision in %s node' % building .get_name())
+		assert(collision.shape, 'No collision shape in %s node' % building.get_name())
+
+		var collision_start: Vector2i = local_to_map(to_local(collision.global_position + collision.shape.get_rect().position))
+		var collision_end: Vector2i = local_to_map(to_local(collision.global_position + collision.shape.get_rect().end))
+
+		for x in range(collision_start.x, collision_end.x + 1):
+			for y in range(collision_start.y, collision_end.y + 1):
+				astar_grid.set_point_solid(Vector2i(x, y), true)
+
+
 func get_astar_path(world_start, world_end) -> Array[Vector2]:
 	path_start_position = local_to_map(to_local(world_start))
 	path_end_position = local_to_map(to_local(world_end))
