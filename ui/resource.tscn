@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://djknjr0mpajet"]
+[gd_scene load_steps=2 format=3 uid="uid://djknjr0mpajet"]
+
+[ext_resource type="FontFile" uid="uid://bwod57njpsspn" path="res://assets/fonts/TLHeader-Regular-RUS.otf" id="1_fxe7v"]
 
 [node name="Resource" type="HBoxContainer"]
 layout_direction = 3
@@ -11,6 +13,9 @@ theme_override_constants/separation = 20
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.984314, 0.980392, 0.984314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_fxe7v")
 theme_override_font_sizes/font_size = 40
 text = "0"
 

@@ -47,7 +47,7 @@ func spend_resource(type, amount):
 			meat_amount -= amount
 
 func show_build_popup(building: Building):
-	if hud.is_popup_hidden():
+	if hud.is_build_popup_hidden():
 		hud.show_build_popup(building)
 
 func building_built(building: ProductBuilding):
