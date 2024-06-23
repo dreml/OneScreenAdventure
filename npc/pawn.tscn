@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://durirmvxvuw8e"]
+[gd_scene load_steps=28 format=3 uid="uid://durirmvxvuw8e"]
 
 [ext_resource type="PackedScene" uid="uid://6r2vkiqs6jtk" path="res://npc/npc.tscn" id="1_rv43q"]
 [ext_resource type="Script" path="res://npc/pawn.gd" id="2_awla0"]
 [ext_resource type="Texture2D" uid="uid://cqx2kvufxp38j" path="res://assets/sprites/Tiny Swords/Factions/Knights/Troops/Pawn/Yellow/Pawn_Yellow.png" id="3_8pod3"]
+[ext_resource type="AudioStream" uid="uid://ba8k3uw7odx8f" path="res://assets/audio/wood_knock.wav" id="4_ralqv"]
 
 [sub_resource type="Animation" id="Animation_kgfh4"]
 length = 0.001
@@ -73,6 +74,20 @@ tracks/2/keys = {
 "update": 0,
 "values": [true]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BuildingSound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_5yu40"]
 resource_name = "build-right"
@@ -115,6 +130,20 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BuildingSound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_ufik0"]
@@ -345,3 +374,7 @@ parameters/StateMachine/conditions/run = false
 parameters/StateMachine/build/blend_position = 0.5383
 parameters/StateMachine/idle/blend_position = 0.0
 parameters/StateMachine/run/blend_position = -0.335782
+
+[node name="BuildingSound" type="AudioStreamPlayer2D" parent="." index="7"]
+stream = ExtResource("4_ralqv")
+bus = &"SFX"

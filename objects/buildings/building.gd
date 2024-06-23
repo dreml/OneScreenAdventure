@@ -21,6 +21,7 @@ var _ANIMATIONS_BY_STATES = {
 @onready var resources_spent = $ResourcesSpent
 @onready var foundation: CollisionShape2D = $Foundation
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var constructed_sound: AudioStreamPlayer2D = $ConstructedSound
 
 var _state = State.DESTROYED
 
@@ -65,11 +66,13 @@ func get_entrance():
 
 func _set_state(state: State):
 	_state = state
-	animation_player.play(_ANIMATIONS_BY_STATES[state])
+	if not self is Bridge:
+		animation_player.play(_ANIMATIONS_BY_STATES[state])
 
 func _on_built():
 	_set_state(State.IDLE)
 	constructed.emit()
+	constructed_sound.play()
 
 func _on_destroyed():
 	_set_state(State.DESTROYED)

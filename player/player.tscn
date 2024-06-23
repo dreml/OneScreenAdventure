@@ -1,8 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://iviro4gjq1x1"]
+[gd_scene load_steps=35 format=3 uid="uid://iviro4gjq1x1"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://wywba2jc74ru" path="res://assets/sprites/Tiny Swords/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png" id="2"]
 [ext_resource type="Script" path="res://components/health_component.gd" id="3_xlymk"]
+[ext_resource type="AudioStream" uid="uid://duedjpqk0blof" path="res://assets/audio/footstep.wav" id="4_mmlue"]
+[ext_resource type="AudioStream" uid="uid://2q3i7fkahkrb" path="res://assets/audio/attack_sound.wav" id="5_2w8o6"]
 
 [sub_resource type="RectangleShape2D" id="8"]
 size = Vector2(32, 32)
@@ -174,6 +176,20 @@ tracks/2/keys = {
 "method": &"_make_attack"
 }]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackSound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_fx1ae"]
 resource_name = "IdleLeft"
@@ -288,6 +304,23 @@ tracks/1/keys = {
 "update": 1,
 "values": [6, 7, 8, 9, 10, 11]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_step_sound"
+}, {
+"args": [],
+"method": &"play_step_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_je262"]
 resource_name = "RunRight"
@@ -316,6 +349,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [6, 7, 8, 9, 10, 11]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_step_sound"
+}, {
+"args": [],
+"method": &"play_step_sound"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h00iv"]
@@ -407,7 +457,6 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-151.81, -69.273)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7dkse"]
-graph_offset = Vector2(-155.011, -22.5409)
 nodes/Attack/node = SubResource("AnimationNodeOneShot_751xt")
 nodes/Attack/position = Vector2(680, 160)
 nodes/AttackBlendSpace/node = SubResource("AnimationNodeBlendSpace2D_7hn7d")
@@ -468,6 +517,15 @@ position = Vector2(0, -23)
 shape = SubResource("CircleShape2D_dvsyb")
 
 [node name="AttackCDTimer" type="Timer" parent="."]
+
+[node name="StepSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_mmlue")
+volume_db = 4.0
+bus = &"SFX"
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_2w8o6")
+bus = &"SFX"
 
 [connection signal="body_entered" from="DetectEnemyArea" to="." method="_on_detect_enemy_area_body_entered"]
 [connection signal="body_exited" from="DetectEnemyArea" to="." method="_on_detect_enemy_area_body_exited"]

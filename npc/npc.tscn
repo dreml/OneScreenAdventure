@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://6r2vkiqs6jtk"]
+[gd_scene load_steps=7 format=3 uid="uid://6r2vkiqs6jtk"]
 
 [ext_resource type="Script" path="res://npc/character.gd" id="1_wl5my"]
 [ext_resource type="Script" path="res://components/movement_component.gd" id="2_cgfcy"]
 [ext_resource type="Script" path="res://components/health_component.gd" id="3_2rot0"]
 [ext_resource type="Script" path="res://components/character_animation_component.gd" id="3_y0gd8"]
+[ext_resource type="AudioStream" uid="uid://5ggxq2y5aqy5" path="res://assets/audio/goblin_death.wav" id="5_c3ams"]
 
 [sub_resource type="RectangleShape2D" id="8"]
 size = Vector2(32, 32)
@@ -28,3 +29,7 @@ shape = SubResource("8")
 [node name="CharacterAnimationComponent" type="AnimationTree" parent="."]
 anim_player = NodePath("../AnimationPlayer")
 script = ExtResource("3_y0gd8")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_c3ams")
+bus = &"SFX"

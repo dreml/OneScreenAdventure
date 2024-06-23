@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dd8c2ncqldrck"]
+[gd_scene load_steps=10 format=3 uid="uid://dd8c2ncqldrck"]
 
 [ext_resource type="Script" path="res://objects/buildings/tower.gd" id="1_5c0kh"]
 [ext_resource type="Texture2D" uid="uid://cbsj1kmh6qu4f" path="res://assets/sprites/Tiny Swords/Factions/Knights/Buildings/Tower/Tower_Construction.png" id="2_v25ll"]
 [ext_resource type="AnimationLibrary" uid="uid://1gkpvvn8dr73" path="res://libs/building_animations.res" id="3_xg76k"]
+[ext_resource type="AudioStream" uid="uid://cpaxhpqbkcjf1" path="res://assets/audio/delo-sdelano.wav" id="6_r8xca"]
 [ext_resource type="Script" path="res://components/health_component.gd" id="7_0u2s5"]
 [ext_resource type="PackedScene" uid="uid://b7swydcs7p5nq" path="res://ui/resources_spent.tscn" id="9_txcy1"]
 
@@ -75,6 +76,10 @@ shape = SubResource("CircleShape2D_7t7my")
 
 [node name="BomberRallyPoint" type="Node2D" parent="."]
 position = Vector2(214, -2)
+
+[node name="ConstructedSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_r8xca")
+bus = &"SFX"
 
 [connection signal="dead" from="HealthComponent" to="." method="_on_destroyed"]
 [connection signal="full_health" from="HealthComponent" to="." method="_on_built"]
