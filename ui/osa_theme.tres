@@ -1,7 +1,9 @@
-[gd_resource type="Theme" load_steps=31 format=3 uid="uid://d24e25bfjbwcu"]
+[gd_resource type="Theme" load_steps=37 format=3 uid="uid://d24e25bfjbwcu"]
 
 [ext_resource type="Texture2D" uid="uid://buact274toefq" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Blue_3Slides.png" id="1_28fhi"]
 [ext_resource type="Texture2D" uid="uid://fhran8raba0i" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Disable_9Slides.png" id="1_ijpmb"]
+[ext_resource type="Texture2D" uid="uid://detnvyrt7fjau" path="res://assets/sprites/Tiny Swords/UI/Banners/Banner_Connection_Down.png" id="1_ll1pc"]
+[ext_resource type="Texture2D" uid="uid://b386chabfq4ox" path="res://assets/sprites/Tiny Swords/UI/Banners/Banner_Connection_Up.png" id="1_o82ax"]
 [ext_resource type="Texture2D" uid="uid://c3qfcf4utvm5y" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Blue_9Slides.png" id="2_oabkr"]
 [ext_resource type="Texture2D" uid="uid://mb2wsnd8bdd4" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Blue_9Slides_Pressed.png" id="3_p10t7"]
 [ext_resource type="Texture2D" uid="uid://dql4x38vxdnkg" path="res://assets/sprites/Tiny Swords/UI/Buttons/Button_Disable_3Slides.png" id="4_5oduj"]
@@ -13,6 +15,40 @@
 [ext_resource type="Texture2D" uid="uid://bqttg1f80irvy" path="res://assets/sprites/Tiny Swords/UI/Ribbons/Ribbon_Red_3Slides.png" id="6_w1dme"]
 [ext_resource type="Texture2D" uid="uid://rv6tdjfjwpfa" path="res://assets/sprites/Tiny Swords/UI/Banners/Banner_Vertical.png" id="7_15rjm"]
 [ext_resource type="Texture2D" uid="uid://bmcxtej7l04fi" path="res://assets/sprites/Tiny Swords/UI/Ribbons/Ribbon_Yellow_3Slides.png" id="7_lhiih"]
+[ext_resource type="FontFile" uid="uid://bwod57njpsspn" path="res://assets/fonts/TLHeader-Regular-RUS.otf" id="14_kw8rj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kc4bd"]
+texture = ExtResource("1_ll1pc")
+texture_margin_left = 40.0
+texture_margin_top = 65.0
+texture_margin_right = 40.0
+texture_margin_bottom = 55.0
+expand_margin_left = 40.0
+expand_margin_top = 40.0
+expand_margin_right = 40.0
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2n6ei"]
+texture = ExtResource("1_ll1pc")
+texture_margin_left = 40.0
+texture_margin_top = 65.0
+texture_margin_right = 40.0
+texture_margin_bottom = 55.0
+expand_margin_left = 40.0
+expand_margin_top = 40.0
+expand_margin_right = 40.0
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fgsk7"]
+texture = ExtResource("1_o82ax")
+texture_margin_left = 55.0
+texture_margin_top = 55.0
+texture_margin_right = 55.0
+texture_margin_bottom = 70.0
+expand_margin_left = 40.0
+expand_margin_right = 40.0
+expand_margin_bottom = 40.0
+axis_stretch_vertical = 2
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wgfpr"]
 content_margin_top = 8.0
@@ -94,6 +130,8 @@ texture_margin_left = 64.3091
 texture_margin_top = 71.7302
 texture_margin_right = 64.0697
 texture_margin_bottom = 63.1121
+expand_margin_left = 30.0
+expand_margin_right = 30.0
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
@@ -149,6 +187,12 @@ texture_margin_right = 64.0
 axis_stretch_horizontal = 2
 
 [resource]
+BCDPanel/base_type = &"Panel"
+BCDPanel/styles/panel = SubResource("StyleBoxTexture_kc4bd")
+BannerConnectionDown/base_type = &"PanelContainer"
+BannerConnectionDown/styles/panel = SubResource("StyleBoxTexture_2n6ei")
+BannerConnectionUp/base_type = &"PanelContainer"
+BannerConnectionUp/styles/panel = SubResource("StyleBoxTexture_fgsk7")
 BlueButton/base_type = &"Button"
 BlueButton/colors/font_color = Color(0, 0, 0, 1)
 BlueButton/colors/font_disabled_color = Color(0, 0, 0, 1)
@@ -183,6 +227,9 @@ Carved/base_type = &"Panel"
 Carved/styles/panel = SubResource("StyleBoxTexture_fyxj4")
 HorizontalBanner/base_type = &"PanelContainer"
 HorizontalBanner/styles/panel = SubResource("StyleBoxTexture_821ra")
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 10
+Label/fonts/font = ExtResource("14_kw8rj")
 RedButton/base_type = &"Button"
 RedButton/colors/font_color = Color(0, 0, 0, 1)
 RedButton/colors/font_disabled_color = Color(0, 0, 0, 1)
@@ -199,6 +246,9 @@ RedButton/styles/pressed = SubResource("StyleBoxTexture_xdour")
 RedRibbon/base_type = &"PanelContainer"
 RedRibbon/styles/panel = SubResource("StyleBoxTexture_shiqp")
 RichTextLabel/colors/default_color = Color(0.211765, 0.423529, 0.203922, 1)
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/outline_size = 10
+RichTextLabel/fonts/normal_font = ExtResource("14_kw8rj")
 VerticalBanner/base_type = &"PanelContainer"
 VerticalBanner/styles/panel = SubResource("StyleBoxTexture_t4y1u")
 YellowRibbon/base_type = &"PanelContainer"
