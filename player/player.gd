@@ -27,6 +27,7 @@ const AT_ATTACK_PATH: String = "parameters/Attack/request"
 @onready var pointer: Pointer = get_node(pointer_path)
 @onready var attack_cd_timer: Timer = $AttackCDTimer
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var step_sound: AudioStreamPlayer2D = $StepSound
 
 var _state := States.IDLE
 
@@ -235,3 +236,6 @@ func _stop_attack():
 	attack_cd_timer.stop()
 #endregion
 	
+func play_step_sound():
+	if not step_sound.playing:
+		step_sound.play()

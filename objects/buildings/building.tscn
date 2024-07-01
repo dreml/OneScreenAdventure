@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvrtlcy2mvm7u"]
+[gd_scene load_steps=9 format=3 uid="uid://bvrtlcy2mvm7u"]
 
 [ext_resource type="Texture2D" uid="uid://gvo64w1bbyt8" path="res://assets/sprites/Tiny Swords/Factions/Goblins/Buildings/Wood_Tower/Wood_Tower_Red.png" id="2_ap6cu"]
+[ext_resource type="AudioStream" uid="uid://cpaxhpqbkcjf1" path="res://assets/audio/delo-sdelano.wav" id="2_lj7wm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p37of"]
 size = Vector2(90, 69)
@@ -51,3 +52,7 @@ shape = SubResource("RectangleShape2D_p37of")
 sprite_frames = SubResource("SpriteFrames_fq25n")
 autoplay = "default"
 frame_progress = 0.962354
+
+[node name="ConstructedSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_lj7wm")
+bus = &"SFX"
