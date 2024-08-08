@@ -62,7 +62,7 @@ func get_rect_global() -> Rect2:
 func get_entrance():
 	var rect = get_rect_global()
 
-	return global_position + Vector2(0, rect.size.y * 2)
+	return rect.position + Vector2(0, rect.size.y)
 
 func _set_state(state: State):
 	_state = state
