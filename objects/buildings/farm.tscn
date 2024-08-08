@@ -236,7 +236,7 @@ position = Vector2(2.08165e-12, 73)
 stream = ExtResource("6_vmckg")
 
 [node name="GatherZoneShape" parent="GatherZone" index="0"]
-position = Vector2(2.08165e-12, 73)
+position = Vector2(0, 92)
 
 [node name="HealthComponent" parent="." index="9"]
 position = Vector2(2.08165e-12, 2.08165e-12)

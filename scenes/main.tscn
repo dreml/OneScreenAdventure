@@ -135,7 +135,7 @@ position = Vector2(785, 676)
 position = Vector2(603, 400)
 
 [node name="Player" parent="." instance=ExtResource("2")]
-position = Vector2(675, 1587)
+position = Vector2(644, 1554)
 nav_path = NodePath("../NavigationMap")
 pointer_path = NodePath("../Pointer")
 
@@ -198,7 +198,7 @@ frame_progress = 0.915642
 position = Vector2(723, 801)
 
 [node name="Sawmill" parent="." instance=ExtResource("24_o0eek")]
-position = Vector2(303, 1576)
+position = Vector2(339, 1611)
 gold_requires = 0
 wood_requires = 3
 
@@ -212,7 +212,7 @@ position = Vector2(722, 1699)
 position = Vector2(847, 1035)
 
 [node name="GoldMine" parent="." instance=ExtResource("32_hhrrl")]
-position = Vector2(369, 302)
+position = Vector2(367, 302)
 
 [node name="Camp1" parent="." instance=ExtResource("31_w0akl")]
 position = Vector2(195, 986)
@@ -242,7 +242,7 @@ position = Vector2(707, 1437)
 position = Vector2(164, 1366)
 
 [node name="Tower2" parent="." instance=ExtResource("17_c4rf8")]
-position = Vector2(412, 569)
+position = Vector2(412, 544)
 
 [node name="BomberRallyPoint" parent="Tower2" index="8"]
 position = Vector2(206, -6)
