@@ -194,7 +194,7 @@ func _make_attack():
 		_attack_target.take_damage(attack_damage)
 
 func _can_attack_target(target: Node2D) -> bool:
-	return not target.is_queued_for_deletion() and target.is_in_group("goblins") and target.has_method("attacked") 
+	return not target.is_queued_for_deletion() and target.is_in_group("goblins") and target.has_method("attacked") and target.has_method("is_dead") and not target.is_dead()
 
 func _start_attack(target: Node2D):
 	if _attack_target and not _attack_target.is_queued_for_deletion():

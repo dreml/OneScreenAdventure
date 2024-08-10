@@ -15,6 +15,8 @@ var ANIMATIONS_BY_STATES: Dictionary = {
 @onready var character_animation: CharacterAnimationComponent = $CharacterAnimationComponent
 @onready var death_sound: AudioStreamPlayer2D = $DeathSound
 
+var dying := false
+
 func _ready() -> void:
 	state = States.IDLE
 	
@@ -25,11 +27,16 @@ func _ready() -> void:
 	movement_component.facing_direction_changed.connect(character_animation.update_animation_direction)
 	health_component.dead.connect(
 		func():
+			dying = true
 			dead.emit()
+			character_animation.play_death_animation()	
 			death_sound.play()
-			await death_sound.finished
+			await character_animation.animation_finished
 			queue_free()
 	)
+
+func is_dead():
+	return dying
 
 func _change_state(new_state):
 	if state == new_state:
