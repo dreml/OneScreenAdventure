@@ -28,3 +28,7 @@ func update_animation_direction():
 
 func _get_animation_name_by_state():
 	return animations_by_states[parent.state]
+
+func play_death_animation():
+	self.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
