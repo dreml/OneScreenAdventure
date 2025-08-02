@@ -81,6 +81,7 @@ func move_to(location: Vector2):
 	_change_state(States.FOLLOW)
 
 func _handle_dead():
+	movement_component.can_move = false
 	home_camp.goblin_dead.emit()
 	_drop_resources()
 

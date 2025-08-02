@@ -58,7 +58,6 @@ func _ready():
 func _process(_delta) -> void:
 	_update_animation_direction()
 
-	print(_state)
 	if _state != States.FOLLOW:
 		return
 
@@ -113,6 +112,7 @@ func _move_to(world_position) -> bool:
 
 func _change_state(new_state) -> void:
 	_state = new_state
+
 	if new_state == States.FOLLOW:
 		_process_follow_state()
 	elif new_state == States.IDLE:

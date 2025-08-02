@@ -23,7 +23,7 @@ size = Vector2(60, 11)
 
 [node name="BareArrow" instance=ExtResource("1_u2i4e")]
 damage = 10
-speed = 300
+speed = 500
 shoot_sound_path = "res://assets/audio/shoot_bare_arrow.wav"
 
 [node name="ArrowBody2D" parent="." index="0"]

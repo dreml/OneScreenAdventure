@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name BaseArrow
 
 @export var damage = 0 # урон от стрелы
-@export var speed = 4 # скорость стрелы
+@export var speed = 9 # скорость стрелы
 @export var shoot_sound_path = "" # путь до файла звука выстрела стрелы
 
 var _target_act = null # актуальная цель стрелы
