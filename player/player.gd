@@ -69,7 +69,10 @@ func _process(_delta) -> void:
 			_path.remove_at(0)
 
 		if len(_path) == 0:
-			_reach_target()
+			_change_state(States.IDLE)
+			var distance = position - _target_position
+			if distance.length() < 50:
+				_reach_target()
 			return
 		
 		_target_point_world = _path[0]
@@ -148,7 +151,6 @@ func _update_animation_direction():
 	animation_tree[AT_BLEND_POSITION_PATH % animation_name] = _facing_direction.x
 
 func _reach_target():
-	_change_state(States.IDLE)
 
 	if _target_building != null && !_target_building.is_constructed():
 		GameInstance.show_build_popup(_target_building)
