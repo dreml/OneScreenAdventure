@@ -81,7 +81,7 @@ func can_be_built():
 	return !is_constructed() && _is_enough_resources()
 
 func is_constructed():
-	return _state != State.DESTROYED
+	return _state == State.IDLE
 
 func _is_enough_resources():
 	var is_enough_wood = GameInstance.wood_amount >= wood_requires

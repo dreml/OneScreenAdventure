@@ -145,7 +145,7 @@ nav = NodePath("../NavigationMap")
 level = NodePath("../level")
 
 [node name="Pawn" parent="." instance=ExtResource("10_xq8q2")]
-position = Vector2(416, 1646)
+position = Vector2(439, 1644)
 
 [node name="Pawn2" parent="." instance=ExtResource("10_xq8q2")]
 position = Vector2(855, 1578)
