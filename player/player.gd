@@ -58,6 +58,7 @@ func _ready():
 func _process(_delta) -> void:
 	_update_animation_direction()
 
+	print(_state)
 	if _state != States.FOLLOW:
 		return
 
@@ -111,6 +112,7 @@ func _move_to(world_position) -> bool:
 	return position.distance_to(world_position) < ARRIVE_DISTANCE
 
 func _change_state(new_state) -> void:
+	_state = new_state
 	if new_state == States.FOLLOW:
 		_process_follow_state()
 	elif new_state == States.IDLE:
@@ -118,7 +120,6 @@ func _change_state(new_state) -> void:
 		if _get_enemy_in_range():
 			_attack_next_target()
 
-	_state = new_state
 	_switch_animation()
 	
 func _process_follow_state():
@@ -131,7 +132,7 @@ func _process_follow_state():
 	pointer.reset()
 
 	_path = nav.get_astar_path(position, _target_position)
-	if not _path or len(_path) == 1:
+	if not _path or len(_path) <= 1:
 		_change_state(States.IDLE)
 		return
 	_target_point_world = _path[1]
